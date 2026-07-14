@@ -1,0 +1,89 @@
+/* ---------- Modern Testimonials ---------- */
+.testi-card-modern {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.testi-spotlight {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(47,124,214,0.08), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+.testi-card-modern:hover .testi-spotlight {
+  opacity: 1;
+}
+.testi-card-modern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(47,124,214,0.4), transparent 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.testi-card-modern:hover::before {
+  opacity: 1;
+}
+.testi-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+.testi-quote-modern {
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.7;
+  flex-grow: 1;
+}
+.testi-author-modern {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+.testi-author-modern img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--surface-2);
+}
+.testi-name-modern {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 4px;
+}
+.testi-role-modern {
+  font-size: 13px;
+  color: var(--accent-blue);
+  font-weight: 500;
+}
+.testi-stars-modern {
+  color: var(--accent-blue);
+  font-size: 18px;
+  letter-spacing: 2px;
+}

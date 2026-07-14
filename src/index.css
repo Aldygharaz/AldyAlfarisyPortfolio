@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 210 30% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+    --primary: 214 65% 51%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 210 30% 10%;
+    --muted: 210 30% 96%;
+    --muted-foreground: 215 18% 35%;
+    --accent: 214 65% 51%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 30% 88%;
+    --input: 210 30% 88%;
+    --ring: 214 65% 51%;
+    --radius: 0.75rem;
+
+    /* Portfolio custom colors */
+    --bg: #F7FAFD;
+    --surface: #FFFFFF;
+    --surface-2: #EEF4FA;
+    --border-color: #DCE7F2;
+    --accent-blue: #1D4ED8;
+    --accent-strong: #1E3A8A;
+    --accent-soft: #2563EB;
+    --accent-wash: #EFF6FF;
+    --text: #000000;
+    --text-muted: #111827;
+    --maxw: 1120px;
+
+    /* Quadrant colors */
+    --q-blue: #2648B0;
+    --q-blue-bg: #DCE5FC;
+    --q-blue-text: #16204A;
+    --q-pink: #B02D63;
+    --q-pink-bg: #F8DCE9;
+    --q-pink-text: #4A1226;
+    --q-amber: #96591A;
+    --q-amber-bg: #F5E4C2;
+    --q-amber-text: #3D2708;
+    --q-green: #14785A;
+    --q-green-bg: #CFF3E3;
+    --q-green-text: #0B3324;
+    --q-off-bg: #E8ECF3;
+    --q-off-icon-bg: #DCE2EB;
+    --q-off-icon-color: #64748B;
+    --q-off-label: #64748B;
+    --q-off-heading: #1E293B;
+    --q-off-body: #334155;
+
+    /* Intro hero */
+    --intro-bg: #E4E4E4;
+    --intro-bg-2: #F7FAFD;
+    --intro-text: #000000;
+    --intro-muted: #334155;
+    --intro-line: rgba(10,23,48,0.14);
+
+    --font-display: 'Jost', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  h1 em, h2 em, h3 em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent-blue);
+  }
+
+  ::selection {
+    background: var(--accent-blue);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-blue);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
