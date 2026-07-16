@@ -103,7 +103,6 @@
   opacity: 0;
   transform: translateY(28px) scale(0.98);
   transition: opacity 0.7s cubic-bezier(0.2,0.8,0.2,1), transform 0.7s cubic-bezier(0.2,0.8,0.2,1);
-  will-change: transform, opacity;
 }
 
 .reveal.in-view {
@@ -948,9 +947,11 @@
   transform: translateY(0) scale(1) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
 }
 
-.skills-hive.in-view .hex {
-  animation: hex-breathe 5.5s ease-in-out infinite;
-  animation-delay: var(--enter-delay, 0s);
+@media (hover: hover) {
+  .skills-hive.in-view .hex {
+    animation: hex-breathe 5.5s ease-in-out infinite;
+    animation-delay: var(--enter-delay, 0s);
+  }
 }
 
 .skills-hive.has-hover .hex,
