@@ -25,7 +25,10 @@ function App() {
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = () => !window.matchMedia('(hover: hover)').matches;
+    const isTouch = () => {
+      if (typeof window === 'undefined') return false;
+      return window.innerWidth < 1024 || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
+    };
 
     // Global mouse glow (throttled)
     let rafMouse: number | null = null;

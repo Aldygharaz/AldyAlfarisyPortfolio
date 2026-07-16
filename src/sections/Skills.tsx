@@ -57,7 +57,7 @@ export default function Skills() {
 
   const isTouch = () => {
     if (typeof window === 'undefined') return false;
-    return !window.matchMedia('(hover: hover)').matches;
+    return window.innerWidth < 1024 || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
   };
 
   const handleHexClick = (e: React.MouseEvent, idx: number) => {
