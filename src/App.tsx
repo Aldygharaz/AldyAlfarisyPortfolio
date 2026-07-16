@@ -70,8 +70,8 @@ function App() {
         // Progress bar
         if (scrollProgressRef.current) {
           const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-          scrollProgressRef.current.style.width = `${pct}%`;
+          const pct = docHeight > 0 ? scrollY / docHeight : 0;
+          scrollProgressRef.current.style.transform = `scaleX(${pct})`;
         }
 
         // Back to top
