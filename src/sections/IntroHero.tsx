@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
 
 export default function IntroHero() {
@@ -6,6 +6,14 @@ export default function IntroHero() {
   const introContentRef = useRef<HTMLDivElement>(null);
   const introScrollRef = useRef<HTMLDivElement>(null);
   const introDecorRef = useRef<HTMLDivElement>(null);
+  const [showSpline, setShowSpline] = useState(false);
+
+  useEffect(() => {
+    // Only show the heavy 3D Spline model on PC/desktop screens
+    if (window.innerWidth >= 1024) {
+      setShowSpline(true);
+    }
+  }, []);
 
   return (
     <section ref={introHeroRef} className="intro-hero" id="introHero">
@@ -23,10 +31,11 @@ export default function IntroHero() {
           bottom: '-60px', /* Hide Spline logo */
           zIndex: 0,
           mixBlendMode: 'multiply', /* This makes the Spline's solid background blend seamlessly and reveals the grid */
+          display: showSpline ? 'block' : 'none'
         }}
         aria-hidden="true"
       >
-        <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />
+        {showSpline && <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />}
       </div>
 
       <div className="intro-content" ref={introContentRef} style={{ pointerEvents: 'none', textAlign: 'left', width: '100%', maxWidth: '1120px', padding: '0 32px', margin: '0 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', zIndex: 1 }}>
