@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const skills = [
   { name: 'Orkestrasi AI', icon: '🤖', color: '#10A37F', description: 'Antigravity, alur multi-agent' },
@@ -22,20 +22,19 @@ function shade(hex: string, amount: number) {
 
 export default function Skills() {
   const hiveRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isHovering, setIsHovering] = useState<boolean>(false);
+  const [isInView, setIsInView] = useState<boolean>(false);
 
   useEffect(() => {
     const hive = hiveRef.current;
     if (!hive) return;
 
-    const hexes = Array.from(hive.querySelectorAll<HTMLElement>('.hex'));
-    const isTouch = () => !window.matchMedia('(hover: hover)').matches;
-
-    // Intersection observer for entrance
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
+            setIsInView(true);
           }
         });
       },
@@ -43,51 +42,29 @@ export default function Skills() {
     );
     io.observe(hive);
 
-    // Hover/active handlers
-    const enterHandlers: (() => void)[] = [];
-    const leaveHandlers: (() => void)[] = [];
-    const clickHandlers: ((e: Event) => void)[] = [];
-
-    hexes.forEach((hex) => {
-      const enter = () => { if (!isTouch()) hive.classList.add('has-hover'); };
-      const leave = () => { if (!isTouch()) hive.classList.remove('has-hover'); };
-      const click = (e: Event) => {
-        if (!isTouch()) return;
-        e.stopPropagation();
-        const wasActive = hex.classList.contains('is-active');
-        hexes.forEach((h) => h.classList.remove('is-active'));
-        hive.classList.remove('has-active');
-        if (!wasActive) {
-          hex.classList.add('is-active');
-          hive.classList.add('has-active');
-        }
-      };
-
-      hex.addEventListener('mouseenter', enter);
-      hex.addEventListener('mouseleave', leave);
-      hex.addEventListener('click', click);
-      enterHandlers.push(enter);
-      leaveHandlers.push(leave);
-      clickHandlers.push(click);
-    });
-
-    const docClick = () => {
-      if (!isTouch()) return;
-      hexes.forEach((h) => h.classList.remove('is-active'));
-      hive.classList.remove('has-active');
-    };
-    document.addEventListener('click', docClick);
-
     return () => {
       io.disconnect();
-      hexes.forEach((hex, i) => {
-        hex.removeEventListener('mouseenter', enterHandlers[i]);
-        hex.removeEventListener('mouseleave', leaveHandlers[i]);
-        hex.removeEventListener('click', clickHandlers[i]);
-      });
-      document.removeEventListener('click', docClick);
     };
   }, []);
+
+  useEffect(() => {
+    const docClick = () => {
+      setActiveIndex(null);
+    };
+    document.addEventListener('click', docClick);
+    return () => document.removeEventListener('click', docClick);
+  }, []);
+
+  const isTouch = () => {
+    if (typeof window === 'undefined') return false;
+    return !window.matchMedia('(hover: hover)').matches;
+  };
+
+  const handleHexClick = (e: React.MouseEvent, idx: number) => {
+    if (!isTouch()) return;
+    e.stopPropagation();
+    setActiveIndex(prev => prev === idx ? null : idx);
+  };
 
   const rows = [
     skills.slice(0, 1),
@@ -96,7 +73,7 @@ export default function Skills() {
     skills.slice(6, 8),
     skills.slice(8, 9)
   ];
-  let globalIndex = 0;
+
 
   return (
     <section className="section" id="skills">
@@ -105,18 +82,25 @@ export default function Skills() {
         <h2>Fokus pada <em>Hasil</em>, Bukan Sekadar Tools</h2>
         <p className="section-sub">Detail penjelasan akan muncul saat disentuh. Orang awam bisa menangkap intinya sekilas, dan yang butuh rincian teknis tinggal tap atau arahkan kursor.</p>
       </div>
-      <div className="skills-hive" ref={hiveRef} id="skillsHive">
+      <div
+        className={`skills-hive ${isHovering ? 'has-hover' : ''} ${activeIndex !== null ? 'has-active' : ''} ${isInView ? 'in-view' : ''}`}
+        ref={hiveRef}
+        id="skillsHive"
+      >
         {rows.map((row, ri) => (
           <div className="hive-row" key={ri}>
             {row.map((skill) => {
-              const idx = globalIndex++;
+              const idx = skills.indexOf(skill);
               return (
                 <button
                   type="button"
-                  className="hex"
+                  className={`hex ${activeIndex === idx ? 'is-active' : ''}`}
                   key={skill.name}
                   style={{ '--enter-delay': `${idx * 0.055}s` } as React.CSSProperties}
                   aria-label={`${skill.name}: ${skill.description}`}
+                  onMouseEnter={() => !isTouch() && setIsHovering(true)}
+                  onMouseLeave={() => !isTouch() && setIsHovering(false)}
+                  onClick={(e) => handleHexClick(e, idx)}
                 >
                   <span
                     className="hex-glow"

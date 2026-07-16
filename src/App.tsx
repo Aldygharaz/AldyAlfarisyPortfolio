@@ -27,17 +27,21 @@ function App() {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isTouch = () => !window.matchMedia('(hover: hover)').matches;
 
-    // Global mouse glow
+    // Global mouse glow (throttled)
+    let rafMouse: number | null = null;
     const updateMousePos = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--global-mouse-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--global-mouse-y', `${e.clientY}px`);
+      if (rafMouse) cancelAnimationFrame(rafMouse);
+      rafMouse = requestAnimationFrame(() => {
+        document.documentElement.style.setProperty('--global-mouse-x', `${e.clientX}px`);
+        document.documentElement.style.setProperty('--global-mouse-y', `${e.clientY}px`);
+      });
     };
     if (!isTouch()) {
-      window.addEventListener('mousemove', updateMousePos);
+      window.addEventListener('mousemove', updateMousePos, { passive: true });
     }
 
     // Lenis smooth scroll
-    if (!prefersReduced) {
+    if (!prefersReduced && !isTouch()) {
       lenisRef.current = new Lenis({
         duration: 1.1,
         easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
@@ -53,22 +57,26 @@ function App() {
       requestAnimationFrame(raf);
     }
 
-    // Scroll progress + nav shrink + back-to-top
+    // Scroll progress + nav shrink + back-to-top (throttled)
+    let rafScroll: number | null = null;
     const updateChrome = () => {
-      const scrollY = window.scrollY;
+      if (rafScroll) cancelAnimationFrame(rafScroll);
+      rafScroll = requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
 
-      // Nav
-      navRef.current?.classList.toggle('scrolled', scrollY > 30);
+        // Nav
+        navRef.current?.classList.toggle('scrolled', scrollY > 30);
 
-      // Progress bar
-      if (scrollProgressRef.current) {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-        scrollProgressRef.current.style.width = `${pct}%`;
-      }
+        // Progress bar
+        if (scrollProgressRef.current) {
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+          scrollProgressRef.current.style.width = `${pct}%`;
+        }
 
-      // Back to top
-      backToTopRef.current?.classList.toggle('visible', scrollY > 480);
+        // Back to top
+        backToTopRef.current?.classList.toggle('visible', scrollY > 480);
+      });
     };
 
     window.addEventListener('scroll', updateChrome, { passive: true });
