@@ -13,40 +13,6 @@ const socials = [
 export default function Contact() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const magneticBtns = section.querySelectorAll<HTMLElement>('.magnetic');
-    const handlers: { el: HTMLElement; move: (e: MouseEvent) => void; leave: () => void }[] = [];
-
-    magneticBtns.forEach((btn) => {
-      let rafId: number | null = null;
-      const move = (e: MouseEvent) => {
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = requestAnimationFrame(() => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          btn.style.transform = `translate(${x * 0.1}px, ${y * 0.15}px)`;
-        });
-      };
-      const leave = () => { 
-        if (rafId) cancelAnimationFrame(rafId);
-        btn.style.transform = 'translate(0,0)'; 
-      };
-      btn.addEventListener('mousemove', move, { passive: true });
-      btn.addEventListener('mouseleave', leave);
-      handlers.push({ el: btn, move, leave });
-    });
-
-    return () => {
-      handlers.forEach((h) => {
-        h.el.removeEventListener('mousemove', h.move);
-        h.el.removeEventListener('mouseleave', h.leave);
-      });
-    };
-  }, []);
 
   return (
     <section className="cta-section" id="contact" ref={sectionRef}>

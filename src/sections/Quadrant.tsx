@@ -37,10 +37,10 @@ export default function Quadrant() {
         <h2>Apa yang Bisa Saya Kerjakan untuk Kamu</h2>
       </div>
       <div className="quad-frame reveal">
-        <span className="quad-axis-label quad-axis-top">Usability</span>
-        <span className="quad-axis-label quad-axis-bottom">Performance</span>
-        <span className="quad-axis-label quad-axis-left">Human</span>
-        <span className="quad-axis-label quad-axis-right">Machine</span>
+        <span className="quad-axis-label quad-axis-top">Fokus Pengguna</span>
+        <span className="quad-axis-label quad-axis-bottom">Performa Sistem</span>
+        <span className="quad-axis-label quad-axis-left">Interaksi Manusia</span>
+        <span className="quad-axis-label quad-axis-right">Otomasi Mesin</span>
         <div className="quad-grid">
           {quadrants.map((q, i) => (
             <div className={`quad-cell ${q.cls}`} key={i}>
