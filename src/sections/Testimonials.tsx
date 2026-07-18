@@ -4,20 +4,20 @@ import './Testimonials.css';
 const testimonials = [
   {
     quote: "Aldy ngerti banget apa yang aku butuhin, bahkan sebelum aku selesai jelasin. Hasil akhirnya jauh lebih rapi dari yang aku bayangin.",
-    name: '[ISI: Nama Dummy 1]',
-    role: '[ISI: Jabatan/Perusahaan Dummy 1]',
+    name: 'Budi Santoso',
+    role: 'Founder, TechStart',
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "Komunikasinya enak, progresnya jelas tiap minggu. Gak ada drama nunggu update kayak biasanya kerja sama freelancer lain.",
-    name: '[ISI: Nama Dummy 2]',
-    role: '[ISI: Jabatan/Perusahaan Dummy 2]',
+    name: 'Sarah Amalia',
+    role: 'Marketing Director',
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
   },
   {
     quote: "Sistemnya jalan lancar sampai sekarang, dan pas ada masalah kecil, responnya cepat banget. Worth it.",
-    name: '[ISI: Nama Dummy 3]',
-    role: '[ISI: Jabatan/Perusahaan Dummy 3]',
+    name: 'Reza Pratama',
+    role: 'Owner, Kedai Kopi',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face',
   },
 ];
