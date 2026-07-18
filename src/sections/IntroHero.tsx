@@ -9,10 +9,15 @@ export default function IntroHero() {
   const [showSpline, setShowSpline] = useState(false);
 
   useEffect(() => {
-    // Only show the heavy 3D Spline model on PC/desktop screens
-    if (window.innerWidth >= 1024) {
-      setShowSpline(true);
-    }
+    // Dynamically show/hide the heavy 3D Spline model based on screen size
+    const handleResize = () => {
+      setShowSpline(window.innerWidth >= 1024);
+    };
+    
+    handleResize(); // Initial check
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   return (
