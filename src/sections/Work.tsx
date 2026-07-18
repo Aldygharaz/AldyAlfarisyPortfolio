@@ -22,23 +22,41 @@ const projects = [
 export default function Work() {
   return (
     <section className="section" id="work" style={{ position: 'relative', overflow: 'hidden' }}>
+      <style>{`
+        .card-work.span-full {
+          grid-column: 1 / -1;
+        }
+        @media (min-width: 768px) {
+          .card-work.span-full .card-img {
+            height: 320px; /* Make the featured image taller */
+          }
+        }
+      `}</style>
       <div className="section-head reveal">
         <span className="eyebrow">Karya Terpilih</span>
         <h2>Studi kasus lengkap masih saya rapikan. Ini beberapa sistem yang udah dibangun lewat Sokara.</h2>
       </div>
       <div className="grid-work">
-        {projects.map((p, i) => (
-          <article className="card-work reveal" key={i} style={{ transitionDelay: `${i * 0.08}s` }}>
-            <div className="card-img">
-              <img src={p.image} alt={p.title} loading="lazy" />
-            </div>
-            <div className="card-body">
-              <h3>{p.title}</h3>
-              <p>{p.desc}</p>
-              <span className="tag">{p.tag}</span>
-            </div>
-          </article>
-        ))}
+        {projects.map((p, i) => {
+          // If it's the last item and the total count is odd, make it span full width
+          const isOddLast = i === projects.length - 1 && projects.length % 2 !== 0;
+          return (
+            <article 
+              className={`card-work reveal ${isOddLast ? 'span-full' : ''}`} 
+              key={i} 
+              style={{ transitionDelay: `${i * 0.08}s` }}
+            >
+              <div className="card-img">
+                <img src={p.image} alt={p.title} loading="lazy" />
+              </div>
+              <div className="card-body">
+                <h3>{p.title}</h3>
+                <p>{p.desc}</p>
+                <span className="tag">{p.tag}</span>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
