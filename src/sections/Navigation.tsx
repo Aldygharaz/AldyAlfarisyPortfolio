@@ -1,5 +1,14 @@
 import { forwardRef } from 'react';
 
+const NAV_LINKS = [
+  { id: 'work', label: 'Karya' },
+  { id: 'quadrant', label: 'Solusi' },
+  { id: 'skills', label: 'Skill' },
+  { id: 'process', label: 'Proses' },
+  { id: 'testimonials', label: 'Testimoni' },
+  { id: 'faq', label: 'FAQ' },
+];
+
 const Navigation = forwardRef<HTMLElement>((_, ref) => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
@@ -141,14 +150,18 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           </a>
         </div>
 
-        {/* Center: Links */}
+        {/* Center: Links mapped from array (Kaizen: Standardized & DRY) */}
         <nav className="nav-center">
-          <a href="#work" className="nav-link" onClick={(e) => handleNavClick(e, 'work')}>Karya</a>
-          <a href="#quadrant" className="nav-link" onClick={(e) => handleNavClick(e, 'quadrant')}>Solusi</a>
-          <a href="#skills" className="nav-link" onClick={(e) => handleNavClick(e, 'skills')}>Skill</a>
-          <a href="#process" className="nav-link" onClick={(e) => handleNavClick(e, 'process')}>Proses</a>
-          <a href="#testimonials" className="nav-link" onClick={(e) => handleNavClick(e, 'testimonials')}>Testimoni</a>
-          <a href="#faq" className="nav-link" onClick={(e) => handleNavClick(e, 'faq')}>FAQ</a>
+          {NAV_LINKS.map(({ id, label }) => (
+            <a
+              key={id}
+              href={`#${id}`}
+              className="nav-link"
+              onClick={(e) => handleNavClick(e, id)}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
 
         {/* Right: Actions */}
