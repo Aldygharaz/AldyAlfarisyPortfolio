@@ -70,38 +70,58 @@ export default function Contact() {
         </a>
       </div>
 
-      <div className="social-grid" style={{ 
-        display: 'flex', 
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        gap: '1rem', 
-        marginTop: '4rem',
-        maxWidth: '700px',
-        marginInline: 'auto'
-      }}>
+      <style>{`
+        .social-grid-styled {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1rem;
+          margin-top: 4rem;
+          max-width: 700px;
+          margin-inline: auto;
+        }
+        .social-link-styled {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: 120px;
+          gap: 8px;
+          padding: 16px;
+          border-radius: 12px;
+          background-color: var(--surface);
+          border: 1px solid var(--border-color);
+          text-decoration: none;
+          color: var(--text);
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+        .social-link-styled:hover {
+          border-color: var(--accent-blue);
+          transform: translateY(-2px);
+        }
+        .social-icon-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+        }
+        .social-name {
+          font-size: 14px;
+          font-weight: 500;
+        }
+      `}</style>
+
+      <div className="social-grid social-grid-styled">
         {socials.map((social, i) => (
-          <a key={i} href={social.url} target="_blank" rel="noopener noreferrer" className="social-link" style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '120px',
-            gap: '8px',
-            padding: '16px',
-            borderRadius: '12px',
-            backgroundColor: 'var(--surface)',
-            border: '1px solid var(--border-color)',
-            textDecoration: 'none',
-            color: 'var(--text)',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.02)'
-          }}>
-            <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '28px', height: '28px' }}>
+          <a key={i} href={social.url} target="_blank" rel="noopener noreferrer" className="social-link social-link-styled">
+            <span className="social-icon-wrapper">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <path d={social.path} />
               </svg>
             </span>
-            <span style={{ fontSize: '14px', fontWeight: 500 }}>{social.name}</span>
+            <span className="social-name">{social.name}</span>
           </a>
         ))}
       </div>
