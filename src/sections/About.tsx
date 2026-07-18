@@ -51,49 +51,49 @@ export default function About() {
             <h4 className="timeline-heading">PERJALANAN KARIR</h4>
             <ul className="timeline-list">
               <li>
-                <span className="timeline-year">'20</span>
-                <span className="timeline-desc">Memulai karir sebagai Web Designer</span>
+                <span className="timeline-year">'19</span>
+                <span className="timeline-desc">Membangun & Mengelola Bisnis F&B</span>
               </li>
               <li>
-                <span className="timeline-year">'22</span>
-                <span className="timeline-desc">Fokus ke Front-End Development & UI/UX</span>
+                <span className="timeline-year">'21</span>
+                <span className="timeline-desc">Fokus pada Analisis Data & Metrik Bisnis</span>
               </li>
               <li>
-                <span className="timeline-year">'24</span>
-                <span className="timeline-desc">Menjadi Freelancer Penuh Waktu</span>
+                <span className="timeline-year">'23</span>
+                <span className="timeline-desc">Mendirikan Sokara & AI Development</span>
               </li>
             </ul>
           </div>
           
           <div className="about-footer-text">
-            <span>* Lebih dari 4 tahun pengalaman</span>
-            <span>* Terbuka untuk role senior / spesialis</span>
+            <span>* Integrasi Lintas Disiplin (Bisnis + Tech)</span>
+            <span>* Terbuka untuk eksekusi solusi end-to-end</span>
           </div>
         </div>
 
         {/* Right Column */}
         <div className="about-visual-col reveal" style={{ transitionDelay: '0.1s' }}>
-          <img src="/portrait.jpg" alt="Yudha - Web Designer" className="about-portrait" />
+          <img src="/portrait.jpg" alt="Aldy Alfarisy - Digital Solutions Builder" className="about-portrait" />
           
           <div className="vitals-section">
             <div className="vitals-header">
               <h3>Data Diri</h3>
-              <span>VOL. 04 · '24</span>
+              <span>SOKARA · '24</span>
             </div>
             
             <div className="vital-row">
               <div className="vital-label">SAAT INI</div>
               <div className="vital-content">
-                <h4>Freelance Web Designer & Developer</h4>
-                <p>UI/UX Design · Frontend · Web Animations</p>
+                <h4>Digital Solutions Builder @ Sokara</h4>
+                <p>AI Orchestration · Full-Stack Dev · Business Logic</p>
               </div>
             </div>
             
             <div className="vital-row">
               <div className="vital-label">SEBELUMNYA</div>
               <div className="vital-content">
-                <h4>UI/UX Designer</h4>
-                <p>Berbagai Digital Agency · Mendesain puluhan landing page</p>
+                <h4>Data Analyst & F&B Owner</h4>
+                <p>Business Strategy · Operations · Economics</p>
               </div>
             </div>
             
@@ -108,8 +108,8 @@ export default function About() {
             <div className="vital-row">
               <div className="vital-label">TERBUKA UNTUK</div>
               <div className="vital-content">
-                <h4>Proyek Freelance & Kolaborasi</h4>
-                <p>Tim yang berorientasi pada produk berkualitas tinggi</p>
+                <h4>Proyek End-to-End & Otomasi</h4>
+                <p>Sistem bisnis yang fokus pada profitabilitas dan efisiensi</p>
               </div>
             </div>
           </div>
