@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 const sections = [
   { id: 'introHero', label: 'INTRO' },
   { id: 'work', label: 'KARYA' },
-  { id: 'system', label: 'SISTEM' },
+  { id: 'quadrant', label: 'SOLUSI' },
   { id: 'skills', label: 'SKILL' },
   { id: 'process', label: 'PROSES' },
-  { id: 'promises', label: 'JANJI' },
+  { id: 'orbit', label: 'EKOSISTEM' },
   { id: 'testimonials', label: 'TESTIMONI' },
   { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'KONTAK' }
