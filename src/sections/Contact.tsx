@@ -16,9 +16,9 @@ export default function Contact() {
 
   return (
     <section className="cta-section" id="contact" ref={sectionRef}>
-      <span className="eyebrow">Mulai Proyek Baru?</span>
+      <span className="eyebrow">Mulai Proyek Digital Anda?</span>
       <h2>
-        Waktunya Berhenti <em>Menebak-nebak</em>
+        Eksekusi Ide Menjadi <em>Skala Produksi</em>
       </h2>
 
       <div style={{ marginTop: '2rem' }}>

@@ -2,14 +2,15 @@ import { useEffect, useRef, useState } from 'react';
 
 const skills = [
   { name: 'Orkestrasi AI', icon: '🤖', color: '#10A37F', description: 'Antigravity, alur multi-agent' },
-  { name: 'Prompt Eng', icon: '💬', color: '#61DAFB', description: 'Brief presisi untuk AI' },
   { name: 'App Web Modern', icon: '🌐', color: '#3B82F6', description: 'React, Next.js, Tailwind' },
   { name: 'App Desktop', icon: '🖥️', color: '#47848F', description: 'Electron, native IPC' },
   { name: 'Database & API', icon: '🗄️', color: '#3ECF8E', description: 'Supabase, Apps Script' },
   { name: 'Desain UI/UX', icon: '🎨', color: '#9333EA', description: 'Antarmuka intuitif & modern' },
-  { name: 'Anti-error', icon: '🛡️', color: '#E44D26', description: 'Validasi & error handling' },
-  { name: 'Integrasi Bisnis', icon: '🔗', color: '#00C389', description: 'lynk.id checkout' },
-  { name: 'Infrastruktur', icon: '🚀', color: '#F58025', description: 'Vercel, DNS, webhooks' },
+  { name: 'UX Copywriting', icon: '✍️', color: '#F43F5E', description: 'Microcopy teknis & persuasif' },
+  { name: 'Defensive UX', icon: '🛡️', color: '#E44D26', description: 'Poka-Yoke, error prevention' },
+  { name: 'Integrasi Sistem', icon: '🔗', color: '#00C389', description: 'Payment gateway, Webhooks' },
+  { name: 'Infrastruktur', icon: '🚀', color: '#F58025', description: 'Vercel, DNS, CI/CD' },
+  { name: 'Offline-First', icon: '📡', color: '#EAB308', description: 'PWA, IndexedDB sync' },
 ];
 
 const HEX_MASK_URL = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12C22 12.7 21.8 13.4 21.5 14L18 20C17.3 21.2 16 22 14.6 22H7.4C6 22 4.7 21.2 4 20L0.5 14C-0.2 12.8 -0.2 11.2 0.5 10L4 4C4.7 2.8 6 2 7.4 2H14.6C16 2 17.3 2.8 18 4L21.5 10C21.8 10.6 22 11.3 22 12Z'/%3E%3C/svg%3E")`;
@@ -69,20 +70,19 @@ export default function Skills() {
   };
 
   const rows = [
-    skills.slice(0, 1),
-    skills.slice(1, 3),
-    skills.slice(3, 6),
-    skills.slice(6, 8),
-    skills.slice(8, 9)
+    skills.slice(0, 2),
+    skills.slice(2, 5),
+    skills.slice(5, 8),
+    skills.slice(8, 10)
   ];
 
 
   return (
     <section className="section" id="skills">
       <div className="section-head center reveal">
-        <span className="eyebrow">Kapabilitas & Solusi</span>
-        <h2>Fokus pada <em>Hasil</em>, Bukan Sekadar Tools</h2>
-        <p className="section-sub">Detail penjelasan akan muncul saat disentuh. Orang awam bisa menangkap intinya sekilas, dan yang butuh rincian teknis tinggal tap atau arahkan kursor.</p>
+        <span className="eyebrow">Kapabilitas Teknis</span>
+        <h2>Fokus pada <em>Eksekusi</em> dan Hasil Terukur</h2>
+        <p className="section-sub">Detail arsitektur akan muncul saat disentuh. Dirancang agar mudah dipahami oleh pengambil keputusan, namun tetap memiliki kedalaman bagi audiens teknis.</p>
       </div>
       <div
         className={`skills-hive ${isHovering ? 'has-hover' : ''} ${activeIndex !== null ? 'has-active' : ''} ${isInView ? 'in-view' : ''}`}

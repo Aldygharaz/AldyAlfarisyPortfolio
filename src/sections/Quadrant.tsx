@@ -2,30 +2,30 @@ const quadrants = [
   {
     cls: 'blue',
     icon: '✨',
-    label: 'Full-Stack',
-    title: '<em>Web & App</em> Development',
-    desc: 'Membangun aplikasi web full-stack dari nol menggunakan React, Next.js, dan Electron. Cocok untuk landing page, sistem internal, maupun desktop app.',
+    label: 'FULL-STACK',
+    title: 'Web & App Development',
+    desc: 'Membangun aplikasi full-stack berskala produksi menggunakan React, Next.js, dan arsitektur modern, mulai dari portal internal, sistem SaaS, hingga desktop app.',
   },
   {
     cls: 'pink',
     icon: '⚡',
-    label: 'Automation',
-    title: 'AI-Powered <em>Workflow</em>',
-    desc: 'Integrasiin AI Agent ke proses development dan operasional bisnis kamu, biar kerjaan yang berulang gak makan waktu dan hasilnya tetap konsisten.',
+    label: 'AUTOMATION',
+    title: 'AI-Powered Workflow',
+    desc: 'Mengintegrasikan AI Agent ke dalam pipeline development dan operasional bisnis, mengotomasi tugas berulang dengan presisi dan konsistensi tinggi tanpa mengorbankan kontrol kualitas.',
   },
   {
     cls: 'amber',
     icon: '🏗️',
-    label: 'Architecture',
-    title: 'Sistem & Arsitektur <em>Custom</em>',
-    desc: 'Merancang sistem berskala besar sejak awal. Mulai dari struktur database, sinkronisasi data, hingga keamanan transaksi, memastikan semuanya solid agar tidak perlu dibangun ulang saat bisnis makin berkembang.',
+    label: 'ARCHITECTURE & TRANSFORMATION',
+    title: 'Sistem Custom yang Siap Bertumbuh',
+    desc: 'Merancang topologi sistem sejak fase awal seperti skema database, antrean sinkronisasi offline-first, hingga pengamanan transaksi, sekaligus mendigitalisasi alur kerja konvensional menjadi sistem manajemen terpadu yang skalabel dan siap bertumbuh mengikuti valuasi bisnis Anda.',
   },
   {
     cls: 'green',
     icon: '🚀',
-    label: 'Transformation',
-    title: 'Digitalisasi <em>UMKM ke SaaS</em>',
-    desc: 'Bantu bisnis kecil naik level dari proses manual jadi sistem digital yang rapi, sampai ke skala produk SaaS kalau memang dibutuhkan.',
+    label: 'INTERACTIVE',
+    title: 'Website Interaktif & Immersive',
+    desc: 'Membangun landing page dan website dengan animasi scroll, transisi halus, dan elemen 3D interaktif menggunakan GSAP, Lenis, dan React Three Fiber untuk pengalaman yang terasa hidup, bukan sekadar halaman statis.',
   },
 ];
 
@@ -34,7 +34,10 @@ export default function Quadrant() {
     <section className="section" id="quadrant" style={{ backgroundColor: 'var(--surface)' }}>
       <div className="section-head reveal" style={{ alignItems: 'center', textAlign: 'center' }}>
         <span className="eyebrow">Solusi Terpadu</span>
-        <h2>Apa yang Bisa Saya Kerjakan untuk Kamu</h2>
+        <h2>Apa yang Bisa Saya Bangun untuk Anda</h2>
+        <p className="section-sub" style={{ maxWidth: '700px', margin: '16px auto 0' }}>
+          Empat kemampuan ini saling terhubung dalam satu proses membangun sistem untuk bisnis Anda, mulai dari desain arsitektur hingga produk yang siap dipakai.
+        </p>
       </div>
       <div className="quad-frame reveal">
         <span className="quad-axis-label quad-axis-top">Fokus Pengguna</span>

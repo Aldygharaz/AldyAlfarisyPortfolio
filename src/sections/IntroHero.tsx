@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
-import Spline from '@splinetool/react-spline';
+import React, { useRef, useState, useEffect, Suspense } from 'react';
+
+const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function IntroHero() {
   const introHeroRef = useRef<HTMLElement>(null);
@@ -134,7 +135,11 @@ export default function IntroHero() {
         style={{ display: showSpline ? 'block' : 'none' }}
         aria-hidden="true"
       >
-        {showSpline && <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />}
+        {showSpline && (
+          <Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
+            <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />
+          </Suspense>
+        )}
       </div>
 
       <div className="intro-content intro-content-styled" ref={introContentRef}>
@@ -146,14 +151,17 @@ export default function IntroHero() {
           ALDY ALFARISY<em>.</em>
         </h1>
         <h2 className="animate-fade-up delay-1 intro-title-styled">
-          Digital Solutions Builder (AI-Powered) @ Sokara
+          Product Operator & Digital Solutions Architect
         </h2>
-        <p className="intro-role animate-fade-up delay-2 intro-role-styled">
-          Saya bantu ide kamu jadi produk digital nyata yang siap menghasilkan profit. Mulai dari aplikasi web, sistem POS, hingga produk full-stack lainnya, semuanya dibangun secara efisien dengan bantuan AI Agent tanpa mengorbankan kualitas.
+        <h3 className="animate-fade-up delay-2" style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', fontWeight: 500, color: 'var(--text)', marginTop: '12px', lineHeight: 1.4 }}>
+          Mengubah Kebutuhan Bisnis Jadi Produk, Lewat Orkestrasi AI.
+        </h3>
+        <p className="intro-role animate-fade-up delay-2 intro-role-styled" style={{ marginTop: '16px' }}>
+          Saya merancang arsitektur dan alur kerja produk, lalu mengarahkan AI Agent untuk mengeksekusinya, mulai dari sistem Point of Sale hingga platform operasional <em>full-stack</em>. Hasilnya: produk nyata yang siap pakai, dengan proses pengembangan yang jauh lebih efisien.
         </p>
         <div className="animate-fade-up delay-3 intro-actions-styled">
           <a href="#work" className="btn btn-primary magnetic intro-btn-styled" onClick={(e) => { e.preventDefault(); document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' }); }}>
-            Lihat Karya Saya
+            Lihat Portofolio
           </a>
           <div className="intro-social-wrap">
             <span className="intro-social-label">Terhubung juga di</span>

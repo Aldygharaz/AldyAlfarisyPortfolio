@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import './App.css';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
@@ -15,129 +15,22 @@ import FAQ from './sections/FAQ';
 import Contact from './sections/Contact';
 import Footer from './sections/Footer';
 import SideNav from './components/SideNav';
-import Lenis from 'lenis';
+import { useMouseGlow } from './hooks/useMouseGlow';
+import { useLenisScroll } from './hooks/useLenisScroll';
+import { useScrollChrome } from './hooks/useScrollChrome';
+import { useScrollReveal } from './hooks/useScrollReveal';
+import { useMagneticHover } from './hooks/useMagneticHover';
 
 function App() {
-  const lenisRef = useRef<Lenis | null>(null);
   const scrollProgressRef = useRef<HTMLDivElement>(null);
   const backToTopRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouch = () => {
-      if (typeof window === 'undefined') return false;
-      return window.innerWidth < 1024 || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
-    };
-
-    // Global mouse glow (throttled)
-    let rafMouse: number | null = null;
-    const updateMousePos = (e: MouseEvent) => {
-      if (rafMouse) cancelAnimationFrame(rafMouse);
-      rafMouse = requestAnimationFrame(() => {
-        document.documentElement.style.setProperty('--global-mouse-x', `${e.clientX}px`);
-        document.documentElement.style.setProperty('--global-mouse-y', `${e.clientY}px`);
-      });
-    };
-    if (!isTouch()) {
-      window.addEventListener('mousemove', updateMousePos, { passive: true });
-    }
-
-    // Lenis smooth scroll
-    if (!prefersReduced && !isTouch()) {
-      lenisRef.current = new Lenis({
-        duration: 1.1,
-        easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1.2,
-      });
-
-      function raf(time: number) {
-        lenisRef.current?.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-    }
-
-    // Scroll progress + nav shrink + back-to-top (throttled)
-    let rafScroll: number | null = null;
-    const updateChrome = () => {
-      if (rafScroll) cancelAnimationFrame(rafScroll);
-      rafScroll = requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-
-        // Nav
-        navRef.current?.classList.toggle('scrolled', scrollY > 30);
-
-        // Progress bar
-        if (scrollProgressRef.current) {
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          const pct = docHeight > 0 ? scrollY / docHeight : 0;
-          scrollProgressRef.current.style.transform = `scaleX(${pct})`;
-        }
-
-        // Back to top
-        backToTopRef.current?.classList.toggle('visible', scrollY > 480);
-      });
-    };
-
-    window.addEventListener('scroll', updateChrome, { passive: true });
-    updateChrome();
-
-    // Scroll reveal
-    const revealEls = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    revealEls.forEach((el) => io.observe(el));
-
-    // Global Magnetic Buttons
-    const magneticBtns = document.querySelectorAll<HTMLElement>('.magnetic');
-    const magneticHandlers: { el: HTMLElement; move: (e: MouseEvent) => void; leave: () => void }[] = [];
-    if (!isTouch()) {
-      magneticBtns.forEach((btn) => {
-        let rafId: number | null = null;
-        const move = (e: MouseEvent) => {
-          if (rafId) cancelAnimationFrame(rafId);
-          rafId = requestAnimationFrame(() => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.1}px, ${y * 0.15}px)`;
-          });
-        };
-        const leave = () => { 
-          if (rafId) cancelAnimationFrame(rafId);
-          btn.style.transform = 'translate(0,0)'; 
-        };
-        btn.addEventListener('mousemove', move, { passive: true });
-        btn.addEventListener('mouseleave', leave);
-        magneticHandlers.push({ el: btn, move, leave });
-      });
-    }
-
-    return () => {
-      window.removeEventListener('scroll', updateChrome);
-      io.disconnect();
-      magneticHandlers.forEach((h) => {
-        h.el.removeEventListener('mousemove', h.move);
-        h.el.removeEventListener('mouseleave', h.leave);
-      });
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
-      }
-      window.removeEventListener('mousemove', updateMousePos);
-    };
-  }, []);
+  useMouseGlow();
+  const lenisRef = useLenisScroll();
+  useScrollChrome(navRef, scrollProgressRef, backToTopRef);
+  useScrollReveal();
+  useMagneticHover();
 
   const scrollToTop = () => {
     if (lenisRef.current) {
@@ -162,7 +55,6 @@ function App() {
 
       <Navigation ref={navRef} />
       <IntroHero />
-
       <Hero />
       <Marquee />
       <Work />

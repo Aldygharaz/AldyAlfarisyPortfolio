@@ -2,28 +2,28 @@ import { useState } from 'react';
 
 const faqs = [
   {
-    q: 'Aldy ini developer, atau agency, atau gimana sih?',
-    a: 'Saya kerja sebagai satu operator yang pegang penuh dari strategi sampai eksekusi teknis, tanpa birokrasi tim besar yang rumit. Dibantu AI Agent, saya bisa gerak lebih cepat tanpa ngorbanin kualitas hasil akhirnya.',
+    q: 'Apakah Anda beroperasi sebagai individual developer atau agency?',
+    a: 'Saya beroperasi sebagai individual engineer (solopreneur) yang mengelola seluruh siklus—dari strategi arsitektur hingga eksekusi kode. Dengan kapabilitas AI Agent, saya mampu melakukan orkestrasi development berskala enterprise secara efisien tanpa birokrasi agency besar.',
   },
   {
-    q: 'Kenapa saya percaya satu orang, bukan tim/agency?',
-    a: 'Justru karena satu orang, komunikasi lebih cepat, nggak ada lapisan project manager ke developer. Dan saya pegang dua sisi sekaligus: analisis bisnis dan eksekusi teknis, jadi nggak ada gap antara "yang diminta" dan "yang dibangun".',
+    q: 'Apa keunggulan bekerja dengan individual engineer dibanding tim besar?',
+    a: 'Komunikasi langsung tanpa perantara project manager memastikan tidak ada gap antara kebutuhan bisnis dan eksekusi teknis. Semua keputusan desain sistem, keamanan, dan deployment ditangani dalam satu pintu untuk meminimalisir overhead dan miskomunikasi.',
   },
   {
-    q: 'Kalau AI yang bantu bangun, apa hasilnya generik/template?',
-    a: 'AI adalah alat eksekusi, tapi keputusan desainnya tetap dari saya, disesuaikan konteks bisnis Anda, termasuk kebiasaan yang cuma dipahami orang yang pernah langsung pegang bisnis di sini. Misalnya, integrasi notifikasi langsung ke WhatsApp alih-alih email, karena memang itu jalur komunikasi utama yang dipakai kebanyakan orang kita.',
+    q: 'Jika menggunakan AI, apakah hasil akhirnya berupa template generik?',
+    a: 'Sama sekali tidak. AI berfungsi sebagai akselerator penulisan kode, bukan pengambil keputusan arsitektur. Desain sistem (System Design) dan penyesuaian logika bisnis spesifik tetap dirancang secara kustom oleh saya untuk menjawab target operasional Anda secara unik.',
   },
   {
-    q: 'Sistem yang dibangun pakai AI, apa reliable jangka panjang? Nanti kalau ada bug siapa yang benerin?',
-    a: 'Saya nggak cuma bangun lalu tinggal. Saya rancang sistemnya supaya bisa terus diperbarui tanpa mengganggu operasional harian Anda, dan saya rutin pastikan sistem tetap sesuai standar terbaru, bukan dibiarkan usang.',
+    q: 'Apakah sistem yang dibangun handal untuk jangka panjang? Bagaimana maintenance-nya?',
+    a: 'Setiap sistem dibangun dengan arsitektur scalable dan praktik Defensive UX. Setelah rilis, saya menyediakan dokumentasi komprehensif dan layanan dukungan pasca-rilis (SLA) opsional untuk memastikan stabilitas saat skala bisnis Anda membesar.',
   },
   {
-    q: 'Berapa lama biasanya pengerjaan satu proyek?',
-    a: 'Tergantung skala. Landing page atau web app sederhana bisa selesai dalam hitungan hari sampai satu-dua minggu. Buat sistem yang lebih kompleks kayak POS atau LMS, timeline-nya kita bahas dulu setelah scope-nya jelas.',
+    q: 'Berapa lama estimasi pengerjaan untuk satu proyek utuh?',
+    a: 'Estimasi berbanding lurus dengan kompleksitas sistem. Prototipe atau platform sederhana membutuhkan waktu 1-2 minggu, sementara sistem komprehensif (POS, HR, SaaS) dikerjakan dalam siklus iteratif yang disepakati bersama saat fase Discovery.',
   },
   {
-    q: 'Apakah saya harus paham teknis buat kerja sama sama Aldy?',
-    a: 'Enggak sama sekali. Justru tugas saya nerjemahin kebutuhan kamu ke bahasa teknis. Kamu cukup fokus ke tujuan bisnisnya.',
+    q: 'Apakah klien perlu memiliki pemahaman teknis sebelum bekerja sama?',
+    a: 'Tidak perlu. Tugas utama saya adalah menerjemahkan obyektif bisnis Anda menjadi spesifikasi teknis yang tepat. Anda cukup fokus pada metrik keberhasilan bisnis, dan saya yang akan mengeksekusi teknologi di belakang layar.',
   },
 ];
 

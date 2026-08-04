@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import ThemeToggle from '../components/ThemeToggle';
 
 const NAV_LINKS = [
   { id: 'work', label: 'Karya' },
@@ -39,19 +40,19 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           justify-content: space-between;
           width: 100%;
           max-width: 1400px;
-          background: rgba(255, 255, 255, 0.45);
+          background: color-mix(in srgb, var(--surface) 45%, transparent);
           backdrop-filter: blur(32px) saturate(180%);
           -webkit-backdrop-filter: blur(32px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.3);
+          border: 1px solid color-mix(in srgb, var(--border-color) 40%, transparent);
           border-radius: 100px;
           padding: 10px 16px 10px 32px;
-          box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255,255,255,0.4);
+          box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.05), inset 0 0 0 1px color-mix(in srgb, var(--surface) 20%, transparent);
           transition: all 0.3s ease;
         }
 
         .nav-wrapper.scrolled .nav-pill {
-          background: rgba(255, 255, 255, 0.7);
-          box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255,255,255,0.6);
+          background: color-mix(in srgb, var(--surface) 70%, transparent);
+          box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.08), inset 0 0 0 1px color-mix(in srgb, var(--border-color) 40%, transparent);
         }
 
         .nav-left {
@@ -65,7 +66,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           font-family: var(--font-display, 'Inter', sans-serif);
           font-size: 16px;
           font-weight: 700;
-          color: #000;
+          color: var(--text);
           text-decoration: none;
           display: flex;
           align-items: center;
@@ -83,13 +84,13 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         .nav-link {
           font-size: 13px;
           font-weight: 500;
-          color: #444;
+          color: var(--text-muted);
           text-decoration: none;
           transition: color 0.2s ease;
         }
 
         .nav-link:hover {
-          color: #000;
+          color: var(--text);
         }
 
         .nav-right {
@@ -103,17 +104,17 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         .nav-login {
           font-size: 13px;
           font-weight: 500;
-          color: #444;
+          color: var(--text-muted);
           text-decoration: none;
           transition: color 0.2s ease;
         }
         .nav-login:hover {
-          color: #000;
+          color: var(--text);
         }
 
         .nav-cta {
-          background: #000;
-          color: #fff !important;
+          background: var(--text);
+          color: var(--bg) !important;
           font-size: 13px;
           font-weight: 500;
           padding: 10px 24px;
@@ -123,7 +124,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         }
 
         .nav-cta:hover {
-          background: #222;
+          background: var(--text-muted);
         }
 
         @media (max-width: 1024px) {
@@ -164,10 +165,11 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           ))}
         </nav>
 
-        {/* Right: Actions */}
+        {/* Right: Actions & Theme */}
         <div className="nav-right">
+          <ThemeToggle />
           <a href="#contact" className="nav-login" onClick={(e) => handleNavClick(e, 'contact')}>Kontak</a>
-          <a href="#contact" className="nav-cta" onClick={(e) => handleNavClick(e, 'contact')}>Mulai Proyek</a>
+          <a href="#contact" className="nav-cta magnetic" onClick={(e) => handleNavClick(e, 'contact')}>Mulai Proyek</a>
         </div>
       </div>
     </header>

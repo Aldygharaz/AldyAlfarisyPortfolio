@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
 const steps = [
-  { num: '01', title: 'Discovery', desc: 'Ngobrol dulu soal masalah dan tujuan kamu. Dari situ saya tentuin solusi teknis yang paling masuk akal, bukan yang paling ribet.' },
-  { num: '02', title: 'Design', desc: 'Rancang alur dan struktur produk sebelum masuk ke kode, biar gak ada kejutan di tengah jalan soal fitur atau arsitektur.' },
-  { num: '03', title: 'Development', desc: 'Eksekusi jadi kode beneran, dibantu AI Agent biar prosesnya lebih cepat tanpa ngorbanin kualitas dan keamanan sistem.' },
-  { num: '04', title: 'Launch & Handover', desc: 'Deploy produk, kasih dokumentasi singkat cara pakainya, dan tetap available kalau ada yang perlu disesuaikan setelah rilis.' },
+  { num: '01', title: 'Discovery & Architecture', desc: 'Membedah akar permasalahan bisnis Anda dan merancang arsitektur solusi teknis yang paling efisien, terukur (scalable), dan tepat sasaran.' },
+  { num: '02', title: 'UX & System Design', desc: 'Membuat prototipe antarmuka interaktif dan mendesain struktur basis data secara presisi untuk meminimalisir hambatan struktural saat produksi.' },
+  { num: '03', title: 'AI-Assisted Engineering', desc: 'Eksekusi pengembangan kode tingkat enterprise dengan memanfaatkan kapabilitas AI untuk mempercepat siklus rilis tanpa mengorbankan keamanan sistem.' },
+  { num: '04', title: 'Deployment & Handover', desc: 'Rilis produk ke production environment, penyiapan dokumentasi teknis komprehensif, serta dukungan pasca-rilis untuk menjamin stabilitas.' },
 ];
 
 export default function Process() {
@@ -94,8 +94,8 @@ export default function Process() {
   return (
     <section className="section" id="process">
       <div className="section-head reveal">
-        <span className="eyebrow">Proses Kerja</span>
-        <h2>Cara Saya Kerja</h2>
+        <span className="eyebrow">Workflow Eksekusi</span>
+        <h2>Pendekatan Sistematis</h2>
       </div>
       <div className="process-wrap" ref={wrapRef} id="processWrap">
         <svg className="process-line-svg" ref={svgRef} preserveAspectRatio="none">

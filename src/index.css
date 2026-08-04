@@ -36,6 +36,7 @@
     --accent-wash: #EFF6FF;
     --text: #000000;
     --text-muted: #111827;
+    --success-text: #34C759;
     --maxw: 1120px;
 
     /* Quadrant colors */
@@ -53,10 +54,10 @@
     --q-green-text: #0B3324;
     --q-off-bg: #E8ECF3;
     --q-off-icon-bg: #DCE2EB;
-    --q-off-icon-color: #64748B;
-    --q-off-label: #64748B;
-    --q-off-heading: #1E293B;
-    --q-off-body: #334155;
+    --q-off-icon-color: #334155;
+    --q-off-label: #334155;
+    --q-off-heading: #0F172A;
+    --q-off-body: #1E293B;
 
     /* Intro hero */
     --intro-bg: #E4E4E4;
@@ -69,6 +70,40 @@
     --font-serif: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  .dark {
+    /* Base */
+    --background: 220 7% 13%;
+    --foreground: 220 13% 95%;
+    
+    /* Portfolio custom colors (Discord Dark Theme Palette) */
+    --bg: #1E1F22;             /* bg-base */
+    --surface: #313338;        /* bg-canvas */
+    --surface-2: #383A40;      /* bg-elevated */
+    --border-color: #3F4147;    /* Divider / Card border */
+    --accent-blue: #0984E3;     /* Electron Blue (utama) */
+    --accent-strong: #0097E6;   /* Hover / Active Electron Blue */
+    --accent-soft: #0984E3;     /* Accent soft */
+    --text: #F2F3F5;            /* Teks Primer */
+    --text-muted: #DBDEE1;      /* Teks Sekunder */
+    --accent-wash: rgba(9, 132, 227, 0.18);
+    --success-text: #23A559;    /* Positive numbers */
+    
+    /* Quadrant off-state */
+    --q-off-bg: #313338;
+    --q-off-icon-bg: #383A40;
+    --q-off-icon-color: #DBDEE1;
+    --q-off-label: #DBDEE1;
+    --q-off-heading: #FFFFFF;
+    --q-off-body: #F2F3F5;
+
+    /* Intro hero */
+    --intro-bg: #18191C;
+    --intro-bg-2: #1E1F22;
+    --intro-text: #F2F3F5;
+    --intro-muted: #DBDEE1;
+    --intro-line: rgba(255, 255, 255, 0.06);
   }
 
   * {

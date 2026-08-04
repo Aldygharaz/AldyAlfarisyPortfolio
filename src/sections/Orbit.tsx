@@ -5,49 +5,49 @@ const cards = [
     pos: 'top',
     icon: '⚛️',
     title: 'React & <em>Next.js</em>',
-    tagline: 'Buat fondasi frontend',
+    tagline: 'Antarmuka Cepat & Responsif',
     popupLabel: 'Frontend',
-    popupText: 'Kombinasi terbaik untuk membangun antarmuka interaktif dan performa website yang cepat dengan Server-Side Rendering.',
+    popupText: 'Membangun antarmuka pengguna interaktif yang langsung merespons input tanpa jeda, memastikan kenyamanan operasional tingkat tinggi.',
   },
   {
     pos: 'top-right',
-    icon: '⚡',
-    title: '<em>Supabase</em>',
-    tagline: 'Buat database & autentikasi',
-    popupLabel: 'Backend as a Service',
-    popupText: 'Menyediakan database real-time dan sistem autentikasi yang aman untuk menyimpan data pengguna dan aplikasi.',
+    icon: 'TS',
+    title: '<em>TypeScript</em>',
+    tagline: 'Jaminan Kode Anti-Error',
+    popupLabel: 'Quality Assurance',
+    popupText: 'Menghindari bug tersembunyi dengan sistem penulisan kode terstruktur, menjamin stabilitas sistem bahkan saat bisnis melaju kencang.',
   },
   {
     pos: 'bottom-right',
     icon: 'E',
     title: '<em>Electron</em>',
-    tagline: 'Buat distribusi desktop',
+    tagline: 'Aplikasi Desktop Mandiri',
     popupLabel: 'Desktop Apps',
-    popupText: 'Membawa teknologi web ke platform desktop (Windows/Mac) sehingga aplikasi bisa berjalan native dan offline.',
+    popupText: 'Menghadirkan performa sekelas aplikasi native di Windows/Mac, memastikan software kasir/operasional jalan terus meski internet terputus.',
   },
   {
     pos: 'bottom',
     icon: 'GAS',
     title: 'Google <em>Apps Script</em>',
-    tagline: 'Buat backend ringan',
-    popupLabel: 'No-Code Database',
-    popupText: 'Solusi backend tanpa server yang terintegrasi langsung dengan ekosistem Google (Sheets, Drive, dll).',
+    tagline: 'Infrastruktur Tanpa Server',
+    popupLabel: 'Serverless Backend',
+    popupText: 'Memangkas tagihan server bulanan menjadi Rp0 dengan memanfaatkan ekosistem Google Workspace yang tangguh dan aman.',
   },
   {
     pos: 'bottom-left',
     icon: '🤖',
     title: '<em>AI Agent</em>',
-    tagline: 'Buat percepatan development',
+    tagline: 'Otomatisasi Proses Kerja',
     popupLabel: 'AI Automation',
-    popupText: 'Mengorkestrasi tugas berulang dengan kecerdasan buatan untuk mempercepat proses koding dan operasional.',
+    popupText: 'Mengorkestrasi sistem pintar yang mengambil alih tugas manual repetitif, membebaskan tim Anda untuk fokus pada pertumbuhan bisnis.',
   },
   {
     pos: 'top-left',
-    icon: 'V',
-    title: '<em>Vercel</em>',
-    tagline: 'Buat deployment',
-    popupLabel: 'Hosting',
-    popupText: 'Platform hosting modern yang menjamin website selalu online dengan cepat di seluruh dunia.',
+    icon: 'Z',
+    title: 'Zustand & <em>IndexedDB</em>',
+    tagline: 'Sinkronisasi Data Offline',
+    popupLabel: 'State & Local DB',
+    popupText: 'Menyimpan setiap transaksi secara aman tanpa koneksi, lalu menyinkronkannya ke server pusat secara otomatis begitu sinyal kembali.',
   },
 ];
 
@@ -143,8 +143,8 @@ export default function Orbit() {
   return (
     <section className="section" id="orbit" style={{ paddingBottom: '160px' }}>
       <div className="section-head center reveal">
-        <span className="eyebrow">Sistem & Tools</span>
-        <h2>Ekosistem yang Saya Pakai untuk Bangun Solusi</h2>
+        <span className="eyebrow">Teknologi Teruji</span>
+        <h2>Tools Battle-Tested di Produksi Nyata</h2>
       </div>
 
       <div className="orbit-stage reveal" ref={stageRef} id="orbitStage">
