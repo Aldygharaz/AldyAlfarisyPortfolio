@@ -3,7 +3,7 @@ import { useState } from 'react';
 const faqs = [
   {
     q: 'Apakah Anda beroperasi sebagai individual developer atau agency?',
-    a: 'Saya beroperasi sebagai individual engineer (solopreneur) yang mengelola seluruh siklus—dari strategi arsitektur hingga eksekusi kode. Dengan kapabilitas AI Agent, saya mampu melakukan orkestrasi development berskala enterprise secara efisien tanpa birokrasi agency besar.',
+    a: 'Saya beroperasi sebagai individual engineer (solopreneur) yang mengelola seluruh siklus, mulai dari strategi arsitektur hingga eksekusi kode. Dengan kapabilitas AI Agent, saya mampu melakukan orkestrasi development berskala enterprise secara efisien tanpa birokrasi agency besar.',
   },
   {
     q: 'Apa keunggulan bekerja dengan individual engineer dibanding tim besar?',

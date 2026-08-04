@@ -55,11 +55,11 @@ export default function About() {
                 <span className="timeline-desc">Membangun & Mengelola Bisnis F&B</span>
               </li>
               <li>
-                <span className="timeline-year">'21</span>
+                <span className="timeline-year">'24</span>
                 <span className="timeline-desc">Fokus pada Analisis Data & Metrik Bisnis</span>
               </li>
               <li>
-                <span className="timeline-year">'23</span>
+                <span className="timeline-year">'26</span>
                 <span className="timeline-desc">Mendirikan Sokara & AI Development</span>
               </li>
             </ul>
@@ -73,7 +73,7 @@ export default function About() {
 
         {/* Right Column */}
         <div className="about-visual-col reveal" style={{ transitionDelay: '0.1s' }}>
-          <img src="/portrait.jpg" alt="Aldy Alfarisy - Digital Solutions Builder" className="about-portrait" loading="lazy" decoding="async" />
+          <img src="/portrait.png" alt="Aldy Alfarisy - Digital Solutions Builder" className="about-portrait" loading="lazy" decoding="async" />
           
           <div className="vitals-section">
             <div className="vitals-header">
