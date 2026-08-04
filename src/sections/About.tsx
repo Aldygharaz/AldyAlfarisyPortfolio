@@ -100,7 +100,7 @@ export default function About() {
             <div className="vital-row">
               <div className="vital-label">LOKASI</div>
               <div className="vital-content">
-                <h4>Jakarta, Indonesia</h4>
+                <h4>Bandung, Indonesia</h4>
                 <p>WIB (UTC+7)</p>
               </div>
             </div>
