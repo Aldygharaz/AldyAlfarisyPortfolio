@@ -73,7 +73,7 @@ export default function About() {
 
         {/* Right Column */}
         <div className="about-visual-col reveal" style={{ transitionDelay: '0.1s' }}>
-          <img src="/portrait.png" alt="Aldy Alfarisy - Digital Solutions Builder" className="about-portrait" loading="lazy" decoding="async" />
+          <img src="/portrait.jpg?v=2" alt="Aldy Alfarisy - Digital Solutions Builder" className="about-portrait" loading="lazy" decoding="async" />
           
           <div className="vitals-section">
             <div className="vitals-header">
