@@ -33,7 +33,7 @@ export default function IntroHero() {
           right: -10%;
           bottom: -60px;
           z-index: 0;
-          mix-blend-mode: multiply;
+          pointer-events: none; /* Prevents heavy 3D raycasting lag */
         }
         
         .intro-content-styled {
