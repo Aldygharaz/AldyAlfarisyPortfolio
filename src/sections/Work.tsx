@@ -37,7 +37,7 @@ const projects: Project[] = [
       { label: 'Uptime Sync', value: '99.9%' }
     ],
     tags: ['Electron', 'React', 'Zustand', 'IndexedDB', 'Sheets API'],
-    image: '/images/pos-evo.jpg',
+    image: '/images/pos-evo.webp',
     architecture: [
       'Zustand State Engine dengan LocalStorage Persistence & Version Migration Guard',
       'IndexedDB Offline Mutation Queue untuk antrean transaksi saat internet mati',
@@ -65,7 +65,7 @@ const projects: Project[] = [
       { label: 'Export Roster', value: 'A4 Ready' }
     ],
     tags: ['React', 'TypeScript', 'Tailwind', 'PWA Queue', 'Playwright'],
-    image: '/images/hr-app.jpg',
+    image: '/images/hr-app.webp',
     architecture: [
       'Multi-Role RBAC State Engine (Mode Manager & Karyawan)',
       'Algoritma Fairness Index Score untuk distribusi jam kerja dan shift malam yang adil',
@@ -93,7 +93,7 @@ const projects: Project[] = [
       { label: 'Proteksi Media', value: '100% Secured' }
     ],
     tags: ['Next.js', 'Apps Script', 'Serverless', 'React', 'CSS Modules'],
-    image: '/images/project-photographer.jpg',
+    image: '/images/project-photographer.webp',
     architecture: [
       'Idempotent Code.gs API backend setup untuk mencegah duplikasi sheet',
       'Streaming proxy route untuk mentransformasi Google Drive File ID menjadi chunked video terlindungi',
@@ -121,7 +121,7 @@ const projects: Project[] = [
       { label: 'Automasi Tugas', value: '85% Covered' }
     ],
     tags: ['Python', 'TypeScript', 'AI Agents', 'MCP', 'Automated QA'],
-    image: '/images/project-fintech.jpg',
+    image: '/images/project-fintech.webp',
     architecture: [
       'Multi-agent role specialization (Researcher, Builder, QA Gatekeeper)',
       'Automated fallback logic & performance budgeting (60fps mobile guard)',
