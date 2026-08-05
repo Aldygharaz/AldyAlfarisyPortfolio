@@ -92,9 +92,9 @@ export default function Orbit() {
         const rad = (angleDeg * Math.PI) / 180;
         const x = dims.cx + dims.rx * Math.cos(rad);
         const y = dims.cy + dims.ry * Math.sin(rad);
-        card.style.left = `${x}px`;
-        card.style.top = `${y}px`;
-        card.style.transform = 'translate(-50%, -50%)';
+        card.style.left = '0px';
+        card.style.top = '0px';
+        card.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
         card.classList.toggle('flip', x > dims.cx);
       });
     };
@@ -112,12 +112,31 @@ export default function Orbit() {
 
     measure();
     position();
-    window.addEventListener('resize', () => { measure(); position(); });
+    
+    const handleResize = () => { measure(); position(); };
+    window.addEventListener('resize', handleResize);
 
+    let observer: IntersectionObserver | null = null;
+    
     if (!reduceMotion) {
       stage.addEventListener('mouseenter', () => { pausedRef.current = true; });
       stage.addEventListener('mouseleave', () => { pausedRef.current = false; lastTimeRef.current = null; });
-      rafRef.current = requestAnimationFrame(frame);
+      
+      observer = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          if (!rafRef.current) {
+            lastTimeRef.current = null;
+            rafRef.current = requestAnimationFrame(frame);
+          }
+        } else {
+          if (rafRef.current) {
+            cancelAnimationFrame(rafRef.current);
+            rafRef.current = 0;
+          }
+        }
+      }, { threshold: 0 });
+      
+      observer.observe(stage);
     }
 
     // Tap-to-toggle for touch
@@ -135,7 +154,9 @@ export default function Orbit() {
     document.addEventListener('click', docClick);
 
     return () => {
-      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('resize', handleResize);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (observer) observer.disconnect();
       document.removeEventListener('click', docClick);
     };
   }, []);

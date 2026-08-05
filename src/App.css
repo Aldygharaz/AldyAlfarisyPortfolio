@@ -1,15 +1,15 @@
 /* ---------- Global ---------- */
 .global-mouse-glow {
   position: fixed;
-  top: -400px;
-  left: -400px;
-  width: 800px;
-  height: 800px;
+  top: -300px;
+  left: -300px;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   background: rgba(47, 124, 214, 0.25);
-  filter: blur(100px);
+  filter: blur(60px);
 }
 
 @media (hover: none) {

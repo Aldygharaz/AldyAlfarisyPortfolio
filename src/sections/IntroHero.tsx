@@ -8,6 +8,7 @@ export default function IntroHero() {
   const introScrollRef = useRef<HTMLDivElement>(null);
   const introDecorRef = useRef<HTMLDivElement>(null);
   const [showSpline, setShowSpline] = useState(false);
+  const [isInView, setIsInView] = useState(true);
 
   useEffect(() => {
     // Dynamically show/hide the heavy 3D Spline model based on screen size
@@ -18,7 +19,21 @@ export default function IntroHero() {
     handleResize(); // Initial check
     window.addEventListener('resize', handleResize);
     
-    return () => window.removeEventListener('resize', handleResize);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+    
+    if (introHeroRef.current) {
+      observer.observe(introHeroRef.current);
+    }
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -135,7 +150,7 @@ export default function IntroHero() {
         style={{ display: showSpline ? 'block' : 'none' }}
         aria-hidden="true"
       >
-        {showSpline && (
+        {showSpline && isInView && (
           <Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
             <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />
           </Suspense>
