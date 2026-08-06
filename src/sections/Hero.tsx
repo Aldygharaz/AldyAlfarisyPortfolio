@@ -7,23 +7,48 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section className="section pt-0" id="hero-stats">
-      <div className="stats-grid reveal grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6 py-8 border-y border-[var(--border-color)]">
+    <section className="section" id="hero-stats" style={{ paddingTop: '0px' }}>
+      <style>{`
+        .stats-grid-styled {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+          padding: 32px 0;
+          border-top: 1px solid var(--border-color);
+          border-bottom: 1px solid var(--border-color);
+        }
+        .stat-item-styled {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .stat-value {
+          font-size: clamp(2rem, 4vw, 3rem);
+          color: var(--accent-blue);
+          line-height: 1;
+        }
+        .stat-label {
+          font-size: 15px;
+          color: var(--text-heading);
+          font-weight: 600;
+        }
+      `}</style>
+      <div className="stats-grid reveal stats-grid-styled">
         {stats.map((stat, i) => (
-          <div className="stat-item flex flex-col gap-2" key={i}>
+          <div className="stat-item stat-item-styled" key={i}>
             {i === 2 ? (
               <>
-                <h3 className="stat-label text-[13px] mb-1 text-[var(--text-muted)] uppercase tracking-widest font-semibold">
+                <h3 className="stat-label" style={{ fontSize: '13px', marginBottom: '4px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   {stat.value}
                 </h3>
-                <p className="stat-value text-[16px] text-[var(--text-heading)] leading-snug font-semibold">
+                <p className="stat-value" style={{ fontSize: '16px', color: 'var(--text-heading)', lineHeight: 1.5, fontWeight: 600 }}>
                   {stat.label}
                 </p>
               </>
             ) : (
               <>
-                <h3 className="stat-value text-[clamp(2rem,4vw,3rem)] text-[var(--accent-blue)] leading-none">{stat.value}</h3>
-                <p className="stat-label text-[15px] text-[var(--text-heading)] font-semibold">{stat.label}</p>
+                <h3 className="stat-value">{stat.value}</h3>
+                <p className="stat-label">{stat.label}</p>
               </>
             )}
           </div>

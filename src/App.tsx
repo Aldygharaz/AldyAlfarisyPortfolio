@@ -1,12 +1,18 @@
 import { useRef } from 'react';
-import './App.css';
 import { Suspense, lazy } from 'react';
+import './App.css';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
 import Hero from './sections/Hero';
+import Marquee from './sections/Marquee';
 import SideNav from './components/SideNav';
+import { useMouseGlow } from './hooks/useMouseGlow';
+import { useLenisScroll } from './hooks/useLenisScroll';
+import { useScrollChrome } from './hooks/useScrollChrome';
+import { useScrollReveal } from './hooks/useScrollReveal';
+import { useMagneticHover } from './hooks/useMagneticHover';
 
-const Marquee = lazy(() => import('./sections/Marquee'));
+// Lazy loaded components for below-the-fold content
 const Work = lazy(() => import('./sections/Work'));
 const Quadrant = lazy(() => import('./sections/Quadrant'));
 const Skills = lazy(() => import('./sections/Skills'));
@@ -17,11 +23,6 @@ const Testimonials = lazy(() => import('./sections/Testimonials'));
 const FAQ = lazy(() => import('./sections/FAQ'));
 const Contact = lazy(() => import('./sections/Contact'));
 const Footer = lazy(() => import('./sections/Footer'));
-import { useMouseGlow } from './hooks/useMouseGlow';
-import { useLenisScroll } from './hooks/useLenisScroll';
-import { useScrollChrome } from './hooks/useScrollChrome';
-import { useScrollReveal } from './hooks/useScrollReveal';
-import { useMagneticHover } from './hooks/useMagneticHover';
 
 function App() {
   const scrollProgressRef = useRef<HTMLDivElement>(null);
@@ -58,8 +59,8 @@ function App() {
       <Navigation ref={navRef} />
       <IntroHero />
       <Hero />
-      <Suspense fallback={<div style={{ minHeight: '100vh' }}></div>}>
-        <Marquee />
+      <Marquee />
+      <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>Memuat bagian selanjutnya...</div>}>
         <Work />
         <Quadrant />
         <Skills />

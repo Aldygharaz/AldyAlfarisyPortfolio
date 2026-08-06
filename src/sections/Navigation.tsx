@@ -169,7 +169,14 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         <div className="nav-right">
           <ThemeToggle />
           <a href="#contact" className="nav-login" onClick={(e) => handleNavClick(e, 'contact')}>Kontak</a>
-          <a href="#contact" className="nav-cta magnetic" onClick={(e) => handleNavClick(e, 'contact')}>Mulai Proyek</a>
+          <a
+            href="https://api.whatsapp.com/send?phone=6281410538887&text=Halo%20Aldy,%20saya%20tertarik%20untuk%20memulai%20proyek%20digital."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-cta magnetic"
+          >
+            Mulai Proyek
+          </a>
         </div>
       </div>
     </header>
