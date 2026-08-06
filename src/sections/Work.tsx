@@ -265,32 +265,49 @@ export default function Work() {
               />
             </div>
 
-            <h4 style={{ fontSize: '16px', color: 'var(--text)', marginBottom: '8px' }}>Tantangan Bisnis</h4>
-            <p style={{ color: 'var(--text-muted)', fontSize: '14.5px', lineHeight: 1.65, marginBottom: '20px' }}>
-              {selectedProject.problem}
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-[var(--surface-2)] p-5 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[18px]">⚠️</span>
+                  <h4 className="text-[15px] font-semibold text-[var(--accent-strong)] uppercase tracking-wide m-0">Tantangan Bisnis</h4>
+                </div>
+                <p className="text-[var(--text-muted)] text-[14.5px] leading-relaxed m-0">
+                  {selectedProject.problem}
+                </p>
+              </div>
 
-            <h4 style={{ fontSize: '16px', color: 'var(--text)', marginBottom: '8px' }}>Solusi Infrastruktur</h4>
-            <p style={{ color: 'var(--text-muted)', fontSize: '14.5px', lineHeight: 1.65, marginBottom: '20px' }}>
-              {selectedProject.solution}
-            </p>
+              <div className="bg-[var(--surface-2)] p-5 rounded-2xl border border-[var(--border-color)] shadow-sm">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[18px]">💡</span>
+                  <h4 className="text-[15px] font-semibold text-[var(--success-text)] uppercase tracking-wide m-0">Solusi Infrastruktur</h4>
+                </div>
+                <p className="text-[var(--text-muted)] text-[14.5px] leading-relaxed m-0">
+                  {selectedProject.solution}
+                </p>
+              </div>
+            </div>
 
-            <h4 style={{ fontSize: '16px', color: 'var(--text)', marginBottom: '8px' }}>Ringkasan Sistem & Dampak Bisnis</h4>
-            <p style={{ color: 'var(--text-muted)', fontSize: '14.5px', lineHeight: 1.65, marginBottom: '20px' }}>
-              {selectedProject.businessImpact}
-            </p>
+            <div className="bg-gradient-to-br from-[var(--accent-wash)] to-transparent p-6 rounded-2xl border border-[var(--accent-soft)] mb-8">
+              <h4 className="text-[16px] text-[var(--text)] mb-3 font-bold flex items-center gap-2">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--accent-blue)]"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                Dampak Bisnis Terukur
+              </h4>
+              <p className="text-[var(--text)] text-[15px] leading-relaxed m-0 font-medium">
+                {selectedProject.businessImpact}
+              </p>
+            </div>
 
-            <h4 style={{ fontSize: '16px', color: 'var(--text)', marginBottom: '10px' }}>Arsitektur & Implementasi Kunci</h4>
-            <ul style={{ paddingLeft: '20px', color: 'var(--text-muted)', fontSize: '14px', lineHeight: 1.7, marginBottom: '24px' }}>
+            <h4 className="text-[16px] text-[var(--text)] mb-3 font-semibold">Arsitektur & Implementasi Kunci</h4>
+            <ul className="pl-5 text-[var(--text-muted)] text-[14px] leading-relaxed mb-8 list-disc marker:text-[var(--accent-blue)]">
               {selectedProject.architecture.map((item, idx) => (
-                <li key={idx} style={{ marginBottom: '6px' }}>{item}</li>
+                <li key={idx} className="mb-2 pl-1">{item}</li>
               ))}
             </ul>
 
-            <h4 style={{ fontSize: '16px', color: 'var(--text)', marginBottom: '10px' }}>Tech Stack Utama</h4>
-            <div className="work-highlights-grid" style={{ marginBottom: '28px' }}>
+            <h4 className="text-[16px] text-[var(--text)] mb-3 font-semibold">Tech Stack Utama</h4>
+            <div className="flex flex-wrap gap-2.5 mb-8">
               {selectedProject.tags.map((t, idx) => (
-                <span key={idx} className="tag">{t}</span>
+                <span key={idx} className="inline-block font-mono text-[12px] text-[var(--accent-strong)] bg-[var(--accent-wash)] px-3 py-1.5 rounded-full border border-transparent hover:border-[var(--accent-blue)] transition-colors cursor-default">{t}</span>
               ))}
             </div>
 

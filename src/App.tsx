@@ -1,20 +1,22 @@
 import { useRef } from 'react';
 import './App.css';
+import { Suspense, lazy } from 'react';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
 import Hero from './sections/Hero';
-import Marquee from './sections/Marquee';
-import Work from './sections/Work';
-import Quadrant from './sections/Quadrant';
-import Skills from './sections/Skills';
-import Process from './sections/Process';
-import Orbit from './sections/Orbit';
-import About from './sections/About';
-import Testimonials from './sections/Testimonials';
-import FAQ from './sections/FAQ';
-import Contact from './sections/Contact';
-import Footer from './sections/Footer';
 import SideNav from './components/SideNav';
+
+const Marquee = lazy(() => import('./sections/Marquee'));
+const Work = lazy(() => import('./sections/Work'));
+const Quadrant = lazy(() => import('./sections/Quadrant'));
+const Skills = lazy(() => import('./sections/Skills'));
+const Process = lazy(() => import('./sections/Process'));
+const Orbit = lazy(() => import('./sections/Orbit'));
+const About = lazy(() => import('./sections/About'));
+const Testimonials = lazy(() => import('./sections/Testimonials'));
+const FAQ = lazy(() => import('./sections/FAQ'));
+const Contact = lazy(() => import('./sections/Contact'));
+const Footer = lazy(() => import('./sections/Footer'));
 import { useMouseGlow } from './hooks/useMouseGlow';
 import { useLenisScroll } from './hooks/useLenisScroll';
 import { useScrollChrome } from './hooks/useScrollChrome';
@@ -56,17 +58,19 @@ function App() {
       <Navigation ref={navRef} />
       <IntroHero />
       <Hero />
-      <Marquee />
-      <Work />
-      <Quadrant />
-      <Skills />
-      <Process />
-      <Orbit />
-      <About />
-      <Testimonials />
-      <FAQ />
-      <Contact />
-      <Footer />
+      <Suspense fallback={<div style={{ minHeight: '100vh' }}></div>}>
+        <Marquee />
+        <Work />
+        <Quadrant />
+        <Skills />
+        <Process />
+        <Orbit />
+        <About />
+        <Testimonials />
+        <FAQ />
+        <Contact />
+        <Footer />
+      </Suspense>
     </div>
   );
 }
