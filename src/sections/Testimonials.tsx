@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Star } from 'lucide-react';
 import './Testimonials.css';
 
 const testimonials = [
@@ -64,8 +65,8 @@ function TestimonialCard({ t, i }: { t: typeof testimonials[0]; i: number }) {
     >
       <div className="testi-spotlight" />
       <div className="testi-content">
-        <div className="testi-stars-modern">
-          ★★★★★
+        <div className="testi-stars-modern" style={{ display: 'flex', gap: '4px' }}>
+          {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" color="currentColor" />)}
         </div>
         <p className="testi-quote-modern">"{t.quote}"</p>
         <div className="testi-author-modern">

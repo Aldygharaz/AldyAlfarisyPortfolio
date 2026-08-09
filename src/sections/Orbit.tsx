@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { Atom, FileCode2, MonitorSmartphone, CloudCog, Bot, Database } from 'lucide-react';
 
 const cards = [
   {
     pos: 'top',
-    icon: '⚛️',
+    icon: <Atom size={32} strokeWidth={1.5} />,
     title: 'React & <em>Next.js</em>',
     tagline: 'Antarmuka Cepat & Responsif',
     popupLabel: 'Frontend',
@@ -11,7 +12,7 @@ const cards = [
   },
   {
     pos: 'top-right',
-    icon: 'TS',
+    icon: <FileCode2 size={32} strokeWidth={1.5} />,
     title: '<em>TypeScript</em>',
     tagline: 'Jaminan Kode Anti-Error',
     popupLabel: 'Quality Assurance',
@@ -19,7 +20,7 @@ const cards = [
   },
   {
     pos: 'bottom-right',
-    icon: 'E',
+    icon: <MonitorSmartphone size={32} strokeWidth={1.5} />,
     title: '<em>Electron</em>',
     tagline: 'Aplikasi Desktop Mandiri',
     popupLabel: 'Desktop Apps',
@@ -27,7 +28,7 @@ const cards = [
   },
   {
     pos: 'bottom',
-    icon: 'GAS',
+    icon: <CloudCog size={32} strokeWidth={1.5} />,
     title: 'Google <em>Apps Script</em>',
     tagline: 'Infrastruktur Tanpa Server',
     popupLabel: 'Serverless Backend',
@@ -35,7 +36,7 @@ const cards = [
   },
   {
     pos: 'bottom-left',
-    icon: '🤖',
+    icon: <Bot size={32} strokeWidth={1.5} />,
     title: '<em>AI Agent</em>',
     tagline: 'Otomatisasi Proses Kerja',
     popupLabel: 'AI Automation',
@@ -43,7 +44,7 @@ const cards = [
   },
   {
     pos: 'top-left',
-    icon: 'Z',
+    icon: <Database size={32} strokeWidth={1.5} />,
     title: 'Zustand & <em>IndexedDB</em>',
     tagline: 'Sinkronisasi Data Offline',
     popupLabel: 'State & Local DB',

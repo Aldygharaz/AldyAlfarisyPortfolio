@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
+import { Bot, Globe, Monitor, Database, Palette, PenTool, ShieldAlert, Link, Rocket, WifiOff } from 'lucide-react';
 
 const skills = [
-  { name: 'Orkestrasi AI', icon: '🤖', color: '#10A37F', description: 'Antigravity, alur multi-agent' },
-  { name: 'App Web Modern', icon: '🌐', color: '#3B82F6', description: 'React, Next.js, Tailwind' },
-  { name: 'App Desktop', icon: '🖥️', color: '#47848F', description: 'Electron, native IPC' },
-  { name: 'Database & API', icon: '🗄️', color: '#3ECF8E', description: 'Supabase, Apps Script' },
-  { name: 'Desain UI/UX', icon: '🎨', color: '#9333EA', description: 'Antarmuka intuitif & modern' },
-  { name: 'UX Copywriting', icon: '✍️', color: '#F43F5E', description: 'Microcopy teknis & persuasif' },
-  { name: 'Defensive UX', icon: '🛡️', color: '#E44D26', description: 'Poka-Yoke, error prevention' },
-  { name: 'Integrasi Sistem', icon: '🔗', color: '#00C389', description: 'Payment gateway, Webhooks' },
-  { name: 'Infrastruktur', icon: '🚀', color: '#F58025', description: 'Vercel, DNS, CI/CD' },
-  { name: 'Offline-First', icon: '📡', color: '#EAB308', description: 'PWA, IndexedDB sync' },
+  { name: 'Orkestrasi AI', icon: <Bot size={24} />, color: '#10A37F', description: 'Antigravity, alur multi-agent' },
+  { name: 'App Web Modern', icon: <Globe size={24} />, color: '#3B82F6', description: 'React, Next.js, Tailwind' },
+  { name: 'App Desktop', icon: <Monitor size={24} />, color: '#47848F', description: 'Electron, native IPC' },
+  { name: 'Database & API', icon: <Database size={24} />, color: '#3ECF8E', description: 'Supabase, Apps Script' },
+  { name: 'Desain UI/UX', icon: <Palette size={24} />, color: '#9333EA', description: 'Antarmuka intuitif & modern' },
+  { name: 'UX Copywriting', icon: <PenTool size={24} />, color: '#F43F5E', description: 'Microcopy teknis & persuasif' },
+  { name: 'Defensive UX', icon: <ShieldAlert size={24} />, color: '#E44D26', description: 'Poka-Yoke, error prevention' },
+  { name: 'Integrasi Sistem', icon: <Link size={24} />, color: '#00C389', description: 'Payment gateway, Webhooks' },
+  { name: 'Infrastruktur', icon: <Rocket size={24} />, color: '#F58025', description: 'Vercel, DNS, CI/CD' },
+  { name: 'Offline-First', icon: <WifiOff size={24} />, color: '#EAB308', description: 'PWA, IndexedDB sync' },
 ];
 
 const HEX_MASK_URL = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M22 12C22 12.7 21.8 13.4 21.5 14L18 20C17.3 21.2 16 22 14.6 22H7.4C6 22 4.7 21.2 4 20L0.5 14C-0.2 12.8 -0.2 11.2 0.5 10L4 4C4.7 2.8 6 2 7.4 2H14.6C16 2 17.3 2.8 18 4L21.5 10C21.8 10.6 22 11.3 22 12Z'/%3E%3C/svg%3E")`;

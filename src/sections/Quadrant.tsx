@@ -1,28 +1,30 @@
+import { Sparkles, Zap, Building2, Rocket } from 'lucide-react';
+
 const quadrants = [
   {
     cls: 'blue',
-    icon: '✨',
+    icon: <Sparkles size={28} />,
     label: 'FULL-STACK',
     title: 'Web & App Development',
     desc: 'Membangun aplikasi full-stack berskala produksi menggunakan React, Next.js, dan arsitektur modern, mulai dari portal internal, sistem SaaS, hingga desktop app.',
   },
   {
     cls: 'pink',
-    icon: '⚡',
+    icon: <Zap size={28} />,
     label: 'AUTOMATION',
     title: 'AI-Powered Workflow',
     desc: 'Mengintegrasikan AI Agent ke dalam pipeline development dan operasional bisnis, mengotomasi tugas berulang dengan presisi dan konsistensi tinggi tanpa mengorbankan kontrol kualitas.',
   },
   {
     cls: 'amber',
-    icon: '🏗️',
+    icon: <Building2 size={28} />,
     label: 'ARCHITECTURE & TRANSFORMATION',
     title: 'Sistem Custom yang Siap Bertumbuh',
     desc: 'Merancang topologi sistem sejak fase awal seperti skema database, antrean sinkronisasi offline-first, hingga pengamanan transaksi, sekaligus mendigitalisasi alur kerja konvensional menjadi sistem manajemen terpadu yang skalabel dan siap bertumbuh mengikuti valuasi bisnis Anda.',
   },
   {
     cls: 'green',
-    icon: '🚀',
+    icon: <Rocket size={28} />,
     label: 'INTERACTIVE',
     title: 'Website Interaktif & Immersive',
     desc: 'Membangun landing page dan website dengan animasi scroll, transisi halus, dan elemen 3D interaktif menggunakan GSAP, Lenis, dan React Three Fiber untuk pengalaman yang terasa hidup, bukan sekadar halaman statis.',

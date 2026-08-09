@@ -63,16 +63,22 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         }
 
         .logo {
-          font-family: var(--font-display, 'Inter', sans-serif);
-          font-size: 16px;
-          font-weight: 700;
-          color: var(--text);
-          text-decoration: none;
           display: flex;
           align-items: center;
-          gap: 12px;
-          letter-spacing: -0.2px;
+          text-decoration: none;
+          gap: 8px;
         }
+        
+        .logo img {
+          height: 44px;
+          width: auto;
+        }
+
+        .logo-dark { display: none; }
+        .logo-light { display: block; }
+        
+        .dark .logo-dark { display: block; }
+        .dark .logo-light { display: none; }
 
         .nav-center {
           display: flex;
@@ -141,13 +147,8 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         {/* Left: Logo */}
         <div className="nav-left">
           <a href="#" className="logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M11 2H6C3.79086 2 2 3.79086 2 6V11H11V2Z" />
-              <path d="M13 2H18C20.2091 2 22 3.79086 22 6V11H13V2Z" />
-              <path d="M11 13H2V18C2 20.2091 3.79086 22 6 22H11V13Z" />
-              <path d="M13 13H22V18C22 20.2091 20.2091 22 18 22H13V13Z" />
-            </svg>
-            Aldy.
+            <img src="/sokara-horizontal-light-bg.svg" alt="Sokara" className="logo-light" />
+            <img src="/sokara-horizontal-dark-bg.svg" alt="Sokara" className="logo-dark" />
           </a>
         </div>
 

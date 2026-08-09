@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import { AlertTriangle, Lightbulb } from 'lucide-react';
 export interface Project {
   id: string;
   number: string;
@@ -176,11 +177,15 @@ export default function Work() {
                 <div className="work-card-tagline">{project.tagline}</div>
                 <div className="work-card-desc">
                   <div style={{ marginBottom: '16px' }}>
-                    <span style={{ display: 'inline-block', color: 'var(--accent-strong)', fontWeight: 600, fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>⚠️ Tantangan Bisnis</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--accent-strong)', fontWeight: 600, fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                      <AlertTriangle size={14} /> Tantangan Bisnis
+                    </span>
                     <p style={{ margin: 0 }}>{project.problem}</p>
                   </div>
                   <div>
-                    <span style={{ display: 'inline-block', color: 'var(--success-text)', fontWeight: 600, fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>💡 Solusi Infrastruktur</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', color: 'var(--success-text)', fontWeight: 600, fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '4px' }}>
+                      <Lightbulb size={14} /> Solusi Infrastruktur
+                    </span>
                     <p style={{ margin: 0 }}>{project.solution}</p>
                   </div>
                 </div>
@@ -261,6 +266,8 @@ export default function Work() {
               <img 
                 src={selectedProject.image} 
                 alt={selectedProject.title} 
+                loading="lazy"
+                decoding="async"
                 style={{ width: '100%', height: 'auto', display: 'block', maxHeight: '400px', objectFit: 'cover' }} 
               />
             </div>
