@@ -1,8 +1,8 @@
 
 const stats = [
-  { value: '3+', label: 'Proyek Full-Stack Live di Produksi' },
-  { value: '5+', label: 'Tech Stack Dikuasai End-to-End (Next.js → Supabase → Vercel)' },
-  { value: 'Karya Terpilih', label: 'Sistem POS Offline-First · Sokara HR Management · Sokara CRM' },
+  { value: '5', label: 'Sistem Enterprise Live di Produksi' },
+  { value: 'Rp 0', label: 'Biaya Server Bulanan untuk Klien (Zero-Backend Architecture)' },
+  { value: '< 50ms', label: 'Response Time Transaksi Kasir Tanpa Internet' },
 ];
 
 export default function Hero() {
@@ -36,21 +36,10 @@ export default function Hero() {
       <div className="stats-grid reveal stats-grid-styled">
         {stats.map((stat, i) => (
           <div className="stat-item stat-item-styled" key={i}>
-            {i === 2 ? (
-              <>
-                <h3 className="stat-label" style={{ fontSize: '13px', marginBottom: '4px', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {stat.value}
-                </h3>
-                <p className="stat-value" style={{ fontSize: '16px', color: 'var(--text-heading)', lineHeight: 1.5, fontWeight: 600 }}>
-                  {stat.label}
-                </p>
-              </>
-            ) : (
-              <>
-                <h3 className="stat-value">{stat.value}</h3>
-                <p className="stat-label">{stat.label}</p>
-              </>
-            )}
+            <>
+              <h3 className="stat-value">{stat.value}</h3>
+              <p className="stat-label">{stat.label}</p>
+            </>
           </div>
         ))}
       </div>

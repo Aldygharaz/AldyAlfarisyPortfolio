@@ -98,6 +98,17 @@ export default function About() {
             </div>
             
             <div className="vital-row">
+              <div className="vital-label">PENDIDIKAN</div>
+              <div className="vital-content">
+                <h4>Diponegoro University</h4>
+                <p>Bachelor's degree, Economics (2022)</p>
+                <p style={{ fontSize: '13px', marginTop: '4px', opacity: 0.8 }}>
+                  IPK: 3.31/4.00 · Analisis Keuangan & Statistika
+                </p>
+              </div>
+            </div>
+            
+            <div className="vital-row">
               <div className="vital-label">LOKASI</div>
               <div className="vital-content">
                 <h4>Bandung, Indonesia</h4>

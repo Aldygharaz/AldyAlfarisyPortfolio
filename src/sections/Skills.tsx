@@ -105,6 +105,7 @@ export default function Skills() {
                   onMouseLeave={() => !isTouch() && setIsHovering(false)}
                   onClick={(e) => handleHexClick(e, idx)}
                 >
+                  <span className="hex-hitbox" />
                   <span
                     className="hex-glow"
                     style={{ background: skill.color }}
