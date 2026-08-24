@@ -7,7 +7,7 @@ const sections = [
   { id: 'skills', label: 'SKILL' },
   { id: 'process', label: 'PROSES' },
   { id: 'orbit', label: 'EKOSISTEM' },
-  { id: 'testimonials', label: 'TESTIMONI' },
+  { id: 'testimonials', label: 'STUDI KASUS' },
   { id: 'faq', label: 'FAQ' },
   { id: 'contact', label: 'KONTAK' }
 ];

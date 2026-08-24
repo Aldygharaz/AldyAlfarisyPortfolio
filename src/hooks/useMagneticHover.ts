@@ -7,39 +7,49 @@ export const useMagneticHover = () => {
       return window.innerWidth < 1024 || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
     };
 
-    const magneticBtns = document.querySelectorAll<HTMLElement>('.magnetic');
-    const magneticHandlers: { el: HTMLElement; move: (e: MouseEvent) => void; leave: () => void }[] = [];
-    
-    if (!isTouch()) {
-      magneticBtns.forEach((btn) => {
-        let rafId: number | null = null;
-        
-        const move = (e: MouseEvent) => {
-          if (rafId) cancelAnimationFrame(rafId);
-          rafId = requestAnimationFrame(() => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left - rect.width / 2;
-            const y = e.clientY - rect.top - rect.height / 2;
-            btn.style.transform = `translate(${x * 0.1}px, ${y * 0.15}px)`;
-          });
-        };
-        
-        const leave = () => { 
-          if (rafId) cancelAnimationFrame(rafId);
-          btn.style.transform = 'translate(0,0)'; 
-        };
-        
-        btn.addEventListener('mousemove', move, { passive: true });
-        btn.addEventListener('mouseleave', leave);
-        magneticHandlers.push({ el: btn, move, leave });
-      });
-    }
+    if (isTouch()) return;
+
+    let activeBtn: HTMLElement | null = null;
+    let rafId: number | null = null;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement)?.closest?.('.magnetic') as HTMLElement | null;
+      
+      if (target) {
+        activeBtn = target;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          if (!activeBtn) return;
+          const rect = activeBtn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          activeBtn.style.transform = `translate(${x * 0.1}px, ${y * 0.15}px)`;
+        });
+      } else if (activeBtn) {
+        if (rafId) cancelAnimationFrame(rafId);
+        activeBtn.style.transform = 'translate(0,0)';
+        activeBtn = null;
+      }
+    };
+
+    const handleMouseLeave = () => {
+      if (activeBtn) {
+        if (rafId) cancelAnimationFrame(rafId);
+        activeBtn.style.transform = 'translate(0,0)';
+        activeBtn = null;
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      magneticHandlers.forEach((h) => {
-        h.el.removeEventListener('mousemove', h.move);
-        h.el.removeEventListener('mouseleave', h.leave);
-      });
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+      if (rafId) cancelAnimationFrame(rafId);
+      if (activeBtn) {
+        activeBtn.style.transform = 'translate(0,0)';
+      }
     };
   }, []);
 };

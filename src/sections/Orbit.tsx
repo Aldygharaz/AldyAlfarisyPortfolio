@@ -118,10 +118,12 @@ export default function Orbit() {
     window.addEventListener('resize', handleResize);
 
     let observer: IntersectionObserver | null = null;
+    const handleMouseEnter = () => { pausedRef.current = true; };
+    const handleMouseLeave = () => { pausedRef.current = false; lastTimeRef.current = null; };
     
     if (!reduceMotion) {
-      stage.addEventListener('mouseenter', () => { pausedRef.current = true; });
-      stage.addEventListener('mouseleave', () => { pausedRef.current = false; lastTimeRef.current = null; });
+      stage.addEventListener('mouseenter', handleMouseEnter);
+      stage.addEventListener('mouseleave', handleMouseLeave);
       
       observer = new IntersectionObserver(([entry]) => {
         if (entry.isIntersecting) {
@@ -141,14 +143,17 @@ export default function Orbit() {
     }
 
     // Tap-to-toggle for touch
+    const cardHandlers: { el: HTMLElement; fn: (e: MouseEvent) => void }[] = [];
     cardEls.forEach((card) => {
-      card.addEventListener('click', (e) => {
+      const clickHandler = (e: MouseEvent) => {
         if (window.matchMedia('(hover: hover)').matches) return;
         e.stopPropagation();
         const wasOpen = card.classList.contains('popup-open');
         cardEls.forEach((c) => c.classList.remove('popup-open'));
         if (!wasOpen) card.classList.add('popup-open');
-      });
+      };
+      card.addEventListener('click', clickHandler);
+      cardHandlers.push({ el: card, fn: clickHandler });
     });
 
     const docClick = () => { cardEls.forEach((c) => c.classList.remove('popup-open')); };
@@ -156,6 +161,9 @@ export default function Orbit() {
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      stage.removeEventListener('mouseenter', handleMouseEnter);
+      stage.removeEventListener('mouseleave', handleMouseLeave);
+      cardHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       if (observer) observer.disconnect();
       document.removeEventListener('click', docClick);

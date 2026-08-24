@@ -3,7 +3,6 @@ import { Suspense, lazy } from 'react';
 import './App.css';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
-import Hero from './sections/Hero';
 import Marquee from './sections/Marquee';
 import SideNav from './components/SideNav';
 import { useMouseGlow } from './hooks/useMouseGlow';
@@ -28,8 +27,9 @@ function App() {
   const scrollProgressRef = useRef<HTMLDivElement>(null);
   const backToTopRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
 
-  useMouseGlow();
+  useMouseGlow(glowRef);
   const lenisRef = useLenisScroll();
   useScrollChrome(navRef, scrollProgressRef, backToTopRef);
   useScrollReveal();
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="global-mouse-glow" aria-hidden="true" />
+      <div ref={glowRef} className="global-mouse-glow" aria-hidden="true" />
       <style>{`
         html.lenis { height: auto; }
       `}</style>
@@ -58,7 +58,6 @@ function App() {
 
       <Navigation ref={navRef} />
       <IntroHero />
-      <Hero />
       <Marquee />
       <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>Memuat bagian selanjutnya...</div>}>
         <Work />

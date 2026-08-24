@@ -1,61 +1,224 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { ChevronLeft, ChevronRight, X, ArrowRight } from 'lucide-react'
 
 // ── Mockup components ──────────────────────────────────────────────────────────
 
-const PosMockup = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-[#F3F1FF] text-[#4F46E5] p-6 relative overflow-hidden">
-    <h3 className="text-3xl font-bold mb-6 text-center leading-tight">Offline<br/>First</h3>
-    <div className="w-32 h-32 rounded-full border-[12px] border-indigo-200 border-t-indigo-600 border-l-purple-500 relative flex items-center justify-center shadow-inner">
-      <div className="w-16 h-16 bg-gray-300 rounded-full overflow-hidden border-2 border-white shadow-md z-10 flex items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white font-bold text-xl">
-        POS
+const PosMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-pos-preview.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        100% Offline PWA
       </div>
-      <span className="absolute -top-4 text-[7px] font-mono text-indigo-400 rotate-[-15deg]">Zero Latency</span>
-      <span className="absolute -left-6 text-[7px] font-mono text-purple-400 -rotate-90">IndexedDB</span>
-      <span className="absolute -bottom-4 text-[7px] font-mono text-fuchsia-400 rotate-12">Poka-Yoke</span>
     </div>
-  </div>
-);
+  );
+};
 
-const AccountingMockup = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-[#EFF6FF] p-6 relative">
-    <div className="bg-[#93C5FD] w-48 h-12 rounded-full mb-6 flex items-center justify-center gap-1 shadow-sm opacity-90">
-      {[3,6,4,8,5,3].map((h, i) => (
-        <div key={i} className="w-1 bg-white rounded-full opacity-80" style={{height: `${h * 4}px`}}></div>
-      ))}
+const AccountingMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-Accounting.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        SHA-256 Double-Entry
+      </div>
     </div>
-    <div className="bg-white rounded-xl p-4 shadow-sm text-[11px] font-medium text-gray-700 w-full max-w-[220px] leading-relaxed relative">
-      <span className="text-blue-500 font-bold">SHA-256</span> Hash Chain verified. <span className="text-red-400">0.00</span> imbalance detected. <span className="text-green-600 font-bold">Ledger</span> is fully synchronized.
+  );
+};
+
+const HrmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-HRMS.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        AI Shift Auto-Balance
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
-const HrmsMockup = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-[#78716C] relative overflow-hidden">
-    <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-stone-600 to-stone-800 opacity-90" />
-    <h3 className="relative z-10 text-white font-serif text-3xl drop-shadow-md">HRMS Core</h3>
-    <div className="absolute top-3 right-3 bg-white/20 backdrop-blur text-white text-[9px] px-2 py-1 rounded shadow-sm border border-white/30">AI Auto-Balance</div>
-  </div>
-);
+const CrmMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
 
-const CrmMockup = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-[#FEF9C3] p-6 relative">
-    <div className="absolute top-1/4 left-[15%] bg-white rounded px-2 py-1 shadow-sm text-[9px] text-gray-600 font-medium flex items-center gap-1">✅ +10 Juta Preset</div>
-    <div className="absolute top-1/3 right-[15%] bg-white rounded px-2 py-1 shadow-sm text-[9px] text-gray-600 font-medium flex items-center gap-1">🔄 Auto-Fix Stale Deal</div>
-    <div className="absolute bottom-[35%] left-[20%] bg-white rounded px-2 py-1 shadow-sm text-[9px] text-gray-600 font-medium flex items-center gap-1">📊 Kanban Pipeline</div>
-    <h3 className="text-[28px] font-serif text-gray-800 text-center leading-tight mt-12">Sokara<br/>CRM</h3>
-  </div>
-);
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
 
-const SpaMockup = () => (
-  <div className="flex flex-col items-center justify-center h-full bg-[#DCFCE7] p-6 relative">
-    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(134,239,172,0.5)_0%,transparent_70%)]"></div>
-    <div className="absolute top-6 right-6 bg-green-200/50 text-green-800 text-[10px] font-medium px-3 py-1.5 rounded-full border border-green-300 shadow-sm">Promote Waitlist</div>
-    <h3 className="text-3xl font-serif text-gray-800 text-center leading-tight mt-8 relative z-10">Sanctuary<br/>Booking</h3>
-    <div className="absolute bottom-8 left-8 bg-white/60 rounded px-2 py-1 text-[8px] text-gray-600">✨ Capacity Inspector</div>
-  </div>
-);
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-CRM.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse"></span>
+        Kanban + Poka-Yoke
+      </div>
+    </div>
+  );
+};
+
+const SpaMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-SPA.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        Constraint Engine
+      </div>
+    </div>
+  );
+};
+
+const LmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (!videoRef.current) return;
+    if (isFront) {
+      videoRef.current.play().catch(() => {});
+    } else {
+      videoRef.current.pause();
+    }
+  }, [isFront]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden bg-slate-950 flex items-center justify-center">
+      <video
+        ref={videoRef}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        controlsList="nodownload nofullscreen noremoteplayback"
+        disablePictureInPicture
+        disableRemotePlayback
+        className="w-full h-full object-cover pointer-events-none"
+      >
+        <source src="/videos/Sokara-LMS.webm" type="video/webm" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
+      <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
+        <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse"></span>
+        SpeedGrader™ • tRPC
+      </div>
+    </div>
+  );
+};
 
 // ── Project data ───────────────────────────────────────────────────────────────
 
@@ -69,7 +232,8 @@ const PROJECTS = [
     stack: ["React 19", "Zustand", "IndexedDB", "TailwindCSS"],
     metrics: ["< 50ms Scan", "100% Offline", "Zero Downtime"],
     link: "https://pos.aldyalfarisy.my.id/",
-    mockup: <PosMockup />,
+    video: "/videos/Sokara-pos-preview.webm",
+    mockup: (isFront?: boolean) => <PosMockup isFront={isFront} />,
     problem: "Aplikasi Point of Sale (POS) tradisional sering kali lumpuh saat koneksi internet toko tidak stabil, menyebabkan antrean panjang di kasir. Di sisi lain, aplikasi kasir offline sering kali kaku, lambat, dan tidak sinkron dengan pusat. Kasir ritel membutuhkan sistem yang responsif di bawah tekanan (rapid scanning) dan tidak bergantung pada uptime server.",
     approach: "Sokara POS EVO dibangun dengan arsitektur Local-First PWA. Seluruh State Management dan logika transaksi berjalan di client-side menggunakan Zustand yang diintegrasikan dengan IndexedDB. Mulai dari user login, mencari produk, memindai barcode, hingga transaksi selesai, semua terjadi dalam Zero-Latency karena tidak ada network request yang terlibat di tengah transaksi.",
     result: "Global Hardware Barcode Scanner Listener dipadukan dengan Poka-Yoke Defensive UX mencegat input scanner tanpa kasir harus mengklik search bar. Saat stok habis, aplikasi tidak menampilkan error pasif, melainkan memicu fitur Auto-Fix Restock Poka-Yoke, menawarkan solusi 1-klik untuk penyesuaian stok langsung di tempat."
@@ -83,7 +247,8 @@ const PROJECTS = [
     stack: ["React 19", "Zustand 5", "Decimal.js", "SHA-256"],
     metrics: ["0 Selisih Debit", "SHA-256 Anti-Tamper", "60 FPS 1000+ Baris"],
     link: "https://sokaraaccountingdemo.netlify.app/",
-    mockup: <AccountingMockup />,
+    video: "/videos/Sokara-Accounting.webm",
+    mockup: (isFront?: boolean) => <AccountingMockup isFront={isFront} />,
     problem: "Pada bisnis retail dan distribusi, pencatatan POS, stok gudang, dan pembukuan sering terpisah. Akuntan menghitung ulang HPP secara manual, memicu selisih persediaan, jurnal tidak seimbang, dan keterlambatan arus kas aktual.",
     approach: "Sistem akuntansi double-entry terintegrasi yang berjalan 100% di browser tanpa kalkulasi backend. Menggunakan Decimal.js untuk perhitungan finansial standar PSAK demi presisi tinggi. Reaktivitas UI dijaga via Deep Mutation Proxy & Zustand 5. Menerapkan struktur data berantai mirip blockchain (SHA-256) untuk integritas buku besar anti-tamper.",
     result: "Strict Balance Validation menolak otomatis transaksi jika ada selisih debit/kredit. Poka-Yoke Defensive UX mengintervensi kesalahan operasional melalui modal 1-click auto-fix. DOM Virtualization menjaga rendering ribuan baris pembukuan tetap mulus 60FPS saat di-scroll cepat."
@@ -95,9 +260,10 @@ const PROJECTS = [
     role: "State Management",
     client: "Enterprise Operations",
     stack: ["React", "TypeScript", "TailwindCSS", "Zustand"],
-    metrics: ["1-Klik Resolve", "Cegah Fatigue Auto", "Offline-First Roster"],
+    metrics: ["1-Klik Resolve", "Anti-Fatigue Otomatis", "Offline-First Roster"],
     link: "https://hrms.aldyalfarisy.my.id/",
-    mockup: <HrmsMockup />,
+    video: "/videos/Sokara-HRMS.webm",
+    mockup: (isFront?: boolean) => <HrmsMockup isFront={isFront} />,
     problem: "Menyusun jadwal mingguan rawan human-error. Karyawan kerap menerima shift malam berturut-turut hingga menembus batas kelelahan (fatigue). HRIS biasa tidak punya proteksi ini, dan data roster sering hilang jika koneksi putus saat penyusunan.",
     approach: "Arsitektur data Offline-First menggunakan Zustand Atomic Selectors dan localStorage persistence. Setiap mutasi jadwal tersimpan seketika di memory lokal sehingga aman dari network drop. Untuk menanggulangi fatigue secara preventif, dirancang Poka-Yoke Defensive UX dengan fitur Smart Suggestion.",
     result: "Mekanisme AI Shift Auto-Balance bertindak sebagai co-pilot. Aplikasi menghitung ulang matriks jadwal dan menawarkan resolusi lewat 1-klik action button, memindahkan shift lembur dari staf berisiko tinggi secara real-time tanpa beban re-render berat di browser."
@@ -111,7 +277,8 @@ const PROJECTS = [
     stack: ["Next.js", "dnd-kit", "framer-motion", "SWR"],
     metrics: ["0 Ketikan Manual", "0 Loading Drag", "3D Deal Inspector"],
     link: "https://crm.aldyalfarisy.my.id/",
-    mockup: <CrmMockup />,
+    video: "/videos/Sokara-CRM.webm",
+    mockup: (isFront?: boolean) => <CrmMockup isFront={isFront} />,
     problem: "Sales rep menghindari pembaruan status deal karena input form yang repetitif (mengetik nominal besar manual) dan sistem yang sekadar memblokir deal usang tanpa memberikan jalan keluar cepat saat negosiasi tiba-tiba aktif kembali.",
     approach: "Antarmuka Kanban drag-and-drop dirancang agar terasa hidup. Input angka diganti auto-formatting real-time dengan tombol Quick Preset (+10 Juta, +50 Juta). Saat sales menyeret deal usang, sistem memicu PokaYoke Modal yang menahan kartu dan menawarkan opsi 1-klik Auto-Fix.",
     result: "Gesekan operasional sales turun drastis. Kombinasi optimistic updates via SWR dan Zustand membuat manipulasi data besar terjadi tanpa loading. Detail menggunakan slide-over Deal Inspector berefek 3D Tilt Card mencegah pengguna berpindah halaman untuk meninjau data klien."
@@ -125,10 +292,26 @@ const PROJECTS = [
     stack: ["WebGL", "Zustand", "Framer Motion"],
     metrics: ["3 Variabel Simultan", "Auto Waitlist", "Zero Konflik"],
     link: "https://spa.aldyalfarisy.my.id/",
-    mockup: <SpaMockup />,
+    video: "/videos/Sokara-SPA.webm",
+    mockup: (isFront?: boolean) => <SpaMockup isFront={isFront} />,
     problem: "Aplikasi booking standar gagal memenuhi standar luxury spa. Secara UX, form kaku membunuh 'rasa mewah'. Secara operasional, sistem gagal mendeteksi bentrok sumber daya sekunder (misal: terapis kosong, tapi mesin sedang dipakai), memicu pembatalan manual.",
     approach: "Double-Sided State Engine. Di sisi tamu, antarmuka dibangun dengan cinematic motion dan alur intent-based discovery. Di sisi backend, dibangun sistem manajemen konflik berlapis menggunakan Zustand yang berjalan sepenuhnya di client untuk keperluan offline-first.",
     result: "Multi-Layer Constraint Engine mengevaluasi tiga variabel secara simultan: Ketersediaan Terapis, Ketersediaan Hardware/Ruangan, dan Waitlist Auto-Promotion. Jika jadwal bentrok dibatalkan, engine otomatis mempromosikan antrean waitlist yang relevan. Seluruh logika berjalan reaktif sangat snappy."
+  },
+  {
+    id: "sokara-lms",
+    title: "Sokara LMS",
+    summary: "Sistem Manajemen Pembelajaran Sekolah multi-role RBAC dengan SpeedGrader™ Rapid Review, CBT Anti-Cheat, dan arsitektur Offline-First PWA.",
+    role: "Type-Safe Full-Stack & PWA",
+    client: "School & Institution",
+    stack: ["Hono", "tRPC v11", "React 19", "Drizzle ORM", "PWA"],
+    metrics: ["100% Type-Safe", "SpeedGrader™ Engine", "Offline-First PWA"],
+    link: "https://lms.aldyalfarisy.my.id/",
+    video: "/videos/Sokara-LMS.webm",
+    mockup: (isFront?: boolean) => <LmsMockup isFront={isFront} />,
+    problem: "Sistem LMS konvensional sering kali lambat, rentan kehilangan data saat ujian CBT di tengah koneksi putus, dan menyulitkan guru dalam memeriksa ratusan tugas secara berulang. Orang tua juga kerap terisolasi dari transparansi nilai dan administrasi SPP siswa secara aktual.",
+    approach: "Arsitektur Full-Stack End-to-End Type-Safe menggunakan Hono dan tRPC v11 pada database SQLite + Drizzle ORM, dilindungi matriks 4 hak akses peran (Administrator, Guru, Siswa, Orang Tua). Di sisi frontend, dirancang SpeedGrader™ split-view bertenaga keyboard shortcut (J/K/Ctrl+Enter), CBT Player anti-cheat dengan local persistence, serta Service Worker Workbox precache untuk akses offline.",
+    result: "Efisiensi koreksi tugas guru meningkat drastis dengan alur zero-friction review. Integritas ujian CBT terjaga dengan auto-submit dan window blur detection. Orang tua memperoleh dashboard monitoring terpadu untuk capaian rapor digital, absensi, dan pembayaran SPP berstandar format IDR universal."
   }
 ]
 
@@ -195,7 +378,7 @@ const GodTierModal = ({ project, onClose }: { project: any, onClose: () => void 
             {/* Mockup thumbnail — compact on left */}
             <div className="w-full sm:w-[280px] flex-shrink-0 relative" style={{ minHeight: 180 }}>
               <div className="absolute inset-0 opacity-90">
-                {project.mockup}
+                {typeof project.mockup === 'function' ? project.mockup(true) : project.mockup}
               </div>
               {/* Gradient fade to blend into dark bg */}
               <div className="absolute inset-0 hidden sm:block" style={{ background: 'linear-gradient(to right, transparent 60%, #0f0f1a 100%)' }} />
@@ -326,12 +509,7 @@ const GodTierModal = ({ project, onClose }: { project: any, onClose: () => void 
   );
 }
 
-// ── Wheel Carousel ─────────────────────────────────────────────────────────────
-//  Each card sits on a fixed angular slot on an invisible cylinder.
-//  Navigation shifts the "rotation offset" of the whole wheel.
-//  This guarantees a perfect, smooth semi-circle arc — no linear track.
-
-const RADIUS = 720      // px — radius of the invisible cylinder
+const RADIUS = 780      // px — radius of the invisible cylinder
 const STEP_DEG = 30     // degrees between adjacent cards
 const TRANSITION_MS = 480
 
@@ -381,32 +559,28 @@ export default function Work() {
     <>
       <section
         id="work"
-        className="relative w-full bg-transparent py-24 sm:py-32 min-h-[900px] flex flex-col justify-center overflow-hidden"
+        className="relative w-full bg-transparent py-24 sm:py-32 min-h-[950px] flex flex-col justify-center overflow-hidden"
       >
         <style>{`
-          @keyframes blob-float {
-            0%   { transform: translate(0px,   0px) scale(1); }
-            33%  { transform: translate(30px, -50px) scale(1.1); }
-            66%  { transform: translate(-20px, 20px) scale(0.9); }
-            100% { transform: translate(0px,   0px) scale(1); }
-          }
-          .animate-blob     { animation: blob-float 15s infinite alternate ease-in-out; will-change: transform; }
-          .animation-delay-2000 { animation-delay: 2s; }
           .wheel-scene {
             perspective: 1200px;
             perspective-origin: center 50%;
+            contain: layout style;
           }
-          .wheel-track { transform-style: preserve-3d; }
+          .wheel-track { 
+            transform-style: preserve-3d; 
+            will-change: transform;
+          }
           .custom-scrollbar::-webkit-scrollbar { width: 5px; }
           .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
           .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
           .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
         `}</style>
 
-        {/* Background blobs */}
+        {/* Ambient static gradient background (zero continuous re-rasterization) */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <div className="absolute -left-32 top-[10%] w-[700px] h-[700px] bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.28)_0%,transparent_65%)] animate-blob"></div>
-          <div className="absolute -top-32 right-[-5%] w-[600px] h-[600px] bg-[radial-gradient(circle_at_center,rgba(34,197,94,0.18)_0%,transparent_65%)] animate-blob animation-delay-2000"></div>
+          <div className="absolute -left-20 top-[5%] w-[650px] h-[650px] bg-[radial-gradient(circle,rgba(59,130,246,0.18)_0%,transparent_65%)]" style={{ contain: 'strict' }} />
+          <div className="absolute -top-20 right-[-5%] w-[550px] h-[550px] bg-[radial-gradient(circle,rgba(34,197,94,0.12)_0%,transparent_65%)]" style={{ contain: 'strict' }} />
         </div>
 
         <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 sm:px-10">
@@ -441,7 +615,7 @@ export default function Work() {
           {/* ── Wheel carousel ── */}
           <div 
             className="wheel-scene flex items-center justify-center cursor-grab active:cursor-grabbing select-none" 
-            style={{ height: isMobile ? 440 : 500, touchAction: 'pan-y' }}
+            style={{ height: isMobile ? 520 : 600, touchAction: 'pan-y' }}
             onPointerDown={(e) => {
               setDragStartX(e.clientX)
               setIsDragging(true)
@@ -471,7 +645,7 @@ export default function Work() {
               style={{ width: 0, height: 0 }}
             >
               {PROJECTS.map((p, i) => {
-                const currentRadius = isMobile ? 500 : RADIUS
+                const currentRadius = isMobile ? 520 : RADIUS
                 const angleDeg = (i * STEP_DEG) - rotOffset
                 const angleRad = (angleDeg * Math.PI) / 180
                 const xPos = Math.sin(angleRad) * currentRadius
@@ -479,11 +653,11 @@ export default function Work() {
 
                 const isFront = i === activeIndex
                 const distFromActive = Math.abs(i - activeIndex)
-                const opacity = distFromActive === 0 ? 1 : distFromActive === 1 ? 0.7 : distFromActive === 2 ? 0.4 : 0.12
+                const opacity = distFromActive === 0 ? 1 : distFromActive === 1 ? 0.75 : distFromActive === 2 ? 0.45 : 0.12
 
                 // Active card is wider to show inline info — side cards are narrower
-                const cardW = isFront ? (isMobile ? 320 : 380) : (isMobile ? 240 : 280)
-                const cardH = isFront ? (isMobile ? 440 : 500) : (isMobile ? 400 : 460)
+                const cardW = isFront ? (isMobile ? 340 : 450) : (isMobile ? 260 : 320)
+                const cardH = isFront ? (isMobile ? 500 : 570) : (isMobile ? 440 : 500)
 
                 return (
                   <div
@@ -496,13 +670,15 @@ export default function Work() {
                       transition: `transform ${TRANSITION_MS}ms cubic-bezier(0.25,0.46,0.45,0.94), opacity ${TRANSITION_MS}ms ease, width ${TRANSITION_MS}ms ease, height ${TRANSITION_MS}ms ease`,
                       opacity,
                       zIndex: isFront ? 10 : Math.max(0, 5 - distFromActive),
-                      visibility: distFromActive > 3 ? 'hidden' : 'visible',
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden',
+                      visibility: distFromActive > 2 ? 'hidden' : 'visible',
                     }}
                   >
                     <div
                       className={`group relative w-full h-full bg-white rounded-[1.75rem] overflow-hidden flex flex-col
                         ${isFront
-                          ? 'shadow-[0_32px_64px_rgba(0,0,0,0.14)] ring-1 ring-black/5'
+                          ? 'shadow-[0_32px_64px_rgba(0,0,0,0.16)] ring-1 ring-black/5'
                           : 'shadow-[0_16px_32px_rgba(0,0,0,0.07)] border border-gray-100'
                         }
                         transition-shadow duration-300 cursor-pointer select-none`}
@@ -515,67 +691,72 @@ export default function Work() {
                         }
                       }}
                     >
-                      {/* Mockup area — shorter on active to leave room for text */}
-                      <div className={`w-full relative overflow-hidden flex-shrink-0 ${isFront ? 'h-[52%]' : 'h-[62%]'}`}>
-                        {p.mockup}
+                      {/* Mockup area — 48% on active to leave plenty of room for readable text */}
+                      <div className={`w-full relative overflow-hidden flex-shrink-0 ${isFront ? 'h-[48%]' : 'h-[58%]'}`}>
+                        {typeof p.mockup === 'function' ? p.mockup(isFront) : p.mockup}
                       </div>
 
                       {/* Text area */}
-                      <div className="flex-1 px-6 pt-5 pb-6 flex flex-col bg-white">
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h3 className="text-base font-semibold text-gray-900 leading-snug">{p.title}</h3>
-                          {isFront && (
-                            <span className="flex-shrink-0 text-[10px] font-mono bg-blue-50 text-blue-600 border border-blue-100 px-2 py-0.5 rounded-full">{p.role}</span>
+                      <div className="flex-1 px-6 sm:px-7 pt-4 sm:pt-5 pb-5 sm:pb-6 flex flex-col bg-white justify-between">
+                        <div>
+                          <div className="flex items-start justify-between gap-2 mb-2">
+                            <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug">{p.title}</h3>
+                            {isFront && (
+                              <span className="flex-shrink-0 text-[11px] font-mono font-medium bg-blue-50 text-blue-600 border border-blue-200 px-2.5 py-0.5 rounded-full">{p.role}</span>
+                            )}
+                          </div>
+
+                          {isFront ? (
+                            // Active card: show summary + metrics + stack + CTA
+                            <>
+                              <p className="text-gray-600 text-xs sm:text-[13px] leading-relaxed mb-3.5 line-clamp-2">{p.summary}</p>
+                              
+                              {/* Impact chips — visible only on active card */}
+                              <div className="flex flex-wrap gap-1.5 mb-2.5">
+                                {p.metrics?.map((m: string) => (
+                                  <span key={m} className="text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                                    ✦ {m}
+                                  </span>
+                                ))}
+                              </div>
+
+                              <div className="flex flex-wrap gap-1.5 mb-4">
+                                {p.stack.map((s: string) => (
+                                  <span key={s} className="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-md bg-gray-100 text-gray-600 border border-gray-200">{s}</span>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            // Side cards: show title + readable hint
+                            <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 mt-1">{p.summary}</p>
                           )}
                         </div>
 
-                        {isFront ? (
-                          // Active card: show summary + metrics + stack + CTA
-                          <>
-                            <p className="text-gray-500 text-[11px] leading-relaxed mb-3 line-clamp-2">{p.summary}</p>
-                            
-                            {/* Impact chips — visible only on active card */}
-                            <div className="flex flex-wrap gap-1 mb-2">
-                              {p.metrics?.map((m: string) => (
-                                <span key={m} className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-green-50 text-green-700 border border-green-200">
-                                  ✦ {m}
-                                </span>
-                              ))}
-                            </div>
-
-                            <div className="flex flex-wrap gap-1 mb-4">
-                              {p.stack.map((s: string) => (
-                                <span key={s} className="text-[9px] font-mono px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 border border-gray-200">{s}</span>
-                              ))}
-                            </div>
-                            <div className="mt-auto flex gap-2">
-                              <button
-                                onClick={(e) => { 
-                                  e.stopPropagation();
-                                  if (hasDragged) return;
-                                  setPreviewProject(p);
-                                }}
-                                className="flex-1 h-9 rounded-full bg-gray-900 text-white text-xs font-semibold hover:bg-gray-700 transition-all duration-200 flex items-center justify-center gap-1.5"
-                              >
-                                Case Study <ArrowRight className="h-3.5 w-3.5" />
-                              </button>
-                              <a
-                                href={p.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  if (hasDragged) e.preventDefault();
-                                }}
-                                className="h-9 px-4 rounded-full border border-gray-200 text-gray-600 text-xs font-medium hover:border-gray-400 hover:text-gray-900 transition-all duration-200 flex items-center justify-center"
-                              >
-                                Live
-                              </a>
-                            </div>
-                          </>
-                        ) : (
-                          // Side cards: show just title hint
-                          <p className="text-gray-400 text-[10px] leading-relaxed line-clamp-2">{p.summary}</p>
+                        {isFront && (
+                          <div className="mt-auto flex gap-2.5 pt-2">
+                            <button
+                              onClick={(e) => { 
+                                e.stopPropagation();
+                                if (hasDragged) return;
+                                setPreviewProject(p);
+                              }}
+                              className="flex-1 h-10 rounded-full bg-gray-900 text-white text-xs sm:text-sm font-semibold hover:bg-gray-800 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
+                            >
+                              Case Study <ArrowRight className="h-4 w-4" />
+                            </button>
+                            <a
+                              href={p.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                if (hasDragged) e.preventDefault();
+                              }}
+                              className="h-10 px-5 rounded-full border border-gray-200 text-gray-700 text-xs sm:text-sm font-semibold hover:border-gray-400 hover:text-gray-900 transition-all duration-200 flex items-center justify-center bg-white"
+                            >
+                              Live
+                            </a>
+                          </div>
                         )}
                       </div>
                     </div>

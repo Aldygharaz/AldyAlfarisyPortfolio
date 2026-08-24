@@ -1,58 +1,16 @@
-import React, { useRef, useState, useEffect, Suspense } from 'react';
-
-const Spline = React.lazy(() => import('@splinetool/react-spline'));
+import { useRef } from 'react';
 
 export default function IntroHero() {
   const introHeroRef = useRef<HTMLElement>(null);
   const introContentRef = useRef<HTMLDivElement>(null);
   const introScrollRef = useRef<HTMLDivElement>(null);
-  const introDecorRef = useRef<HTMLDivElement>(null);
-  const [showSpline, setShowSpline] = useState(false);
-  const [isInView, setIsInView] = useState(true);
-
-  useEffect(() => {
-    // Dynamically show/hide the heavy 3D Spline model based on screen size
-    const handleResize = () => {
-      setShowSpline(window.innerWidth >= 1024);
-    };
-    
-    handleResize(); // Initial check
-    window.addEventListener('resize', handleResize);
-    
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0 }
-    );
-    
-    if (introHeroRef.current) {
-      observer.observe(introHeroRef.current);
-    }
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      observer.disconnect();
-    };
-  }, []);
 
   return (
     <section ref={introHeroRef} className="intro-hero" id="introHero">
       <div className="intro-grid" aria-hidden="true" />
       
       <style>{`
-        .spline-container-styled {
-          position: absolute;
-          top: 0;
-          left: 40%;
-          right: -10%;
-          bottom: -60px;
-          z-index: 0;
-          pointer-events: none; /* Prevents heavy 3D raycasting lag */
-        }
-
         .intro-content-styled {
-          pointer-events: none;
           text-align: left;
           width: 100%;
           max-width: 1120px;
@@ -96,7 +54,7 @@ export default function IntroHero() {
         .intro-role-styled {
           margin-top: 24px;
           font-size: clamp(16px, 2vw, 18px);
-          max-width: 600px;
+          max-width: 680px;
           line-height: 1.6;
           text-transform: none;
           color: var(--text);
@@ -104,10 +62,10 @@ export default function IntroHero() {
 
         .intro-actions-styled {
           margin-top: 40px;
-          pointer-events: auto;
           display: flex;
           align-items: center;
           gap: 24px;
+          flex-wrap: wrap;
         }
 
         .intro-btn-styled {
@@ -143,20 +101,6 @@ export default function IntroHero() {
         }
       `}</style>
 
-      {/* Robot positioned on the right */}
-      <div
-        ref={introDecorRef}
-        className="spline-container spline-container-styled"
-        style={{ display: showSpline ? 'block' : 'none' }}
-        aria-hidden="true"
-      >
-        {showSpline && isInView && (
-          <Suspense fallback={<div style={{ width: '100%', height: '100%' }} />}>
-            <Spline scene="https://prod.spline.design/uy4WJ7BqNgnoKwdm/scene.splinecode" />
-          </Suspense>
-        )}
-      </div>
-
       <div className="intro-content intro-content-styled" ref={introContentRef}>
         <span className="intro-eyebrow animate-fade-up intro-eyebrow-styled">
           <span className="intro-eyebrow-dot"></span>
@@ -166,11 +110,14 @@ export default function IntroHero() {
           ALDY ALFARISY<em>.</em>
         </h1>
         <h2 className="animate-fade-up delay-1 intro-title-styled">
-          Product Operator & Digital Solutions Architect
+          Digital Solutions Builder & AI Orchestration Specialist
         </h2>
-        <h3 className="animate-fade-up delay-2" style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', fontWeight: 500, color: 'var(--text)', marginTop: '12px', lineHeight: 1.4 }}>
+        <h3 className="animate-fade-up delay-2" style={{ fontSize: 'clamp(16px, 2.5vw, 20px)', fontWeight: 600, color: 'var(--text)', marginTop: '12px', lineHeight: 1.4 }}>
           Mengubah Kebutuhan Bisnis Jadi Produk, Lewat Orkestrasi AI.
         </h3>
+        <p className="animate-fade-up delay-2" style={{ fontSize: '15px', color: 'var(--accent-blue)', fontWeight: 600, marginTop: '8px', letterSpacing: '0.01em' }}>
+          Solopreneur dengan kapabilitas AI Agent, hasil setara agency tanpa birokrasi agency.
+        </p>
         <p className="intro-role animate-fade-up delay-2 intro-role-styled" style={{ marginTop: '16px' }}>
           Saya merancang arsitektur dan alur kerja produk, lalu mengarahkan AI Agent untuk mengeksekusinya, mulai dari sistem Point of Sale hingga platform operasional <em>full-stack</em>. Hasilnya: produk nyata yang siap pakai, dengan proses pengembangan yang jauh lebih efisien.
         </p>

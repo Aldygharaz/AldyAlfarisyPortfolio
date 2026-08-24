@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { id: 'quadrant', label: 'Solusi' },
   { id: 'skills', label: 'Skill' },
   { id: 'process', label: 'Proses' },
-  { id: 'testimonials', label: 'Testimoni' },
+  { id: 'testimonials', label: 'Studi Kasus' },
   { id: 'faq', label: 'FAQ' },
 ];
 
@@ -139,6 +139,25 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           }
           .nav-pill {
             padding: 10px 16px 10px 24px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .nav-pill {
+            padding: 6px 10px 6px 14px;
+          }
+          .logo img {
+            height: 32px;
+          }
+          .nav-login {
+            display: none;
+          }
+          .nav-right {
+            gap: 10px;
+          }
+          .nav-cta {
+            padding: 8px 16px;
+            font-size: 12px;
           }
         }
       `}</style>

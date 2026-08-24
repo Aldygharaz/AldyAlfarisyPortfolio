@@ -24,9 +24,14 @@ export const useScrollReveal = () => {
     // Initial observation
     observeAll();
 
-    // Use MutationObserver to watch for new lazy-loaded elements
+    // Debounce MutationObserver to prevent stalling the main thread on every tiny DOM change
+    let timeoutId: number | null = null;
     const mutationObserver = new MutationObserver(() => {
-      observeAll();
+      if (timeoutId) return;
+      timeoutId = window.setTimeout(() => {
+        observeAll();
+        timeoutId = null;
+      }, 300);
     });
 
     mutationObserver.observe(document.body, {
@@ -37,6 +42,7 @@ export const useScrollReveal = () => {
     return () => {
       io.disconnect();
       mutationObserver.disconnect();
+      if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
 };

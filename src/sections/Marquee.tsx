@@ -40,14 +40,14 @@ export default function Marquee() {
         gap: '12px', 
         padding: '16px 24px', 
         borderBottom: '1px solid var(--border-color)',
-        background: 'color-mix(in srgb, var(--surface) 40%, transparent)'
+        background: 'rgba(255, 255, 255, 0.6)'
       }}>
         {tier2.map((item, i) => (
           <span key={i} style={{ 
             fontSize: '12px', 
             color: 'var(--text-muted)', 
             padding: '4px 12px', 
-            border: '1px solid color-mix(in srgb, var(--border-color) 60%, transparent)',
+            border: '1px solid rgba(220, 231, 242, 0.8)',
             borderRadius: '100px',
             background: 'var(--surface-2)'
           }}>

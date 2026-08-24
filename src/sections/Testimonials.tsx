@@ -1,29 +1,50 @@
 import { useRef, useState } from 'react';
-import { Star } from 'lucide-react';
+import { ShieldCheck, Zap, Database, ArrowUpRight } from 'lucide-react';
 import './Testimonials.css';
 
-const testimonials = [
+const caseStudies = [
   {
-    quote: "Aldy ngerti banget apa yang aku butuhin, bahkan sebelum aku selesai jelasin. Hasil akhirnya jauh lebih rapi dari yang aku bayangin.",
-    name: 'Budi Santoso',
-    role: 'Founder, TechStart',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',
+    id: 'sokara-hrms',
+    title: 'Sokara HRMS',
+    category: 'State Management & Offline-First',
+    headline: 'AI Shift Auto-Balance & Proteksi Fatigue Karyawan',
+    description: 'Sistem HRMS cerdas dengan arsitektur Offline-First. Menghitung matriks jadwal dan menawarkan resolusi 1-klik untuk mencegah kelelahan staf shift malam berturut-turut.',
+    features: ['1-Klik Resolve', 'Anti-Fatigue Otomatis', 'Offline-First Roster'],
+    icon: <Zap size={20} className="text-amber-400" />,
+    badgeColor: 'rgba(251, 191, 36, 0.12)',
+    badgeBorder: 'rgba(251, 191, 36, 0.3)',
+    badgeText: '#f59e0b',
+    link: 'https://hrms.aldyalfarisy.my.id/',
   },
   {
-    quote: "Komunikasinya enak, progresnya jelas tiap minggu. Gak ada drama nunggu update kayak biasanya kerja sama freelancer lain.",
-    name: 'Sarah Amalia',
-    role: 'Marketing Director',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
+    id: 'sokara-pos-evo',
+    title: 'Sokara POS EVO',
+    category: 'Local-First Enterprise PWA',
+    headline: 'Response Time < 50ms Tanpa Ketergantungan Internet',
+    description: 'Aplikasi kasir ritel 100% lokal berbasis IndexedDB dan Zustand. Mencegah antrean panjang dengan hardware barcode listener dan fitur Poka-Yoke auto-fix stok.',
+    features: ['< 50ms Scan', '100% Offline', 'Zero Downtime'],
+    icon: <ShieldCheck size={20} className="text-blue-400" />,
+    badgeColor: 'rgba(59, 130, 246, 0.12)',
+    badgeBorder: 'rgba(59, 130, 246, 0.3)',
+    badgeText: '#3b82f6',
+    link: 'https://pos.aldyalfarisy.my.id/',
   },
   {
-    quote: "Sistemnya jalan lancar sampai sekarang, dan pas ada masalah kecil, responnya cepat banget. Worth it.",
-    name: 'Reza Pratama',
-    role: 'Owner, Kedai Kopi',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face',
+    id: 'sokara-accounting',
+    title: 'Sokara Accounting',
+    category: 'Pure Double-Entry & Zero Backend',
+    headline: 'Mesin Pembukuan PSAK di Browser, Server Cost Rp 0',
+    description: 'Aplikasi akuntansi retail dengan mesin double-entry murni di browser menggunakan Decimal.js dan verifikasi SHA-256 anti-tamper untuk integritas buku besar.',
+    features: ['0 Selisih Debit', 'SHA-256 Anti-Tamper', 'Rp 0 Server Cost'],
+    icon: <Database size={20} className="text-emerald-400" />,
+    badgeColor: 'rgba(16, 185, 129, 0.12)',
+    badgeBorder: 'rgba(16, 185, 129, 0.3)',
+    badgeText: '#10b981',
+    link: 'https://sokaraaccountingdemo.netlify.app/',
   },
 ];
 
-function TestimonialCard({ t, i }: { t: typeof testimonials[0]; i: number }) {
+function CaseStudyCard({ cs, i }: { cs: typeof caseStudies[0]; i: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [style, setStyle] = useState<React.CSSProperties>({});
 
@@ -35,13 +56,13 @@ function TestimonialCard({ t, i }: { t: typeof testimonials[0]; i: number }) {
     
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6; // Max 6 deg tilt for elegance
-    const rotateY = ((x - centerX) / centerX) * 6;
+    const rotateX = ((y - centerY) / centerY) * -5;
+    const rotateY = ((x - centerX) / centerX) * 5;
     
     setStyle({
       '--mouse-x': `${x}px`,
       '--mouse-y': `${y}px`,
-      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+      transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.015, 1.015, 1.015)`,
       transition: 'none',
       zIndex: 10,
     } as React.CSSProperties);
@@ -57,24 +78,43 @@ function TestimonialCard({ t, i }: { t: typeof testimonials[0]; i: number }) {
 
   return (
     <div 
-      className="testi-card-modern reveal"
+      className="case-study-card reveal"
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{ ...style, transitionDelay: style.transform ? '0s' : `${i * 0.12}s` }}
     >
       <div className="testi-spotlight" />
-      <div className="testi-content">
-        <div className="testi-stars-modern" style={{ display: 'flex', gap: '4px' }}>
-          {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" color="currentColor" />)}
-        </div>
-        <p className="testi-quote-modern">"{t.quote}"</p>
-        <div className="testi-author-modern">
-          <img src={t.image} alt={t.name} loading="lazy" />
-          <div className="testi-author-info">
-            <h4 className="testi-name-modern">{t.name}</h4>
-            <span className="testi-role-modern">{t.role}</span>
+      <div className="case-study-content">
+        <div className="case-study-top">
+          <div className="case-study-badge" style={{ backgroundColor: cs.badgeColor, borderColor: cs.badgeBorder, color: cs.badgeText }}>
+            {cs.icon}
+            <span>{cs.category}</span>
           </div>
+          <a 
+            href={cs.link} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="case-study-link-icon"
+            aria-label={`Buka live demo ${cs.title}`}
+          >
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
+
+        <div className="case-study-body">
+          <h3 className="case-study-title">{cs.title}</h3>
+          <p className="case-study-headline">{cs.headline}</p>
+          <p className="case-study-desc">{cs.description}</p>
+        </div>
+
+        <div className="case-study-features">
+          {cs.features.map((feat, idx) => (
+            <span key={idx} className="case-study-pill">
+              <span className="case-study-pill-dot" />
+              {feat}
+            </span>
+          ))}
         </div>
       </div>
     </div>
@@ -85,13 +125,13 @@ export default function Testimonials() {
   return (
     <section className="section" id="testimonials">
       <div className="section-head center reveal">
-        <span className="eyebrow">Kata mereka</span>
-        <h2>Apa kata <em>klien saya</em></h2>
-        <p className="section-sub">Beberapa cerita singkat dari orang-orang yang pernah bekerja sama dengan saya.</p>
+        <span className="eyebrow">Dampak Operasional</span>
+        <h2>Studi Kasus <em>Solusi Nyata</em></h2>
+        <p className="section-sub">Implementasi arsitektur sistem di produksi yang memangkas biaya server, meniadakan downtime, dan mengeliminasi kesalahan manusia.</p>
       </div>
-      <div className="testi-grid">
-        {testimonials.map((t, i) => (
-          <TestimonialCard key={i} t={t} i={i} />
+      <div className="case-study-grid">
+        {caseStudies.map((cs, i) => (
+          <CaseStudyCard key={cs.id} cs={cs} i={i} />
         ))}
       </div>
     </section>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function ThemeToggle() {
     return <div className="theme-toggle-placeholder" style={{ width: 40, height: 40 }} />;
   }
 
-  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  const isDark = resolvedTheme === 'dark';
 
   return (
     <button

@@ -21,7 +21,7 @@ export default function About() {
             <h2 className="interactive-title">
               <span className="line"><HoverText text="Saya " /><em><HoverText text="membangun" /></em></span>
               <span className="line"><HoverText text="sistem yang " /></span>
-              <span className="line"><em><HoverText text="bekerja " /></em><HoverText text="untukmu." /></span>
+              <span className="line"><em><HoverText text="bekerja " /></em><HoverText text="untuk bisnis Anda." /></span>
             </h2>
             <p>
               Saya Aldy, builder di Sokara, studio digital solutions berbasis AI. Latar belakang saya ekonomi dan analisis data, jadi sebelum saya bangun sesuatu, saya pelajari dulu metrik bisnisnya seperti risiko, proyeksi, dan potensinya. Setelah itu barulah saya eksekusi menjadi sistem nyata, mengandalkan AI Agent sebagai tim teknis andalan saya.

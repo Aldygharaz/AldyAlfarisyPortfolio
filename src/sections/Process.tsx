@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 const steps = [
-  { num: '01', title: 'Discovery & Architecture', desc: 'Membedah akar permasalahan bisnis Anda dan merancang arsitektur solusi teknis yang paling efisien, terukur (scalable), dan tepat sasaran.' },
+  { num: '01', title: 'Discovery & Architecture', desc: 'Membedah akar permasalahan bisnis Anda dan merancang arsitektur solusi teknis yang tepat sasaran, dari fase desain sampai produk siap dipakai.' },
   { num: '02', title: 'UX & System Design', desc: 'Membuat prototipe antarmuka interaktif dan mendesain struktur basis data secara presisi untuk meminimalisir hambatan struktural saat produksi.' },
   { num: '03', title: 'AI-Assisted Engineering', desc: 'Eksekusi pengembangan kode tingkat enterprise dengan memanfaatkan kapabilitas AI untuk mempercepat siklus rilis tanpa mengorbankan keamanan sistem.' },
   { num: '04', title: 'Deployment & Handover', desc: 'Rilis produk ke production environment, penyiapan dokumentasi teknis komprehensif, serta dukungan pasca-rilis untuk menjamin stabilitas.' },

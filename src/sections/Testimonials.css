@@ -1,5 +1,13 @@
-/* ---------- Modern Testimonials ---------- */
-.testi-card-modern {
+/* ---------- Case Study Modern Cards ---------- */
+.case-study-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.case-study-card {
   position: relative;
   background: var(--surface);
   border: 1px solid var(--border-color);
@@ -7,12 +15,12 @@
   padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   transform-style: preserve-3d;
   will-change: transform;
 }
+
 .testi-spotlight {
   position: absolute;
   inset: 0;
@@ -22,16 +30,18 @@
   z-index: 0;
   pointer-events: none;
 }
-.testi-card-modern:hover .testi-spotlight {
+
+.case-study-card:hover .testi-spotlight {
   opacity: 1;
 }
-.testi-card-modern::before {
+
+.case-study-card::before {
   content: '';
   position: absolute;
   inset: 0;
   border-radius: 24px;
   padding: 2px;
-  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(47,124,214,0.4), transparent 40%);
+  background: radial-gradient(400px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(47,124,214,0.35), transparent 40%);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -39,51 +49,113 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.testi-card-modern:hover::before {
+
+.case-study-card:hover::before {
   opacity: 1;
 }
-.testi-content {
+
+.case-study-content {
   position: relative;
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   height: 100%;
 }
-.testi-quote-modern {
-  font-size: 16px;
-  color: var(--text);
-  line-height: 1.7;
-  flex-grow: 1;
-}
-.testi-author-modern {
+
+.case-study-top {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-top: auto;
-  padding-top: 24px;
-  border-top: 1px solid var(--border-color);
+  justify-content: space-between;
+  gap: 12px;
 }
-.testi-author-modern img {
-  width: 48px;
-  height: 48px;
+
+.case-study-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid transparent;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.case-study-link-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  object-fit: cover;
   background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  transition: all 0.25s ease;
 }
-.testi-name-modern {
-  font-size: 15px;
+
+.case-study-link-icon:hover {
+  color: var(--accent-blue);
+  border-color: var(--accent-blue);
+  transform: translateY(-2px);
+}
+
+.case-study-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.case-study-title {
+  font-size: 22px;
   font-weight: 700;
   color: var(--text-heading);
-  margin-bottom: 4px;
+  letter-spacing: -0.01em;
 }
-.testi-role-modern {
-  font-size: 13px;
+
+.case-study-headline {
+  font-size: 14px;
+  font-weight: 600;
   color: var(--accent-blue);
+  line-height: 1.4;
+}
+
+.case-study-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-top: 4px;
+}
+
+.case-study-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.case-study-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
   font-weight: 500;
+  color: var(--text);
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+  padding: 4px 10px;
+  border-radius: 8px;
 }
-.testi-stars-modern {
-  color: var(--accent-blue);
-  font-size: 18px;
-  letter-spacing: 2px;
+
+.case-study-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-blue);
 }

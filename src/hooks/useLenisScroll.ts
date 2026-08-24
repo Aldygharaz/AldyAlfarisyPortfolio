@@ -11,6 +11,8 @@ export const useLenisScroll = () => {
       return window.innerWidth < 1024 || (typeof navigator !== 'undefined' && navigator.maxTouchPoints > 0);
     };
 
+    let rafId: number;
+
     if (!prefersReduced && !isTouch()) {
       lenisRef.current = new Lenis({
         duration: 1.1,
@@ -22,12 +24,13 @@ export const useLenisScroll = () => {
 
       function raf(time: number) {
         lenisRef.current?.raf(time);
-        requestAnimationFrame(raf);
+        rafId = requestAnimationFrame(raf);
       }
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       if (lenisRef.current) {
         lenisRef.current.destroy();
       }

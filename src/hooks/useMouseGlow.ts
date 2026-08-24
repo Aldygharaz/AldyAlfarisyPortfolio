@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, type RefObject } from 'react';
 
-export const useMouseGlow = () => {
+export const useMouseGlow = (glowRef: RefObject<HTMLDivElement | null>) => {
   useEffect(() => {
     const isTouch = () => {
       if (typeof window === 'undefined') return false;
@@ -10,10 +10,12 @@ export const useMouseGlow = () => {
     let rafMouse: number | null = null;
     
     const updateMousePos = (e: MouseEvent) => {
+      if (!glowRef.current) return;
       if (rafMouse) cancelAnimationFrame(rafMouse);
+      
       rafMouse = requestAnimationFrame(() => {
-        document.documentElement.style.setProperty('--global-mouse-x', `${e.clientX}px`);
-        document.documentElement.style.setProperty('--global-mouse-y', `${e.clientY}px`);
+        // Direct DOM manipulation bypasses React state and root style recalculation
+        glowRef.current!.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
       });
     };
 
@@ -25,5 +27,5 @@ export const useMouseGlow = () => {
       window.removeEventListener('mousemove', updateMousePos);
       if (rafMouse) cancelAnimationFrame(rafMouse);
     };
-  }, []);
+  }, [glowRef]);
 };

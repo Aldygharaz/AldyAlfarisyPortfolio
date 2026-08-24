@@ -20,7 +20,7 @@ const quadrants = [
     icon: <Building2 size={28} />,
     label: 'ARCHITECTURE & TRANSFORMATION',
     title: 'Sistem Custom yang Siap Bertumbuh',
-    desc: 'Merancang topologi sistem sejak fase awal seperti skema database, antrean sinkronisasi offline-first, hingga pengamanan transaksi, sekaligus mendigitalisasi alur kerja konvensional menjadi sistem manajemen terpadu yang skalabel dan siap bertumbuh mengikuti valuasi bisnis Anda.',
+    desc: 'Merancang topologi sistem sejak fase awal, hingga menjadi sistem manajemen terpadu yang tumbuh mengikuti valuasi bisnis Anda tanpa migrasi ulang.',
   },
   {
     cls: 'green',
