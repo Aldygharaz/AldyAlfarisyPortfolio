@@ -117,6 +117,23 @@ export default function Process() {
           ))}
         </div>
       </div>
+
+      <div className="process-promises reveal">
+        <h3 className="process-promises-title">{t.promisesTitle}</h3>
+        <div className="process-promises-grid">
+          {t.promises.map((p) => (
+            <div className="process-promise" key={p.title}>
+              <span className="process-promise-check" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              <div>
+                <p className="process-promise-name">{p.title}</p>
+                <p className="process-promise-desc">{p.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

@@ -39,29 +39,29 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = locale;
     if (locale === 'en') {
-      document.title = 'Aldy Alfarisy | System Builder for Businesses';
+      document.title = 'Aldy Alfarisy | Custom Apps and Websites for Businesses';
       const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute('content', 'I build systems for your business: cash register, bookkeeping, staff scheduling, online stores, and school systems. Built around how your business works. Tell me your problem, free.');
+      if (desc) desc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
       const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | System Builder for Businesses');
+      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Custom Apps and Websites for Businesses');
       const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', 'I build systems for your business: cash register, bookkeeping, staff scheduling, online stores, and school systems. Built around how your business works. Tell me your problem, free.');
+      if (ogDesc) ogDesc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
       const twTitle = document.querySelector('meta[property="twitter:title"]');
-      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | System Builder for Businesses');
+      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Custom Apps and Websites for Businesses');
       const twDesc = document.querySelector('meta[property="twitter:description"]');
-      if (twDesc) twDesc.setAttribute('content', 'I build systems for your business: cash register, bookkeeping, staff scheduling, online stores, and school systems. Built around how your business works. Tell me your problem, free.');
+      if (twDesc) twDesc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
     } else {
-      document.title = 'Aldy Alfarisy | Pembuat Sistem untuk Bisnis';
+      document.title = 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha';
       const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute('content', 'Butuh sistem sendiri untuk bisnis Anda? Saya yang buatkan: kasir, pembukuan, jadwal karyawan, toko online, sampai sistem sekolah. Cerita dulu masalahnya, gratis.');
+      if (desc) desc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
       const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Pembuat Sistem untuk Bisnis');
+      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha');
       const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', 'Butuh sistem sendiri untuk bisnis Anda? Saya yang buatkan: kasir, pembukuan, jadwal karyawan, toko online, sampai sistem sekolah. Cerita dulu masalahnya, gratis.');
+      if (ogDesc) ogDesc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
       const twTitle = document.querySelector('meta[property="twitter:title"]');
-      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Pembuat Sistem untuk Bisnis');
+      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha');
       const twDesc = document.querySelector('meta[property="twitter:description"]');
-      if (twDesc) twDesc.setAttribute('content', 'Butuh sistem sendiri untuk bisnis Anda? Saya yang buatkan: kasir, pembukuan, jadwal karyawan, toko online, sampai sistem sekolah. Cerita dulu masalahnya, gratis.');
+      if (twDesc) twDesc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
     }
   }, [locale]);
 

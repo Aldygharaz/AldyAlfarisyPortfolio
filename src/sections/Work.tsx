@@ -1,8 +1,11 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
 import { createPortal } from 'react-dom'
-import { ChevronLeft, ChevronRight, X, ArrowRight } from 'lucide-react'
+import { X, ArrowRight } from 'lucide-react'
 import { useLocale } from '../context/LocaleContext'
 import { content } from '../locales/content'
+import { useSegment, type SegmentId } from '../context/SegmentContext'
+import { track } from '../lib/analytics'
+import { buildWaUrl } from '../lib/whatsapp'
 
 // ── Mockup components ──────────────────────────────────────────────────────────
 
@@ -581,6 +584,7 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => track('demo_open', { project: project.id, location: 'modal' })}
               className="inline-flex items-center justify-center gap-2 font-semibold text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl"
               style={{
                 background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
@@ -600,19 +604,19 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
   );
 }
 
-// ── Carousel Component ────────────────────────────────────────────────────────
-
-const TRANSITION_MS = 480;
+// ── Grid Component ────────────────────────────────────────────────────────────
+// Semua contoh sistem terlihat sekaligus (bukan carousel), dengan saringan
+// jenis usaha yang terhubung ke section "Pilih jenis usaha".
 
 export default function Work() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [currentDeg, setCurrentDeg] = useState(0);
-  const [isRotating, setIsRotating] = useState(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   const { locale } = useLocale();
+  const { segment, setSegment } = useSegment();
   const workContent = content[locale].work;
+  const segContent = content[locale].segments;
 
   const projects: Project[] = useMemo(() => {
     const t = content[locale].work.projects;
@@ -739,66 +743,47 @@ export default function Work() {
     ];
   }, [locale]);
 
-  const total = projects.length;
+  const activeSegment = segContent.items.find((i) => i.id === segment) ?? null;
+  const visibleProjects = activeSegment
+    ? projects.filter((p) => (activeSegment.projects as readonly string[]).includes(p.id))
+    : projects;
 
-  const [isPointerDown, setIsPointerDown] = useState(false);
-  const [pointerStartX, setPointerStartX] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
+  // Di HP tanpa saringan, awalnya cukup 3 kartu supaya halaman tidak terlalu panjang.
+  const MOBILE_LIMIT = 3;
+  const limitOnMobile = !activeSegment && !showAllMobile && visibleProjects.length > MOBILE_LIMIT;
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // Kartu ajakan mengisi sisa baris terakhir grid (3 kolom di desktop, 2 di tablet).
+  const n = visibleProjects.length;
+  const lgSpan = ['lg:col-span-3', 'lg:col-span-2', 'lg:col-span-1'][n % 3];
+  const smSpan = n % 2 === 0 ? 'sm:col-span-2' : 'sm:col-span-1';
 
-  const rotateTo = useCallback(
-    (targetIndex: number) => {
-      if (isRotating) return;
-      setIsRotating(true);
+  const openStory = (project: Project) => {
+    setSelectedProject(project);
+    track('story_open', { project: project.id });
+  };
 
-      const normalizedTarget = ((targetIndex % total) + total) % total;
-      let diff = normalizedTarget - activeIndex;
+  const chooseFilter = (id: SegmentId | null) => {
+    setSegment(id);
+    if (id) track('segment_select', { segment: id, location: 'work_filter' });
+  };
 
-      if (diff > total / 2) diff -= total;
-      if (diff < -total / 2) diff += total;
-
-      setCurrentDeg((prev) => prev + diff * 30);
-      setActiveIndex(normalizedTarget);
-
-      setTimeout(() => setIsRotating(false), TRANSITION_MS);
-    },
-    [activeIndex, isRotating, total]
-  );
-
-  const next = useCallback(() => rotateTo(activeIndex + 1), [activeIndex, rotateTo]);
-  const prev = useCallback(() => rotateTo(activeIndex - 1), [activeIndex, rotateTo]);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (selectedProject) return;
-      if (e.key === 'ArrowLeft') prev();
-      if (e.key === 'ArrowRight') next();
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [next, prev, selectedProject]);
+  const chipClass = (active: boolean) =>
+    `inline-flex items-center whitespace-nowrap h-12 sm:h-10 px-4 rounded-full text-[15px] sm:text-sm font-medium transition-all duration-200 ${
+      active
+        ? 'bg-gray-900 text-white shadow-md'
+        : 'bg-white/80 border border-gray-200 text-gray-600 hover:border-gray-400 hover:text-gray-900'
+    }`;
 
   return (
     <>
       <section className="relative overflow-hidden py-24 sm:py-32" id="work">
         <style>{`
-          .wheel-scene {
-            perspective: 1100px;
-            perspective-origin: 50% 50%;
-          }
-          .wheel-track {
-            transform-style: preserve-3d;
-          }
           .custom-scrollbar::-webkit-scrollbar { width: 5px; }
           .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
           .custom-scrollbar::-webkit-scrollbar-thumb { background: #e5e7eb; border-radius: 4px; }
           .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #d1d5db; }
+          .work-chips { scrollbar-width: none; }
+          .work-chips::-webkit-scrollbar { display: none; }
         `}</style>
 
         {/* Ambient background glows */}
@@ -813,209 +798,122 @@ export default function Work() {
           />
         </div>
 
-        <div className="relative z-10 mx-auto w-full max-w-[1400px] px-6 sm:px-10">
+        <div className="relative z-10 mx-auto w-full max-w-[1200px] px-5 sm:px-10">
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-14 sm:mb-16">
-            <div>
-              <p className="font-mono text-xs tracking-[0.2em] text-blue-600 font-semibold uppercase mb-3">
-                {workContent.eyebrow}
-              </p>
-              <h2 className="text-4xl sm:text-5xl text-gray-900 font-semibold tracking-tight">
-                {workContent.title}
-              </h2>
-              <p className="text-sm text-gray-500 mt-3 max-w-xl leading-relaxed">
-                {workContent.subtitle}
-              </p>
-            </div>
+          <div className="mb-8 sm:mb-10">
+            <p className="font-mono text-xs tracking-[0.2em] text-blue-600 font-semibold uppercase mb-3">
+              {workContent.eyebrow}
+            </p>
+            <h2 className="text-4xl sm:text-5xl text-gray-900 font-semibold tracking-tight">
+              {workContent.title}
+            </h2>
+            <p className="text-[17px] sm:text-base text-gray-600 mt-3 max-w-xl leading-relaxed">
+              {workContent.subtitle}
+            </p>
+          </div>
 
-            <div className="flex flex-wrap gap-2">
-              {projects.map((proj, idx) => (
+          {/* Saringan jenis usaha */}
+          <div className="mb-8 sm:mb-10">
+            <p className="text-sm text-gray-500 mb-3">{workContent.filterLabel}</p>
+            <div className="work-chips flex gap-2 overflow-x-auto sm:flex-wrap -mx-5 px-5 sm:mx-0 sm:px-0 pb-1">
+              <button type="button" className={chipClass(!activeSegment)} onClick={() => chooseFilter(null)} aria-pressed={!activeSegment}>
+                {workContent.filterAll}
+              </button>
+              {segContent.items.map((item) => (
                 <button
-                  key={proj.id}
-                  onClick={() => rotateTo(idx)}
-                  className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 overflow-hidden ${
-                    idx === activeIndex
-                      ? 'bg-gray-900 text-white shadow-md scale-105'
-                      : 'bg-white/70 border border-gray-200 text-gray-500 hover:border-gray-400 hover:text-gray-800'
-                  }`}
+                  key={item.id}
+                  type="button"
+                  className={chipClass(segment === item.id)}
+                  onClick={() => chooseFilter(item.id as SegmentId)}
+                  aria-pressed={segment === item.id}
                 >
-                  <span className="relative z-10">{proj.title}</span>
+                  {item.label}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* 3D Wheel Viewport */}
-          <div
-            className="wheel-scene flex items-center justify-center cursor-grab active:cursor-grabbing select-none"
-            style={{ height: isMobile ? 520 : 600, touchAction: 'pan-y' }}
-            onPointerDown={(e) => {
-              setPointerStartX(e.clientX);
-              setIsPointerDown(true);
-              setIsDragging(false);
-              if (e.pointerType === 'mouse') e.preventDefault();
-            }}
-            onPointerMove={(e) => {
-              if (!isPointerDown) return;
-              const diff = e.clientX - pointerStartX;
-              if (Math.abs(diff) > 10) setIsDragging(true);
-            }}
-            onPointerUp={(e) => {
-              if (!isPointerDown) return;
-              setIsPointerDown(false);
-              const diff = e.clientX - pointerStartX;
-              if (diff > 50) prev();
-              else if (diff < -50) next();
-            }}
-            onPointerLeave={() => setIsPointerDown(false)}
-          >
-            <div className="wheel-track relative flex items-center justify-center" style={{ width: 0, height: 0 }}>
-              {projects.map((project, idx) => {
-                const radius = isMobile ? 520 : 780;
-                const angle = idx * 30 - currentDeg;
-                const rad = (angle * Math.PI) / 180;
-                const x = Math.sin(rad) * radius;
-                const z = Math.cos(rad) * radius - radius;
+          {/* Grid kartu */}
+          <div className="grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleProjects.map((project, idx) => (
+              <article
+                key={project.id}
+                className={`group relative bg-white rounded-[1.5rem] overflow-hidden flex-col border border-gray-100 shadow-[0_16px_32px_rgba(0,0,0,0.07)] hover:shadow-[0_28px_56px_rgba(0,0,0,0.14)] transition-shadow duration-300 ${
+                  limitOnMobile && idx >= MOBILE_LIMIT ? 'hidden sm:flex' : 'flex'
+                }`}
+                onMouseEnter={() => setHoveredId(project.id)}
+                onMouseLeave={() => setHoveredId(null)}
+              >
+                <button
+                  type="button"
+                  className="relative w-full aspect-[16/10] overflow-hidden text-left"
+                  onClick={() => openStory(project)}
+                  aria-label={`${workContent.btnReadStory}: ${project.title}`}
+                >
+                  {project.mockup(hoveredId === project.id)}
+                </button>
 
-                const isCurrent = idx === activeIndex;
-                const dist = Math.abs(idx - activeIndex);
-
-                const opacity = dist === 0 ? 1 : dist === 1 ? 0.75 : dist === 2 ? 0.45 : 0.12;
-                const cardWidth = isCurrent ? (isMobile ? 340 : 450) : isMobile ? 260 : 320;
-                const cardHeight = isCurrent ? (isMobile ? 500 : 570) : isMobile ? 440 : 500;
-
-                return (
-                  <div
-                    key={project.id}
-                    className="absolute"
-                    style={{
-                      width: cardWidth,
-                      height: cardHeight,
-                      transform: `translateX(${x}px) translateZ(${z}px) rotateY(${angle}deg)`,
-                      transition:
-                        'transform 480ms cubic-bezier(0.25,0.46,0.45,0.94), opacity 480ms ease, width 480ms ease, height 480ms ease',
-                      opacity,
-                      zIndex: isCurrent ? 10 : Math.max(0, 5 - dist),
-                      willChange: 'transform, opacity',
-                      backfaceVisibility: 'hidden',
-                      visibility: dist > 2 ? 'hidden' : 'visible',
-                    }}
-                  >
-                    <div
-                      className={`group relative w-full h-full bg-white rounded-[1.75rem] overflow-hidden flex flex-col
-                        ${
-                          isCurrent
-                            ? 'shadow-[0_32px_64px_rgba(0,0,0,0.16)] ring-1 ring-black/5'
-                            : 'shadow-[0_16px_32px_rgba(0,0,0,0.07)] border border-gray-100'
-                        }
-                        transition-shadow duration-300 cursor-pointer select-none`}
-                      onClick={() => {
-                        if (!isDragging) {
-                          if (isCurrent) setSelectedProject(project);
-                          else rotateTo(idx);
-                        }
-                      }}
-                    >
-                      <div
-                        className={`w-full relative overflow-hidden flex-shrink-0 ${
-                          isCurrent ? 'h-[48%]' : 'h-[58%]'
-                        }`}
+                <div className="flex-1 p-6 flex flex-col">
+                  <h3 className="text-xl font-bold text-gray-900 leading-snug">{project.title}</h3>
+                  <p className="text-[13px] font-mono text-blue-600 mt-1 mb-3">{project.role}</p>
+                  <p className="text-gray-700 text-[17px] sm:text-[15px] leading-relaxed mb-4">{project.summary}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-5">
+                    {project.metrics?.slice(0, 2).map((m) => (
+                      <span
+                        key={m}
+                        className="text-[12px] font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80"
                       >
-                        {typeof project.mockup === 'function' ? project.mockup(isCurrent) : project.mockup}
-                      </div>
-
-                      <div className="flex-1 px-6 sm:px-7 pt-4 sm:pt-5 pb-5 sm:pb-6 flex flex-col bg-white justify-between">
-                        <div>
-                          <div className="flex items-start justify-between gap-2 mb-2">
-                            <div>
-                              <h3 className="text-lg sm:text-xl font-bold text-gray-900 leading-snug">
-                                {project.title}
-                              </h3>
-                            </div>
-                            {isCurrent && (
-                              <span className="min-w-0 max-w-[55%] text-right leading-snug text-[11px] font-mono font-medium bg-blue-50 text-blue-600 border border-blue-200 px-2.5 py-0.5 rounded-xl">
-                                {project.role}
-                              </span>
-                            )}
-                          </div>
-
-                          {isCurrent ? (
-                            <>
-                              <p className="text-gray-600 text-xs sm:text-[13px] leading-relaxed mb-3.5 line-clamp-2">
-                                {project.summary}
-                              </p>
-                              <div className="flex flex-wrap gap-1.5 mb-2.5">
-                                {project.metrics?.slice(0, 2).map((m) => (
-                                  <span
-                                    key={m}
-                                    className="text-[10px] sm:text-[11px] font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80"
-                                  >
-                                    {m}
-                                  </span>
-                                ))}
-                              </div>
-                            </>
-                          ) : (
-                            <p className="text-gray-500 text-xs leading-relaxed line-clamp-2 mt-1">
-                              {project.summary}
-                            </p>
-                          )}
-                        </div>
-
-                        {isCurrent && (
-                          <div className="mt-auto flex gap-2.5 pt-2">
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                if (!isDragging) setSelectedProject(project);
-                              }}
-                              className="flex-1 h-10 rounded-full bg-gray-900 text-white text-xs sm:text-sm font-semibold hover:bg-gray-800 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
-                            >
-                              {workContent.btnReadStory} <ArrowRight className="h-4 w-4" />
-                            </button>
-                            <a
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                if (isDragging) e.preventDefault();
-                              }}
-                              className="h-10 px-5 rounded-full border border-gray-200 text-gray-700 text-xs sm:text-sm font-semibold hover:border-gray-400 hover:text-gray-900 transition-all duration-200 flex items-center justify-center bg-white"
-                            >
-                              {workContent.btnTryLive}
-                            </a>
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                        {m}
+                      </span>
+                    ))}
                   </div>
-                );
-              })}
-            </div>
-          </div>
+                  <div className="mt-auto flex gap-2.5">
+                    <button
+                      type="button"
+                      onClick={() => openStory(project)}
+                      className="flex-1 h-12 rounded-full bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800 transition-all duration-200 flex items-center justify-center gap-2 shadow-sm"
+                    >
+                      {workContent.btnReadStory} <ArrowRight className="h-4 w-4" />
+                    </button>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => track('demo_open', { project: project.id, location: 'card' })}
+                      className="h-12 px-5 rounded-full border border-gray-200 text-gray-800 text-sm font-semibold hover:border-gray-400 hover:text-gray-900 transition-all duration-200 flex items-center justify-center bg-white"
+                    >
+                      {workContent.btnTryLive}
+                    </a>
+                  </div>
+                </div>
+              </article>
+            ))}
 
-          {/* Navigation controls */}
-          <div className="flex items-center justify-center gap-4 mt-10">
-            <button
-              onClick={prev}
-              disabled={activeIndex === 0}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/80 backdrop-blur hover:bg-white hover:scale-105 transition-all text-gray-600 shadow-sm disabled:opacity-25 disabled:cursor-not-allowed"
-              aria-label={locale === 'en' ? 'Previous project' : 'Proyek sebelumnya'}
+            {limitOnMobile && (
+              <button
+                type="button"
+                onClick={() => setShowAllMobile(true)}
+                className="sm:hidden h-12 rounded-full border border-gray-300 bg-white text-gray-900 text-[16px] font-semibold"
+              >
+                {workContent.showAll.replace('{n}', String(visibleProjects.length))}
+              </button>
+            )}
+
+            <div
+              className={`${smSpan} ${lgSpan} rounded-[1.5rem] p-7 sm:p-8 flex flex-col justify-center gap-3 border border-blue-200 bg-gradient-to-br from-blue-50 to-white`}
             >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <span className="text-[11px] text-gray-400 font-mono tracking-wider select-none hidden sm:block">
-              {String(activeIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-            </span>
-            <button
-              onClick={next}
-              disabled={activeIndex === total - 1}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center bg-white/80 backdrop-blur hover:bg-white hover:scale-105 transition-all text-gray-600 shadow-sm disabled:opacity-25 disabled:cursor-not-allowed"
-              aria-label={locale === 'en' ? 'Next project' : 'Proyek selanjutnya'}
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">{workContent.ctaCard.title}</h3>
+              <p className="text-gray-700 text-[17px] sm:text-[15px] leading-relaxed max-w-md">{workContent.ctaCard.desc}</p>
+              <a
+                href={buildWaUrl(locale, segment)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('wa_click', { location: 'work_cta', segment: segment ?? 'none' })}
+                className="btn btn-primary self-start mt-2"
+              >
+                {workContent.ctaCard.button}
+              </a>
+            </div>
           </div>
         </div>
       </section>

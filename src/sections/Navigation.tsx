@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import LanguageToggle from '../components/LanguageToggle';
 import { useLocale } from '../context/LocaleContext';
 import { content } from '../locales/content';
+import { track } from '../lib/analytics';
 
 const Navigation = forwardRef<HTMLElement>((_, ref) => {
   const { locale } = useLocale();
@@ -213,6 +214,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
             target="_blank"
             rel="noopener noreferrer"
             className="nav-cta magnetic"
+            onClick={() => track('wa_click', { location: 'nav' })}
           >
             {nav.cta}
           </a>

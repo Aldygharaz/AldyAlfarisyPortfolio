@@ -1,6 +1,9 @@
 import { useRef } from 'react';
 import { useLocale } from '../context/LocaleContext';
 import { content } from '../locales/content';
+import { useSegment } from '../context/SegmentContext';
+import { buildWaUrl } from '../lib/whatsapp';
+import { track } from '../lib/analytics';
 
 const SOCIALS = [
   {
@@ -44,6 +47,7 @@ export default function Contact() {
   const contactRef = useRef<HTMLElement>(null);
   const { locale } = useLocale();
   const contact = content[locale].contact;
+  const { segment } = useSegment();
 
   return (
     <section className="cta-section" id="contact" ref={contactRef}>
@@ -63,11 +67,12 @@ export default function Contact() {
 
       <div style={{ marginTop: '2.5rem' }}>
         <a
-          href={contact.waUrl}
+          href={segment ? buildWaUrl(locale, segment) : contact.waUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn-primary magnetic"
-          style={{ margin: '0 auto', minWidth: '280px', justifyContent: 'center' }}
+          style={{ margin: '0 auto', minWidth: 'min(280px, 100%)', justifyContent: 'center' }}
+          onClick={() => track('wa_click', { location: 'contact', segment: segment ?? 'none' })}
         >
           {contact.btnWa}
           <svg

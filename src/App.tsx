@@ -3,8 +3,9 @@ import { Suspense, lazy } from 'react';
 import './App.css';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
-import Marquee from './sections/Marquee';
-import Familiar from './sections/Familiar';
+import Segments from './sections/Segments';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
+import { SegmentProvider } from './context/SegmentContext';
 import SideNav from './components/SideNav';
 import { useMouseGlow } from './hooks/useMouseGlow';
 import { useLenisScroll } from './hooks/useLenisScroll';
@@ -15,11 +16,8 @@ import { useMagneticHover } from './hooks/useMagneticHover';
 // Lazy loaded components for below-the-fold content
 const Work = lazy(() => import('./sections/Work'));
 const Quadrant = lazy(() => import('./sections/Quadrant'));
-const Skills = lazy(() => import('./sections/Skills'));
 const Process = lazy(() => import('./sections/Process'));
-const Orbit = lazy(() => import('./sections/Orbit'));
 const About = lazy(() => import('./sections/About'));
-const Testimonials = lazy(() => import('./sections/Testimonials'));
 const FAQ = lazy(() => import('./sections/FAQ'));
 const Contact = lazy(() => import('./sections/Contact'));
 const Footer = lazy(() => import('./sections/Footer'));
@@ -48,6 +46,7 @@ function App() {
   };
 
   return (
+    <SegmentProvider>
     <div className="app-container">
       <div ref={glowRef} className="global-mouse-glow" aria-hidden="true" />
       <style>{`
@@ -67,21 +66,19 @@ function App() {
 
       <Navigation ref={navRef} />
       <IntroHero />
-      <Marquee />
-      <Familiar />
+      <Segments />
       <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>{locale === 'en' ? 'Loading next section...' : 'Memuat bagian selanjutnya...'}</div>}>
         <Work />
         <Quadrant />
-        <Skills />
         <Process />
-        <Orbit />
         <About />
-        <Testimonials />
         <FAQ />
         <Contact />
         <Footer />
       </Suspense>
+      <FloatingWhatsApp />
     </div>
+    </SegmentProvider>
   );
 }
 

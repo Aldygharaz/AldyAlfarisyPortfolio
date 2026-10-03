@@ -1,6 +1,8 @@
 import { useRef } from 'react';
 import { useLocale } from '../context/LocaleContext';
 import { content } from '../locales/content';
+import { track } from '../lib/analytics';
+import { scrollToSection } from '../lib/whatsapp';
 
 export default function IntroHero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -99,6 +101,42 @@ export default function IntroHero() {
             white-space: nowrap;
           }
         }
+
+        .intro-trust {
+          list-style: none;
+          padding: 0;
+          margin: 28px 0 0;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 22px;
+        }
+
+        .intro-trust li {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 14px;
+          font-weight: 500;
+          color: var(--intro-muted, var(--text-muted));
+        }
+
+        .intro-trust-check {
+          width: 18px;
+          height: 18px;
+          border-radius: 50%;
+          display: grid;
+          place-items: center;
+          background: var(--accent-wash);
+          color: var(--accent-blue);
+          flex-shrink: 0;
+        }
+
+        @media (max-width: 767px) {
+          .intro-btn-styled { width: 100%; min-height: 52px; font-size: 16px; }
+          .intro-reassurance { font-size: 15px; }
+          .intro-trust { flex-direction: column; gap: 10px; }
+          .intro-trust li { font-size: 15px; }
+        }
       `}</style>
       <div className="intro-content intro-content-styled" ref={contentRef}>
         <span className="intro-eyebrow animate-fade-up intro-eyebrow-styled">
@@ -107,16 +145,15 @@ export default function IntroHero() {
         </span>
         <h1
           className="intro-name animate-fade-up delay-1 intro-name-styled"
-          style={{ fontSize: 'clamp(2.4rem, 5vw, 4rem)', lineHeight: 1.15 }}
+          style={{ fontSize: 'clamp(2.3rem, 3.9vw, 3.2rem)', lineHeight: 1.12 }}
         >
-          {hero.headline1}
-          <br />
-          {hero.headline2}
+          <span className="intro-line">{hero.headline1}</span>
+          <span className="intro-line">{hero.headline2}</span>
         </h1>
         <p
           className="animate-fade-up delay-2"
           style={{
-            fontSize: 'clamp(16px, 1.8vw, 19px)',
+            fontSize: 'clamp(17px, 1.8vw, 19px)',
             color: 'var(--text)',
             lineHeight: 1.6,
             maxWidth: '780px',
@@ -132,21 +169,17 @@ export default function IntroHero() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-primary magnetic intro-btn-styled"
+            onClick={() => track('wa_click', { location: 'hero' })}
           >
             {hero.ctaPrimary}
           </a>
           <a
-            href="#work"
+            href="#segments"
             className="btn btn-ghost magnetic intro-btn-styled"
             style={{ padding: '16px 24px' }}
             onClick={(e) => {
               e.preventDefault();
-              const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | HTMLElement, opts?: { duration?: number }) => void } }).lenis;
-              if (lenis) {
-                lenis.scrollTo('#work', { duration: 1.2 });
-              } else {
-                document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
-              }
+              scrollToSection('segments');
             }}
           >
             {hero.ctaSecondary}
@@ -182,6 +215,16 @@ export default function IntroHero() {
         <p className="animate-fade-up delay-3 intro-reassurance">
           {hero.reassurance}
         </p>
+        <ul className="animate-fade-up delay-3 intro-trust">
+          {hero.trust.map((item) => (
+            <li key={item}>
+              <span className="intro-trust-check" aria-hidden="true">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+              </span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
       <div className="intro-scroll" ref={scrollRef}>
         <span>Scroll</span>
