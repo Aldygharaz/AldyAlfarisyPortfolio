@@ -1,19 +1,11 @@
 import { useEffect, useState } from 'react';
-
-const sections = [
-  { id: 'introHero', label: 'INTRO' },
-  { id: 'work', label: 'KARYA' },
-  { id: 'quadrant', label: 'SOLUSI' },
-  { id: 'skills', label: 'SKILL' },
-  { id: 'process', label: 'PROSES' },
-  { id: 'orbit', label: 'EKOSISTEM' },
-  { id: 'testimonials', label: 'STUDI KASUS' },
-  { id: 'faq', label: 'FAQ' },
-  { id: 'contact', label: 'KONTAK' }
-];
+import { useLocale } from '../context/LocaleContext';
+import { content } from '../locales/content';
 
 export default function SideNav() {
   const [activeId, setActiveId] = useState('introHero');
+  const { locale } = useLocale();
+  const sections = content[locale].sidenav;
 
   useEffect(() => {
     // Determine which section is currently on screen
@@ -34,7 +26,7 @@ export default function SideNav() {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [sections]);
 
   const handleClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();

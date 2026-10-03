@@ -1,180 +1,155 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
+import { useLocale } from '../context/LocaleContext';
+import { content } from '../locales/content';
 import { Atom, FileCode2, MonitorSmartphone, CloudCog, Bot, Database } from 'lucide-react';
 
-const cards = [
-  {
-    pos: 'top',
-    icon: <Atom size={32} strokeWidth={1.5} />,
-    title: 'React & <em>Next.js</em>',
-    tagline: 'Antarmuka Cepat & Responsif',
-    popupLabel: 'Frontend',
-    popupText: 'Membangun antarmuka pengguna interaktif yang langsung merespons input tanpa jeda, memastikan kenyamanan operasional tingkat tinggi.',
-  },
-  {
-    pos: 'top-right',
-    icon: <FileCode2 size={32} strokeWidth={1.5} />,
-    title: '<em>TypeScript</em>',
-    tagline: 'Jaminan Kode Anti-Error',
-    popupLabel: 'Quality Assurance',
-    popupText: 'Menghindari bug tersembunyi dengan sistem penulisan kode terstruktur, menjamin stabilitas sistem bahkan saat bisnis melaju kencang.',
-  },
-  {
-    pos: 'bottom-right',
-    icon: <MonitorSmartphone size={32} strokeWidth={1.5} />,
-    title: '<em>Electron</em>',
-    tagline: 'Aplikasi Desktop Mandiri',
-    popupLabel: 'Desktop Apps',
-    popupText: 'Menghadirkan performa sekelas aplikasi native di Windows/Mac, memastikan software kasir/operasional jalan terus meski internet terputus.',
-  },
-  {
-    pos: 'bottom',
-    icon: <CloudCog size={32} strokeWidth={1.5} />,
-    title: 'Google <em>Apps Script</em>',
-    tagline: 'Infrastruktur Tanpa Server',
-    popupLabel: 'Serverless Backend',
-    popupText: 'Memangkas tagihan server bulanan menjadi Rp0 dengan memanfaatkan ekosistem Google Workspace yang tangguh dan aman.',
-  },
-  {
-    pos: 'bottom-left',
-    icon: <Bot size={32} strokeWidth={1.5} />,
-    title: '<em>AI Agent</em>',
-    tagline: 'Otomatisasi Proses Kerja',
-    popupLabel: 'AI Automation',
-    popupText: 'Mengorkestrasi sistem pintar yang mengambil alih tugas manual repetitif, membebaskan tim Anda untuk fokus pada pertumbuhan bisnis.',
-  },
-  {
-    pos: 'top-left',
-    icon: <Database size={32} strokeWidth={1.5} />,
-    title: 'Zustand & <em>IndexedDB</em>',
-    tagline: 'Sinkronisasi Data Offline',
-    popupLabel: 'State & Local DB',
-    popupText: 'Menyimpan setiap transaksi secara aman tanpa koneksi, lalu menyinkronkannya ke server pusat secara otomatis begitu sinyal kembali.',
-  },
+const ORBIT_BASE_CARDS = [
+  { pos: 'top', icon: <Atom size={32} strokeWidth={1.5} /> },
+  { pos: 'top-right', icon: <FileCode2 size={32} strokeWidth={1.5} /> },
+  { pos: 'bottom-right', icon: <MonitorSmartphone size={32} strokeWidth={1.5} /> },
+  { pos: 'bottom', icon: <CloudCog size={32} strokeWidth={1.5} /> },
+  { pos: 'bottom-left', icon: <Bot size={32} strokeWidth={1.5} /> },
+  { pos: 'top-left', icon: <Database size={32} strokeWidth={1.5} /> },
 ];
 
-const angleMap: Record<string, number> = {
-  'top': -90,
+const POS_MAP: Record<string, number> = {
+  top: -90,
   'top-right': -30,
   'bottom-right': 30,
-  'bottom': 90,
+  bottom: 90,
   'bottom-left': 150,
   'top-left': 210,
 };
 
 export default function Orbit() {
+  const { locale } = useLocale();
+  const orbit = content[locale].orbit;
   const stageRef = useRef<HTMLDivElement>(null);
-  const rotationRef = useRef(0);
-  const pausedRef = useRef(false);
+  const angleRef = useRef<number>(0);
+  const isPausedRef = useRef<boolean>(false);
   const lastTimeRef = useRef<number | null>(null);
-  const rafRef = useRef<number>(0);
+  const reqIdRef = useRef<number>(0);
+
+  const cards = useMemo(
+    () =>
+      ORBIT_BASE_CARDS.map((card, idx) => ({
+        ...card,
+        title: orbit.cards[idx].title,
+        tagline: orbit.cards[idx].tagline,
+        popupLabel: orbit.cards[idx].tagline,
+        popupText: orbit.cards[idx].desc,
+      })),
+    [orbit]
+  );
 
   useEffect(() => {
     const stage = stageRef.current;
     if (!stage) return;
 
-    const cardEls = Array.from(stage.querySelectorAll<HTMLElement>('.orbit-card'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cardEls = Array.from(stage.querySelectorAll<HTMLDivElement>('.orbit-card'));
+    isPausedRef.current = false;
+    let dims = { rx: 0, ry: 0, cx: 0, cy: 0 };
 
-    const DEGREES_PER_SECOND = 12; // Increased from 8 for better UX
-    pausedRef.current = reduceMotion;
-
-    let dims = { w: 0, h: 0, rx: 0, ry: 0, cx: 0, cy: 0 };
-
-    const measure = () => {
+    const compute = () => {
       const w = stage.clientWidth;
       const h = stage.clientHeight;
-      dims = { w, h, rx: w * 0.40, ry: h * 0.40, cx: w / 2, cy: h / 2 };
+      dims = { rx: 0.4 * w, ry: 0.4 * h, cx: w / 2, cy: h / 2 };
     };
 
-    const position = () => {
+    const update = () => {
       cardEls.forEach((card) => {
-        const pos = card.dataset.pos || 'top';
-        const angleDeg = angleMap[pos] + rotationRef.current;
-        const rad = (angleDeg * Math.PI) / 180;
+        const p = card.dataset.pos || 'top';
+        const rad = ((POS_MAP[p] + angleRef.current) * Math.PI) / 180;
         const x = dims.cx + dims.rx * Math.cos(rad);
         const y = dims.cy + dims.ry * Math.sin(rad);
-        card.style.left = '0px';
-        card.style.top = '0px';
-        card.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+        card.style.transform = 'translate(-50%, -50%)';
         card.classList.toggle('flip', x > dims.cx);
       });
     };
 
-    const frame = (t: number) => {
-      if (lastTimeRef.current === null) lastTimeRef.current = t;
-      const dt = t - lastTimeRef.current;
-      lastTimeRef.current = t;
-      if (!pausedRef.current) {
-        rotationRef.current = (rotationRef.current + (DEGREES_PER_SECOND * dt) / 1000) % 360;
-        position();
+    const tick = (time: number) => {
+      if (lastTimeRef.current === null) lastTimeRef.current = time;
+      const delta = time - lastTimeRef.current;
+      lastTimeRef.current = time;
+      if (!isPausedRef.current) {
+        angleRef.current = (angleRef.current + (12 * delta) / 1000) % 360;
+        update();
       }
-      rafRef.current = requestAnimationFrame(frame);
+      reqIdRef.current = requestAnimationFrame(tick);
     };
 
-    measure();
-    position();
-    
-    const handleResize = () => { measure(); position(); };
-    window.addEventListener('resize', handleResize);
+    compute();
+    update();
 
-    let observer: IntersectionObserver | null = null;
-    const handleMouseEnter = () => { pausedRef.current = true; };
-    const handleMouseLeave = () => { pausedRef.current = false; lastTimeRef.current = null; };
-    
-    if (!reduceMotion) {
-      stage.addEventListener('mouseenter', handleMouseEnter);
-      stage.addEventListener('mouseleave', handleMouseLeave);
-      
-      observer = new IntersectionObserver(([entry]) => {
+    const onResize = () => {
+      compute();
+      update();
+    };
+    window.addEventListener('resize', onResize);
+
+    const onEnter = () => {
+      isPausedRef.current = true;
+    };
+    const onLeave = () => {
+      isPausedRef.current = false;
+      lastTimeRef.current = null;
+    };
+    stage.addEventListener('mouseenter', onEnter);
+    stage.addEventListener('mouseleave', onLeave);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
         if (entry.isIntersecting) {
-          if (!rafRef.current) {
+          if (!reqIdRef.current) {
             lastTimeRef.current = null;
-            rafRef.current = requestAnimationFrame(frame);
+            reqIdRef.current = requestAnimationFrame(tick);
           }
-        } else {
-          if (rafRef.current) {
-            cancelAnimationFrame(rafRef.current);
-            rafRef.current = 0;
-          }
+        } else if (reqIdRef.current) {
+          cancelAnimationFrame(reqIdRef.current);
+          reqIdRef.current = 0;
         }
-      }, { threshold: 0 });
-      
-      observer.observe(stage);
-    }
+      },
+      { threshold: 0 }
+    );
+    io.observe(stage);
 
-    // Tap-to-toggle for touch
-    const cardHandlers: { el: HTMLElement; fn: (e: MouseEvent) => void }[] = [];
+    const cleanupFns: Array<{ el: HTMLElement; fn: (e: Event) => void }> = [];
     cardEls.forEach((card) => {
-      const clickHandler = (e: MouseEvent) => {
+      const clickHandler = (e: Event) => {
         if (window.matchMedia('(hover: hover)').matches) return;
         e.stopPropagation();
-        const wasOpen = card.classList.contains('popup-open');
+        const isOpen = card.classList.contains('popup-open');
         cardEls.forEach((c) => c.classList.remove('popup-open'));
-        if (!wasOpen) card.classList.add('popup-open');
+        if (!isOpen) card.classList.add('popup-open');
       };
       card.addEventListener('click', clickHandler);
-      cardHandlers.push({ el: card, fn: clickHandler });
+      cleanupFns.push({ el: card, fn: clickHandler });
     });
 
-    const docClick = () => { cardEls.forEach((c) => c.classList.remove('popup-open')); };
+    const docClick = () => {
+      cardEls.forEach((c) => c.classList.remove('popup-open'));
+    };
     document.addEventListener('click', docClick);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
-      stage.removeEventListener('mouseenter', handleMouseEnter);
-      stage.removeEventListener('mouseleave', handleMouseLeave);
-      cardHandlers.forEach(({ el, fn }) => el.removeEventListener('click', fn));
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      if (observer) observer.disconnect();
+      window.removeEventListener('resize', onResize);
+      stage.removeEventListener('mouseenter', onEnter);
+      stage.removeEventListener('mouseleave', onLeave);
+      cleanupFns.forEach(({ el, fn }) => el.removeEventListener('click', fn));
+      if (reqIdRef.current) cancelAnimationFrame(reqIdRef.current);
+      io.disconnect();
       document.removeEventListener('click', docClick);
     };
-  }, []);
+  }, [cards]);
 
   return (
     <section className="section" id="orbit" style={{ paddingBottom: '160px' }}>
       <div className="section-head center reveal">
-        <span className="eyebrow">Teknologi Teruji</span>
-        <h2>Tools Battle-Tested di Produksi Nyata</h2>
+        <span className="eyebrow">{orbit.eyebrow}</span>
+        <h2>{orbit.title}</h2>
+        <p className="section-sub">{orbit.subtitle}</p>
       </div>
 
       <div className="orbit-stage reveal" ref={stageRef} id="orbitStage">
@@ -183,8 +158,8 @@ export default function Orbit() {
           <div className="orbit-center-dot" />
         </div>
 
-        {cards.map((card, i) => (
-          <div className="orbit-card" data-pos={card.pos} key={i} tabIndex={0}>
+        {cards.map((card, idx) => (
+          <div key={idx} className="orbit-card" data-pos={card.pos} tabIndex={0}>
             <div className="orbit-icon">{card.icon}</div>
             <h4 dangerouslySetInnerHTML={{ __html: card.title }} />
             <p className="orbit-tagline">{card.tagline}</p>
@@ -197,12 +172,14 @@ export default function Orbit() {
       </div>
 
       <div className="orbit-fallback">
-        {cards.map((card, i) => (
-          <div className="orbit-card reveal" key={i} style={{ transitionDelay: `${i * 0.08}s` }}>
+        {cards.map((card, idx) => (
+          <div key={idx} className="orbit-card reveal" style={{ transitionDelay: `${0.08 * idx}s` }}>
             <div className="orbit-icon">{card.icon}</div>
             <h4 dangerouslySetInnerHTML={{ __html: card.title }} />
             <p className="orbit-tagline">{card.tagline}</p>
-            <div className="orbit-popup"><p>{card.popupText}</p></div>
+            <div className="orbit-popup">
+              <p>{card.popupText}</p>
+            </div>
           </div>
         ))}
       </div>

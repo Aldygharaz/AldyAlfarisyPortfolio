@@ -4,6 +4,7 @@ import './App.css';
 import Navigation from './sections/Navigation';
 import IntroHero from './sections/IntroHero';
 import Marquee from './sections/Marquee';
+import Familiar from './sections/Familiar';
 import SideNav from './components/SideNav';
 import { useMouseGlow } from './hooks/useMouseGlow';
 import { useLenisScroll } from './hooks/useLenisScroll';
@@ -23,11 +24,14 @@ const FAQ = lazy(() => import('./sections/FAQ'));
 const Contact = lazy(() => import('./sections/Contact'));
 const Footer = lazy(() => import('./sections/Footer'));
 
+import { useLocale } from './context/LocaleContext';
+
 function App() {
   const scrollProgressRef = useRef<HTMLDivElement>(null);
   const backToTopRef = useRef<HTMLButtonElement>(null);
   const navRef = useRef<HTMLElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const { locale } = useLocale();
 
   useMouseGlow(glowRef);
   const lenisRef = useLenisScroll();
@@ -50,7 +54,12 @@ function App() {
         html.lenis { height: auto; }
       `}</style>
       <div ref={scrollProgressRef} className="scroll-progress" />
-      <button ref={backToTopRef} className="back-to-top" onClick={scrollToTop} aria-label="Kembali ke atas">
+      <button
+        ref={backToTopRef}
+        className="back-to-top"
+        onClick={scrollToTop}
+        aria-label={locale === 'en' ? 'Back to top' : 'Kembali ke atas'}
+      >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
       </button>
 
@@ -59,7 +68,8 @@ function App() {
       <Navigation ref={navRef} />
       <IntroHero />
       <Marquee />
-      <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>Memuat bagian selanjutnya...</div>}>
+      <Familiar />
+      <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>{locale === 'en' ? 'Loading next section...' : 'Memuat bagian selanjutnya...'}</div>}>
         <Work />
         <Quadrant />
         <Skills />

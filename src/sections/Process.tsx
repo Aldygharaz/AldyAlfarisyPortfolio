@@ -1,13 +1,11 @@
 import { useEffect, useRef } from 'react';
-
-const steps = [
-  { num: '01', title: 'Discovery & Architecture', desc: 'Membedah akar permasalahan bisnis Anda dan merancang arsitektur solusi teknis yang tepat sasaran, dari fase desain sampai produk siap dipakai.' },
-  { num: '02', title: 'UX & System Design', desc: 'Membuat prototipe antarmuka interaktif dan mendesain struktur basis data secara presisi untuk meminimalisir hambatan struktural saat produksi.' },
-  { num: '03', title: 'AI-Assisted Engineering', desc: 'Eksekusi pengembangan kode tingkat enterprise dengan memanfaatkan kapabilitas AI untuk mempercepat siklus rilis tanpa mengorbankan keamanan sistem.' },
-  { num: '04', title: 'Deployment & Handover', desc: 'Rilis produk ke production environment, penyiapan dokumentasi teknis komprehensif, serta dukungan pasca-rilis untuk menjamin stabilitas.' },
-];
+import { useLocale } from '../context/LocaleContext';
+import { content } from '../locales/content';
 
 export default function Process() {
+  const { locale } = useLocale();
+  const t = content[locale].process;
+
   const wrapRef = useRef<HTMLDivElement>(null);
   const svgRef = useRef<SVGSVGElement>(null);
   const pathBaseRef = useRef<SVGPathElement>(null);
@@ -15,12 +13,6 @@ export default function Process() {
   const pathLengthRef = useRef(0);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      document.querySelectorAll('.process-step').forEach((s) => s.classList.add('lit'));
-      return;
-    }
-
     const processWrap = wrapRef.current;
     const svg = svgRef.current;
     const pathBase = pathBaseRef.current;
@@ -82,20 +74,32 @@ export default function Process() {
     };
 
     buildPath();
+
+    let rafScroll: number | null = null;
+    const onScroll = () => {
+      if (rafScroll) return;
+      rafScroll = requestAnimationFrame(() => {
+        updateGlowProgress();
+        rafScroll = null;
+      });
+    };
+
     window.addEventListener('resize', buildPath);
-    window.addEventListener('scroll', updateGlowProgress, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       window.removeEventListener('resize', buildPath);
-      window.removeEventListener('scroll', updateGlowProgress);
+      window.removeEventListener('scroll', onScroll);
+      if (rafScroll) cancelAnimationFrame(rafScroll);
     };
   }, []);
 
   return (
     <section className="section" id="process">
       <div className="section-head reveal">
-        <span className="eyebrow">Workflow Eksekusi</span>
-        <h2>Pendekatan Sistematis</h2>
+        <span className="eyebrow">{t.eyebrow}</span>
+        <h2>{t.title}</h2>
+        <p className="section-sub">{t.subtitle}</p>
       </div>
       <div className="process-wrap" ref={wrapRef} id="processWrap">
         <svg className="process-line-svg" ref={svgRef} preserveAspectRatio="none">
@@ -103,7 +107,7 @@ export default function Process() {
           <path className="process-line-glow" ref={pathGlowRef} d="" />
         </svg>
         <div className="process-line" id="processLine">
-          {steps.map((step, i) => (
+          {t.steps.map((step, i) => (
             <div className="process-step" data-step={i} key={i}>
               <span className="step-dot" />
               <span className="step-num">{step.num}</span>

@@ -1,4 +1,10 @@
+import { useLocale } from '../context/LocaleContext';
+import { content } from '../locales/content';
+
 export default function Footer() {
+  const { locale } = useLocale();
+  const footer = content[locale].footer;
+
   return (
     <footer>
       <style>{`
@@ -8,23 +14,7 @@ export default function Footer() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 20px;
-        }
-        .footer-socials {
-          display: flex;
-          gap: 20px;
-          align-items: center;
-        }
-        .footer-socials a {
-          color: var(--text-muted);
-          transition: color 0.2s ease, transform 0.2s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        .footer-socials a:hover {
-          color: var(--accent-blue);
-          transform: translateY(-2px);
+          gap: 16px;
         }
         .footer-links {
           display: flex;
@@ -42,16 +32,37 @@ export default function Footer() {
         .footer-links a:hover {
           color: var(--accent-blue);
         }
+        .footer-identity {
+          font-size: 13px;
+          color: var(--text-muted);
+          text-align: center;
+          margin: 0;
+        }
+        .footer-copy {
+          font-size: 12px;
+          color: var(--text-muted);
+          opacity: 0.8;
+          text-align: center;
+          margin: 0;
+        }
       `}</style>
       <div className="footer-inner">
         <div className="footer-links">
-          <a href="#work" onClick={(e) => { e.preventDefault(); document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' }); }}>Karya</a>
-          <a href="#skills" onClick={(e) => { e.preventDefault(); document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }); }}>Skill</a>
-          <a href="#process" onClick={(e) => { e.preventDefault(); document.getElementById('process')?.scrollIntoView({ behavior: 'smooth' }); }}>Proses</a>
-          <a href="#faq" onClick={(e) => { e.preventDefault(); document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }); }}>FAQ</a>
+          {footer.links.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
         </div>
-
-        <p>&copy; 2026 Aldy Alfarisy. Sokara | Digital Solutions Builder.</p>
+        <p className="footer-identity">{footer.identity}</p>
+        <p className="footer-copy">{footer.copyright}</p>
       </div>
     </footer>
   );

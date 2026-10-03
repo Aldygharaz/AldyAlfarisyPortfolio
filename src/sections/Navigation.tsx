@@ -1,16 +1,12 @@
-import { forwardRef } from 'react';
-import ThemeToggle from '../components/ThemeToggle';
-
-const NAV_LINKS = [
-  { id: 'work', label: 'Karya' },
-  { id: 'quadrant', label: 'Solusi' },
-  { id: 'skills', label: 'Skill' },
-  { id: 'process', label: 'Proses' },
-  { id: 'testimonials', label: 'Studi Kasus' },
-  { id: 'faq', label: 'FAQ' },
-];
+import React, { forwardRef } from 'react';
+import LanguageToggle from '../components/LanguageToggle';
+import { useLocale } from '../context/LocaleContext';
+import { content } from '../locales/content';
 
 const Navigation = forwardRef<HTMLElement>((_, ref) => {
+  const { locale } = useLocale();
+  const nav = content[locale].nav;
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const el = document.getElementById(targetId);
@@ -104,7 +100,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           display: flex;
           justify-content: flex-end;
           align-items: center;
-          gap: 20px;
+          gap: 16px;
         }
 
         .nav-login {
@@ -123,9 +119,10 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           color: var(--bg) !important;
           font-size: 13px;
           font-weight: 500;
-          padding: 10px 24px;
+          padding: 10px 20px;
           border-radius: 100px;
           text-decoration: none;
+          white-space: nowrap;
           transition: transform 0.2s, background 0.2s;
         }
 
@@ -153,27 +150,32 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
             display: none;
           }
           .nav-right {
-            gap: 10px;
+            gap: 8px;
           }
           .nav-cta {
-            padding: 8px 16px;
+            padding: 8px 14px;
             font-size: 12px;
           }
         }
       `}</style>
-      
+
       <div className="nav-pill">
-        {/* Left: Logo */}
         <div className="nav-left">
-          <a href="#" className="logo" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
+          <a
+            href="#"
+            className="logo"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src="/sokara-horizontal-light-bg.svg" alt="Sokara" className="logo-light" />
             <img src="/sokara-horizontal-dark-bg.svg" alt="Sokara" className="logo-dark" />
           </a>
         </div>
 
-        {/* Center: Links mapped from array (Kaizen: Standardized & DRY) */}
         <nav className="nav-center">
-          {NAV_LINKS.map(({ id, label }) => (
+          {nav.links.map(({ id, label }) => (
             <a
               key={id}
               href={`#${id}`}
@@ -185,17 +187,24 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           ))}
         </nav>
 
-        {/* Right: Actions & Theme */}
         <div className="nav-right">
-          <ThemeToggle />
-          <a href="#contact" className="nav-login" onClick={(e) => handleNavClick(e, 'contact')}>Kontak</a>
+          <div style={{ margin: '0 4px' }}>
+            <LanguageToggle />
+          </div>
           <a
-            href="https://api.whatsapp.com/send?phone=6281410538887&text=Halo%20Aldy,%20saya%20tertarik%20untuk%20memulai%20proyek%20digital."
+            href="#contact"
+            className="nav-login"
+            onClick={(e) => handleNavClick(e, 'contact')}
+          >
+            {nav.contact}
+          </a>
+          <a
+            href={nav.waUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="nav-cta magnetic"
           >
-            Mulai Proyek
+            {nav.cta}
           </a>
         </div>
       </div>
@@ -203,5 +212,4 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
   );
 });
 
-Navigation.displayName = 'Navigation';
 export default Navigation;
