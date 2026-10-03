@@ -7,13 +7,18 @@ export const useLenisScroll = () => {
   useEffect(() => {
     let rafId: number;
 
-      lenisRef.current = new Lenis({
+      const lenisInstance = new Lenis({
         duration: 1.1,
         easing: (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
         smoothWheel: true,
         wheelMultiplier: 1,
         touchMultiplier: 1.2,
       });
+
+      lenisRef.current = lenisInstance;
+      if (typeof window !== 'undefined') {
+        (window as unknown as { lenis?: Lenis }).lenis = lenisInstance;
+      }
 
       function raf(time: number) {
         lenisRef.current?.raf(time);
@@ -23,6 +28,9 @@ export const useLenisScroll = () => {
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
+      if (typeof window !== 'undefined') {
+        delete (window as unknown as { lenis?: Lenis }).lenis;
+      }
       if (lenisRef.current) {
         lenisRef.current.destroy();
       }

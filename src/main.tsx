@@ -1,6 +1,6 @@
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from './context/ThemeContext'
 import './index.css'
 import App from './App.tsx'
 import ErrorBoundary from './ErrorBoundary.tsx'

@@ -141,7 +141,12 @@ export default function IntroHero() {
             style={{ padding: '16px 24px' }}
             onClick={(e) => {
               e.preventDefault();
-              document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+              const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | HTMLElement, opts?: { duration?: number }) => void } }).lenis;
+              if (lenis) {
+                lenis.scrollTo('#work', { duration: 1.2 });
+              } else {
+                document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+              }
             }}
           >
             {hero.ctaSecondary}

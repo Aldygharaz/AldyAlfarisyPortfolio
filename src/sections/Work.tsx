@@ -27,6 +27,7 @@ const PosMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-pos-preview-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -64,13 +65,15 @@ const FashionMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-Kavana-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
         className="w-full h-full object-cover pointer-events-none"
       >
+        <source src="/videos/Sokara-Kavana.webm" type="video/webm" />
         <source src="/videos/Video-Kavana.webm" type="video/webm" />
-        <source src="/videos/Video Kavana.mp4" type="video/mp4" />
+        <source src="/videos/Sokara-Kavana.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-[#26201C]/80 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -102,6 +105,7 @@ const AccountingMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-Accounting-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -139,6 +143,7 @@ const HrmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-HRMS-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -176,6 +181,7 @@ const CrmMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-CRM-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -213,6 +219,7 @@ const SanctuaryMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-SPA-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -250,6 +257,7 @@ const LmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
         muted
         playsInline
         preload="none"
+        poster="/videos/Sokara-LMS-poster.webp"
         controlsList="nodownload nofullscreen noremoteplayback"
         disablePictureInPicture
         disableRemotePlayback
@@ -293,21 +301,26 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
   const modalContent = workContent.modal;
 
   useEffect(() => {
-    if (project) {
-      document.body.style.overflow = 'hidden';
-      const timer = setTimeout(() => setIsOpen(true), 10);
-      return () => clearTimeout(timer);
+    document.body.style.overflow = 'hidden';
+    if (typeof window !== 'undefined' && (window as unknown as { lenis?: { stop: () => void } }).lenis) {
+      (window as unknown as { lenis?: { stop: () => void } }).lenis?.stop();
     }
-    setIsOpen(false);
-  }, [project]);
+    const timer = setTimeout(() => setIsOpen(true), 10);
+    return () => {
+      clearTimeout(timer);
+      document.body.style.overflow = '';
+      if (typeof window !== 'undefined' && (window as unknown as { lenis?: { start: () => void } }).lenis) {
+        (window as unknown as { lenis?: { start: () => void } }).lenis?.start();
+      }
+    };
+  }, []);
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setIsOpen(false);
     setTimeout(() => {
-      document.body.style.overflow = '';
       onClose();
     }, 300);
-  };
+  }, [onClose]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -315,7 +328,7 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [handleClose]);
 
   if (!project) return null;
 
@@ -629,7 +642,7 @@ export default function Work() {
         stack: ['Next.js 16', 'TypeScript', 'Tailwind CSS', 'Prisma ORM', 'SQLite', 'Recharts'],
         metrics: t.kavana.metrics,
         link: 'https://kavana.aldyalfarisy.my.id/',
-        video: '/videos/Video-Kavana.webm',
+        video: '/videos/Sokara-Kavana.webm',
         mockup: (isFront?: boolean) => <FashionMockup isFront={isFront} />,
         situation: t.kavana.situation,
         made: t.kavana.made,

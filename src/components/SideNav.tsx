@@ -30,9 +30,14 @@ export default function SideNav() {
 
   const handleClick = (e: React.MouseEvent, id: string) => {
     e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | HTMLElement, opts?: { duration?: number }) => void } }).lenis;
+    if (lenis) {
+      lenis.scrollTo(`#${id}`, { duration: 1.2 });
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 

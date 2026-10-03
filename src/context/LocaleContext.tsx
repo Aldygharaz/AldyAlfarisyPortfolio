@@ -10,24 +10,22 @@ interface LocaleContextType {
 
 const LocaleContext = createContext<LocaleContextType | null>(null);
 
-export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('id');
-
-  useEffect(() => {
+const getInitialLocale = (): Locale => {
+  if (typeof window === 'undefined') return 'id';
+  try {
     const saved = localStorage.getItem('sokara_lang') as Locale | null;
-    if (saved !== 'id' && saved !== 'en') {
-      try {
-        const lang = (navigator.language || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
-        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-        const isIndo = lang.startsWith('id') || tz.includes('Jakarta') || tz.includes('Makassar') || tz.includes('Jayapura') || tz.includes('Pontianak');
-        setLocaleState(isIndo ? 'id' : 'en');
-      } catch {
-        setLocaleState('id');
-      }
-    } else {
-      setLocaleState(saved);
-    }
-  }, []);
+    if (saved === 'id' || saved === 'en') return saved;
+    const lang = (navigator.language || (navigator.languages && navigator.languages[0]) || '').toLowerCase();
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const isIndo = lang.startsWith('id') || tz.includes('Jakarta') || tz.includes('Makassar') || tz.includes('Jayapura') || tz.includes('Pontianak');
+    return isIndo ? 'id' : 'en';
+  } catch {
+    return 'id';
+  }
+};
+
+export function LocaleProvider({ children }: { children: React.ReactNode }) {
+  const [locale, setLocaleState] = useState<Locale>(getInitialLocale);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);

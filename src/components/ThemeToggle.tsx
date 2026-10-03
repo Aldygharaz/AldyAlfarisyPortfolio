@@ -1,14 +1,11 @@
-import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
+import { useSyncExternalStore } from 'react';
+
+const subscribe = () => () => {};
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const { setTheme, resolvedTheme } = useTheme();
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   if (!mounted) {
     return <div className="theme-toggle-placeholder" style={{ width: 40, height: 40 }} />;

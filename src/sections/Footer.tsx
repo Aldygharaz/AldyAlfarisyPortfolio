@@ -54,7 +54,12 @@ export default function Footer() {
               href={`#${link.id}`}
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | HTMLElement, opts?: { duration?: number }) => void } }).lenis;
+                if (lenis) {
+                  lenis.scrollTo(`#${link.id}`, { duration: 1.2 });
+                } else {
+                  document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
               {link.label}

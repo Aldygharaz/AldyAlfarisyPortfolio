@@ -9,9 +9,14 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
-    const el = document.getElementById(targetId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const lenis = (window as unknown as { lenis?: { scrollTo: (target: string | HTMLElement, opts?: { duration?: number }) => void } }).lenis;
+    if (lenis) {
+      lenis.scrollTo(`#${targetId}`, { duration: 1.2 });
+    } else {
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -166,7 +171,12 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
             className="logo"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              const lenis = (window as unknown as { lenis?: { scrollTo: (target: number, opts?: { duration?: number }) => void } }).lenis;
+              if (lenis) {
+                lenis.scrollTo(0, { duration: 1.2 });
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
           >
             <img src="/sokara-horizontal-light-bg.svg" alt="Sokara" className="logo-light" />
