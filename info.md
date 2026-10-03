@@ -4,6 +4,22 @@ Dokumen ini adalah Single Source of Truth (SSOT) dan System Knowledge Base kompr
 
 ---
 
+## Pembaruan Keputusan (4 Oktober 2026)
+
+Bagian ini menggantikan isi lama di dokumen ini yang bertentangan dengannya.
+
+- Positioning halaman utama: pembuat aplikasi dan website custom untuk pemilik bisnis. Label "AI Orchestration Specialist" dan "Product Operator" tidak dipakai di halaman utama.
+- Headline hero: "Usaha Anda punya cara sendiri. Aplikasinya yang ikut." Versi Inggris: "Your business has its own way. The app should follow it."
+- Harga: ditampilkan sebagai "mulai dari". Website usaha (profil usaha atau landing page satu halaman) mulai dari Rp 499.000. Paket aplikasi ditampilkan "Hubungi saya untuk harga". Ini mengganti keputusan lama "tanpa angka Rupiah"; konfirmasi Aldy masih ditunggu.
+- Cara bayar: DP dulu, setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dijelaskan lewat chat, tidak ditulis di website.
+- Arah visual: tetap seperti sekarang.
+- Struktur halaman Fase 1: Hero, Pilih jenis usaha, Contoh sistem (grid dengan saringan), Yang bisa saya bantu, Langkah kerja dengan tiga janji, Tentang saya, Pertanyaan umum, Kontak. Marquee, Kenal situasi ini, Cara kerja saya (heksagon), Alat di balik layar, dan Masalah yang sering muncul dikeluarkan dari halaman; file komponennya masih ada di src/sections.
+- Persuasi hanya dengan cara yang jujur. Dilarang hitung mundur palsu, slot karangan, testimoni karangan, dan harga coret palsu.
+- Klaim di website memakai bahasa awam tanpa angka atau klaim absolut. Angka "60%" pada LMS sudah dihapus dari semua dokumen.
+- Rencana lengkap: dokumen "Plan Improvement Portofolio Sokara untuk Pemilik Bisnis" (Claude Docs) dan app/ANTIGRAVITY_HANDOFF.md.
+
+---
+
 ## 1. Profil, Brand Identity, dan Filosofi Bisnis
 
 ### 1.1 Profil Personal dan Profesional
@@ -106,6 +122,8 @@ Dokumen ini adalah Single Source of Truth (SSOT) dan System Knowledge Base kompr
 
 ## 4. Struktur Halaman dan Urutan Section
 
+Catatan: tabel di bawah adalah struktur sebelum 4 Oktober 2026. Struktur terbaru ada di bagian Pembaruan Keputusan di awal dokumen.
+
 Halaman tunggal (single page) dengan urutan section berikut. Nomor mengikuti SideNav di sisi kiri layar.
 
 | No | Section | File | Isi Utama |
@@ -158,7 +176,7 @@ Data project berada di `src/sections/Work.tsx` (stack, link, video, mockup) dan 
 - **Kategori / Client:** Retail & F&B (toko, minimarket, kafe, warung makan)
 - **Role Arsitektur:** Local-First Enterprise PWA
 - **Tumpukan Teknologi:** `React 19`, `Zustand`, `IndexedDB`, `TailwindCSS`
-- **Metrik Utama:** `< 50ms Scan` | `100% Offline` | `Zero Downtime`
+- **Metrik Utama:** `Scan langsung tercatat` | `Jalan tanpa internet` | `Tanpa nunggu server`
 - **Tautan Live:** `https://pos.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Sokara-pos-preview.webm`
 - **Problem:** Aplikasi kasir tradisional lumpuh saat koneksi internet toko tidak stabil, menyebabkan antrean panjang dan kehilangan penjualan. Aplikasi kasir offline umumnya kaku, lambat, dan tidak sinkron dengan pelaporan pusat.
@@ -169,7 +187,7 @@ Data project berada di `src/sections/Work.tsx` (stack, link, video, mockup) dan 
 - **Kategori / Client:** Lifestyle E-Commerce (brand lokal, fashion, produk gaya hidup)
 - **Role Arsitektur:** Full-Stack Single-Vendor E-Commerce
 - **Tumpukan Teknologi:** `Next.js 16`, `TypeScript`, `Tailwind CSS`, `Prisma ORM`, `SQLite`, `Recharts`
-- **Metrik Utama:** `Checkout End-to-End` | `Voucher Engine Akurat` | `Rp 0 Server Bulanan`
+- **Metrik Utama:** `Dari daftar sampai kirim` | `Kode promo dihitung akurat` | `Tanpa biaya server bulanan`
 - **Tautan Live:** `https://kavana.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Video-Kavana.webm` (CATATAN 2026-10-03: file video ini hilang dan belum tersedia di `public/videos/`)
 - **Problem:** Banyak demo toko online berhenti di etalase. Produk bisa dipilih, tetapi alur pembayaran, konfirmasi, dan pengiriman tidak lengkap, sehingga calon klien sulit membayangkan toko online yang benar-benar berjalan.
@@ -180,18 +198,18 @@ Data project berada di `src/sections/Work.tsx` (stack, link, video, mockup) dan 
 - **Kategori / Client:** Retail & Distribution
 - **Role Arsitektur:** Pure Double-Entry Engine
 - **Tumpukan Teknologi:** `React 19`, `Zustand 5`, `Decimal.js`, `SHA-256`
-- **Metrik Utama:** `0 Selisih Debit` | `SHA-256 Anti-Tamper` | `60 FPS 1000+ Baris`
+- **Metrik Utama:** `Catatan tidak seimbang langsung ditolak` | `Catatan tidak bisa diubah diam-diam` | `Tetap lancar dengan ribuan baris`
 - **Tautan Live:** `https://sokaraaccountingdemo.netlify.app/`
 - **Aset Video:** `/videos/Sokara-Accounting.webm`
 - **Problem:** Pada bisnis retail dan distribusi, sistem kasir, gudang, dan pembukuan sering terpisah. Akuntan menghitung ulang HPP manual, memicu selisih persediaan, jurnal tidak seimbang, dan keterlambatan laporan laba rugi aktual.
-- **Approach:** Sistem akuntansi double-entry terintegrasi 100% di browser tanpa kalkulasi backend. Menggunakan `Decimal.js` untuk perhitungan standar PSAK anti-floating point bug. Reaktivitas dijaga via Deep Mutation Proxy & Zustand 5. Menerapkan struktur data berantai kriptografis SHA-256 untuk integritas buku besar anti-tamper.
-- **Result:** Strict Balance Validation menolak otomatis transaksi jika ada selisih debit/kredit. Intervensi kesalahan operasional melalui modal 1-klik auto-fix. DOM Virtualization menjaga rendering ribuan baris pembukuan tetap mulus 60FPS saat di-scroll cepat.
+- **Approach:** Sistem akuntansi double-entry yang berjalan penuh di browser tanpa kalkulasi backend. Menggunakan `Decimal.js` untuk perhitungan standar PSAK anti-floating point bug. Reaktivitas dijaga via Deep Mutation Proxy & Zustand 5. Menerapkan struktur data berantai kriptografis SHA-256 untuk integritas buku besar anti-tamper.
+- **Result:** Strict Balance Validation menolak otomatis transaksi jika ada selisih debit/kredit. Intervensi kesalahan operasional melalui modal 1-klik auto-fix. DOM Virtualization menjaga rendering ribuan baris pembukuan tetap mulus saat di-scroll cepat.
 
 ### 4. Sokara HRMS
 - **Kategori / Client:** Enterprise Operations
 - **Role Arsitektur:** State Management & Offline Roster
 - **Tumpukan Teknologi:** `React`, `TypeScript`, `TailwindCSS`, `Zustand`
-- **Metrik Utama:** `1-Klik Resolve` | `Anti-Fatigue Otomatis` | `Offline-First Roster`
+- **Metrik Utama:** `Beresin jadwal sekali klik` | `Ada peringatan sebelum karyawan kelelahan` | `Jadwal tidak hilang saat internet putus`
 - **Tautan Live:** `https://hrms.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Sokara-HRMS.webm`
 - **Problem:** Menyusun jadwal shift mingguan rawan kesalahan manusia. Karyawan kerap menerima shift malam berturut-turut hingga menembus batas kelelahan (*fatigue*). HRIS biasa tidak memiliki proteksi ini, dan data roster sering hilang jika koneksi putus saat penyusunan.
@@ -202,7 +220,7 @@ Data project berada di `src/sections/Work.tsx` (stack, link, video, mockup) dan 
 - **Kategori / Client:** Sales & Operations
 - **Role Arsitektur:** Pipeline Management & Deal Inspector
 - **Tumpukan Teknologi:** `Next.js`, `dnd-kit`, `framer-motion`, `SWR`
-- **Metrik Utama:** `0 Ketikan Manual` | `0 Loading Drag` | `3D Deal Inspector`
+- **Metrik Utama:** `Nominal terisi pakai tombol cepat` | `Geser kartu tanpa nunggu` | `Lihat riwayat tanpa pindah halaman`
 - **Tautan Live:** `https://crm.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Sokara-CRM.webm`
 - **Problem:** Sales rep enggan memperbarui status deal karena input form yang repetitif (mengetik manual nominal besar) dan sistem yang sekadar memblokir deal usang tanpa memberikan jalan keluar cepat.
@@ -213,23 +231,23 @@ Data project berada di `src/sections/Work.tsx` (stack, link, video, mockup) dan 
 - **Kategori / Client:** Luxury Wellness
 - **Role Arsitektur:** Multi-Constraint Booking Engine
 - **Tumpukan Teknologi:** `WebGL`, `Zustand`, `Framer Motion`
-- **Metrik Utama:** `3 Variabel Simultan` | `Auto Waitlist` | `Zero Konflik`
+- **Metrik Utama:** `Cek terapis, ruangan, antrean sekaligus` | `Daftar tunggu otomatis` | `Jadwal bentrok dicegah`
 - **Tautan Live:** `https://spa.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Sokara-SPA.webm`
 - **Problem:** Aplikasi booking standar gagal memenuhi estetika luxury spa. Secara operasional, sistem gagal mendeteksi bentrok sumber daya sekunder (misal: terapis tersedia, tetapi mesin terapi sedang digunakan oleh ruangan lain), memicu pembatalan manual.
 - **Approach:** Double-Sided State Engine: Antarmuka cinematic motion di sisi tamu dan constraint engine berlapis menggunakan Zustand di sisi backend klien untuk kehandalan offline-first.
-- **Result:** Multi-Layer Constraint Engine mengevaluasi 3 variabel simultan (Terapis, Ruangan/Mesin, dan Antrean). Pembatalan jadwal otomatis mempromosikan antrean waitlist terdekat secara reaktif tanpa konflik jadwal ganda.
+- **Result:** Multi-Layer Constraint Engine mengevaluasi 3 variabel simultan (Terapis, Ruangan/Mesin, dan Antrean). Pembatalan jadwal otomatis mempromosikan antrean waitlist terdekat secara reaktif sambil mencegah jadwal ganda.
 
 ### 7. Sokara LMS
 - **Kategori / Client:** School & Institution
 - **Role Arsitektur:** Type-Safe Full-Stack & PWA
 - **Tumpukan Teknologi:** `Hono`, `tRPC v11`, `React 19`, `Drizzle ORM`, `PWA`
-- **Metrik Utama:** `100% Type-Safe` | `SpeedGrader™ Engine` | `Offline-First PWA`
+- **Metrik Utama:** `Jawaban ujian tersimpan saat koneksi putus` | `Dirancang untuk mempercepat koreksi` | `Bisa dipakai tanpa internet`
 - **Tautan Live:** `https://lms.aldyalfarisy.my.id/`
 - **Aset Video:** `/videos/Sokara-LMS.webm`
 - **Problem:** LMS konvensional lambat, rentan kehilangan lembar jawaban siswa saat koneksi putus di tengah ujian CBT, dan menyulitkan guru dalam mengoreksi ratusan tugas secara berulang. Orang tua juga terisolasi dari transparansi nilai dan pembayaran SPP.
 - **Approach:** Arsitektur full-stack end-to-end type-safe (Hono + tRPC v11 + SQLite + Drizzle ORM) dengan 4 level otorisasi RBAC (Admin, Guru, Siswa, Orang Tua). Di sisi frontend, dibangun SpeedGrader™ split-view bertenaga keyboard shortcut (J/K/Ctrl+Enter), CBT Player anti-cheat, dan Workbox service worker precaching.
-- **Result:** Waktu koreksi tugas guru dipangkas hingga 60%. Ujian CBT kebal terhadap putusnya koneksi berkat local persistence dan deteksi blur window. Dashboard terpadu menyajikan rapor berkala dan administrasi SPP berformat IDR universal.
+- **Result:** Tampilan koreksi dirancang untuk mempercepat kerja guru. Ujian CBT tetap aman saat koneksi putus berkat local persistence dan deteksi blur window. Dashboard terpadu menyajikan rapor berkala dan administrasi SPP berformat IDR universal.
 
 ---
 
