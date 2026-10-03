@@ -920,7 +920,7 @@ export default function Work() {
                               </h3>
                             </div>
                             {isCurrent && (
-                              <span className="flex-shrink-0 text-[11px] font-mono font-medium bg-blue-50 text-blue-600 border border-blue-200 px-2.5 py-0.5 rounded-full">
+                              <span className="min-w-0 max-w-[55%] text-right leading-snug text-[11px] font-mono font-medium bg-blue-50 text-blue-600 border border-blue-200 px-2.5 py-0.5 rounded-xl">
                                 {project.role}
                               </span>
                             )}
