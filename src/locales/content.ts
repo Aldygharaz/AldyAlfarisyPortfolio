@@ -9,8 +9,8 @@ export const content = {
           "label": "Contoh Sistem"
         },
         {
-          "id": "process",
-          "label": "Langkah Kerja"
+          "id": "paket",
+          "label": "Harga"
         },
         {
           "id": "faq",
@@ -419,7 +419,11 @@ export const content = {
       "items": [
         {
           "q": "Berapa biayanya? Takut mahal.",
-          "a": "Mulai dari versi kecil yang bisa dicoba dulu, harganya menyesuaikan kebutuhan. Cerita dulu masalahnya, nanti saya kasih gambaran yang jelas. Nggak perlu langsung komit besar."
+          "a": "Website usaha mulai dari Rp 499.000. Untuk aplikasi, harganya tergantung kebutuhan, jadi saya kasih gambaran setelah dengar cerita Anda. Bisa mulai dari versi kecil dulu, nggak perlu langsung komit besar."
+        },
+        {
+          "q": "Bayarnya gimana? Harus lunas di depan?",
+          "a": "Nggak. Mulainya dengan DP, dan DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan jadwal pelunasan saya jelaskan di chat."
         },
         {
           "q": "Sudah pernah coba aplikasi, hasilnya bikin kecewa. Ini bakal beda?",
@@ -448,6 +452,14 @@ export const content = {
         {
           "q": "Kerja sendirian dan pakai AI, gimana caranya percaya hasilnya bisa diandalkan?",
           "a": "Saya pakai AI supaya nulis kodenya lebih cepat, jadi kerjanya lebih singkat dan lebih murah. Rancangan sistem, aturan bisnis, dan keputusan penting saya yang pegang. Contoh sistemnya juga bisa Anda coba dulu sebelum memutuskan apa pun."
+        },
+        {
+          "q": "Data usaha saya aman? Nanti punya siapa?",
+          "a": "Data usaha tetap milik Anda. Soal kode, akun hosting, dan domain, saya jelaskan di awal dan ditulis di kesepakatan sebelum mulai kerja."
+        },
+        {
+          "q": "Kalau nanti mau pindah ke vendor lain, bisa?",
+          "a": "Bisa dibicarakan dari awal. Sistemnya dibuat dengan dokumentasi, jadi orang lain bisa memahaminya."
         }
       ]
     },
@@ -462,16 +474,16 @@ export const content = {
     "footer": {
       "links": [
         {
-          "id": "segments",
-          "label": "Jenis Usaha"
-        },
-        {
           "id": "work",
           "label": "Contoh Sistem"
         },
         {
-          "id": "process",
-          "label": "Langkah Kerja"
+          "id": "paket",
+          "label": "Paket dan Harga"
+        },
+        {
+          "id": "pesan",
+          "label": "Pesan"
         },
         {
           "id": "faq",
@@ -495,12 +507,16 @@ export const content = {
         "label": "Contoh Sistem"
       },
       {
-        "id": "quadrant",
-        "label": "Yang Bisa Saya Bantu"
-      },
-      {
         "id": "process",
         "label": "Langkah Kerja"
+      },
+      {
+        "id": "paket",
+        "label": "Paket dan Harga"
+      },
+      {
+        "id": "pesan",
+        "label": "Pesan"
       },
       {
         "id": "about",
@@ -612,6 +628,149 @@ export const content = {
     },
     "floatingWa": {
       "label": "Chat di WhatsApp"
+    },
+    "packages": {
+      "eyebrow": "Paket dan Harga",
+      "title": "Mulai dari yang paling Anda butuhkan",
+      "subtitle": "Harga final selalu disepakati dulu di chat, setelah saya dengar cara kerja usaha Anda.",
+      "from": "Mulai dari",
+      "contactPrice": "Hubungi saya untuk harga",
+      "contactPriceShort": "harga dibahas di chat",
+      "choose": "Pilih paket ini",
+      "example": "Lihat contoh website",
+      "middleTag": "Cocok untuk kebanyakan usaha",
+      "payTitle": "Cara bayar",
+      "payText": "DP dulu. DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan pelunasannya saya jelaskan di chat.",
+      "items": [
+        {
+          "id": "website",
+          "name": "Website Usaha",
+          "price": "Rp 499.000",
+          "desc": "Profil usaha atau landing page satu halaman, supaya pembeli percaya dan gampang menghubungi Anda.",
+          "features": [
+            "Satu halaman profil usaha atau promosi",
+            "Rapi di layar HP",
+            "Tombol WhatsApp dan lokasi usaha",
+            "Bisa dikembangkan jadi toko online nanti"
+          ]
+        },
+        {
+          "id": "aplikasi",
+          "name": "Aplikasi Usaha",
+          "price": null,
+          "desc": "Satu sistem untuk operasional harian, misalnya kasir, pembukuan, booking, atau jadwal karyawan.",
+          "features": [
+            "Satu sistem inti sesuai cara kerja Anda",
+            "Lihat rancangannya dulu sebelum dibangun",
+            "Versi awal yang bisa dicoba biasanya 1 sampai 2 minggu",
+            "Tim Anda dilatih sampai bisa pakai"
+          ]
+        },
+        {
+          "id": "lengkap",
+          "name": "Sistem Lengkap",
+          "price": null,
+          "desc": "Beberapa sistem yang saling nyambung, untuk usaha dengan cabang atau tim yang lebih besar.",
+          "features": [
+            "Beberapa modul yang saling terhubung",
+            "Bisa untuk lebih dari satu cabang",
+            "Nyambung ke pembayaran dan aplikasi lain",
+            "Dikerjakan bertahap, hasilnya terlihat di tengah jalan"
+          ]
+        }
+      ]
+    },
+    "orderFlow": {
+      "eyebrow": "Pesan dalam 3 Langkah",
+      "title": "Ceritakan kebutuhan Anda, tanpa ribet",
+      "subtitle": "Pilih saja, nggak perlu ngetik panjang. Di akhir, ringkasannya langsung terkirim ke WhatsApp saya.",
+      "stepOf": "Langkah {n} dari 3",
+      "stepDone": "Langkah {n} dari 3 selesai",
+      "doneLabel": "Ringkasan siap",
+      "steps": [
+        "Jenis usaha",
+        "Kebutuhan",
+        "Paket"
+      ],
+      "q1": "Usaha Anda yang mana?",
+      "otherBusiness": "Usaha lain",
+      "q2": "Apa yang Anda butuhkan?",
+      "q2hint": "Boleh pilih lebih dari satu.",
+      "q3": "Paket mana yang paling dekat?",
+      "recommended": "Disarankan dari pilihan Anda",
+      "next": "Lanjut",
+      "back": "Kembali",
+      "change": "Ubah",
+      "summaryTitle": "Ringkasan untuk Aldy",
+      "summaryBusiness": "Jenis usaha",
+      "summaryNeeds": "Kebutuhan",
+      "summaryPackage": "Paket",
+      "problemLabel": "Masalah utama Anda (boleh dikosongkan)",
+      "problemPlaceholder": "Contoh: stok sering selisih dan kasir lambat pas ramai",
+      "send": "Kirim ringkasan ke WhatsApp",
+      "sendNote": "Belum ada biaya apa pun. Saya balas dengan beberapa pertanyaan dan gambaran awal solusinya.",
+      "restart": "Ulangi dari awal",
+      "needs": [
+        {
+          "id": "website",
+          "label": "Website profil usaha",
+          "kind": "web"
+        },
+        {
+          "id": "landing",
+          "label": "Landing page untuk promosi",
+          "kind": "web"
+        },
+        {
+          "id": "toko-online",
+          "label": "Toko online",
+          "kind": "app"
+        },
+        {
+          "id": "kasir",
+          "label": "Aplikasi kasir",
+          "kind": "app"
+        },
+        {
+          "id": "pembukuan",
+          "label": "Pembukuan dan stok",
+          "kind": "app"
+        },
+        {
+          "id": "booking",
+          "label": "Booking dan jadwal tamu",
+          "kind": "app"
+        },
+        {
+          "id": "karyawan",
+          "label": "Jadwal karyawan",
+          "kind": "app"
+        },
+        {
+          "id": "sekolah",
+          "label": "Sistem sekolah atau kursus",
+          "kind": "app"
+        },
+        {
+          "id": "pelanggan",
+          "label": "Data calon pelanggan",
+          "kind": "app"
+        },
+        {
+          "id": "konsultasi",
+          "label": "Belum tahu, mau konsultasi dulu",
+          "kind": "unknown"
+        }
+      ],
+      "wa": {
+        "greeting": "Halo Aldy, saya pemilik {usaha}.",
+        "greetingOther": "Halo Aldy, saya pemilik usaha.",
+        "needs": "Saya butuh: {needs}.",
+        "packagePrice": "Paket yang saya lihat: {paket}, mulai dari {harga}.",
+        "packageChat": "Paket yang saya lihat: {paket} (harga dibahas di chat).",
+        "problem": "Masalah utama saya: {masalah}",
+        "businessName": "usaha {usaha}"
+      }
     }
   },
   "en": {
@@ -622,8 +781,8 @@ export const content = {
           "label": "Sample Systems"
         },
         {
-          "id": "process",
-          "label": "The Process"
+          "id": "paket",
+          "label": "Pricing"
         },
         {
           "id": "faq",
@@ -1032,7 +1191,11 @@ export const content = {
       "items": [
         {
           "q": "How much does it cost? I'm afraid it's expensive.",
-          "a": "Systems start as a small version you can try first, and the price is set to fit your needs. Tell me your problem first, then I'll give you a clear picture. You don't have to commit to anything big at the start."
+          "a": "Business websites start from Rp 499.000. For apps, the price depends on what you need, so I'll give you a clear picture after hearing your story. You can start with a small version, no big commitment up front."
+        },
+        {
+          "q": "How do I pay? Do I pay everything up front?",
+          "a": "No. It starts with a deposit, and I only ask for it after the solution sketch, the scope, and the final price are agreed. I explain the deposit amount and the payment schedule in chat."
         },
         {
           "q": "I tried an app before and it was disappointing. Why would this be different?",
@@ -1061,6 +1224,14 @@ export const content = {
         {
           "q": "You work alone and use AI. How do I know the result is reliable?",
           "a": "A good question, and you have every right to ask it. I use AI to write code faster, which makes the work quicker and more affordable. The system design, business rules, and important decisions are mine. You can also try the sample systems that already exist before deciding anything."
+        },
+        {
+          "q": "Is my business data safe? Who owns it?",
+          "a": "Your business data stays yours. Code, hosting accounts, and domain are explained at the start and written into the agreement before any work begins."
+        },
+        {
+          "q": "Can I move to another vendor later?",
+          "a": "This can be discussed from the start. Each system comes with documentation, so someone else can understand it."
         }
       ]
     },
@@ -1075,16 +1246,16 @@ export const content = {
     "footer": {
       "links": [
         {
-          "id": "segments",
-          "label": "Your Business"
-        },
-        {
           "id": "work",
           "label": "Sample Systems"
         },
         {
-          "id": "process",
-          "label": "The Process"
+          "id": "paket",
+          "label": "Pricing"
+        },
+        {
+          "id": "pesan",
+          "label": "Order"
         },
         {
           "id": "faq",
@@ -1108,12 +1279,16 @@ export const content = {
         "label": "Sample Systems"
       },
       {
-        "id": "quadrant",
-        "label": "What I Can Help With"
-      },
-      {
         "id": "process",
         "label": "The Process"
+      },
+      {
+        "id": "paket",
+        "label": "Pricing"
+      },
+      {
+        "id": "pesan",
+        "label": "Order"
       },
       {
         "id": "about",
@@ -1225,6 +1400,149 @@ export const content = {
     },
     "floatingWa": {
       "label": "Chat on WhatsApp"
+    },
+    "packages": {
+      "eyebrow": "Packages and Pricing",
+      "title": "Start with what you need most",
+      "subtitle": "The final price is always agreed in chat first, after I've heard how your business runs.",
+      "from": "Starts from",
+      "contactPrice": "Contact me for pricing",
+      "contactPriceShort": "price discussed in chat",
+      "choose": "Choose this package",
+      "example": "See a sample website",
+      "middleTag": "Fits most businesses",
+      "payTitle": "How payment works",
+      "payText": "Deposit first. I only ask for the deposit after the solution sketch, the scope, and the final price are agreed. I'll explain the deposit amount and the remaining payment in chat.",
+      "items": [
+        {
+          "id": "website",
+          "name": "Business Website",
+          "price": "Rp 499.000",
+          "desc": "A one-page business profile or landing page, so buyers trust you and can reach you easily.",
+          "features": [
+            "One profile or promo page",
+            "Looks clean on phones",
+            "WhatsApp button and business location",
+            "Can grow into an online store later"
+          ]
+        },
+        {
+          "id": "aplikasi",
+          "name": "Business App",
+          "price": null,
+          "desc": "One system for daily operations, such as point of sale, bookkeeping, bookings, or staff schedules.",
+          "features": [
+            "One core system built around how you work",
+            "See the design before anything is built",
+            "A first version to try usually takes 1 to 2 weeks",
+            "Your team gets trained until they can use it"
+          ]
+        },
+        {
+          "id": "lengkap",
+          "name": "Complete System",
+          "price": null,
+          "desc": "Several connected systems, for businesses with branches or bigger teams.",
+          "features": [
+            "Several connected modules",
+            "Works across more than one branch",
+            "Connects to payments and other apps",
+            "Built in stages, with progress you can see along the way"
+          ]
+        }
+      ]
+    },
+    "orderFlow": {
+      "eyebrow": "Order in 3 Steps",
+      "title": "Tell me what you need, no hassle",
+      "subtitle": "Just tap, no long typing. At the end, the summary goes straight to my WhatsApp.",
+      "stepOf": "Step {n} of 3",
+      "stepDone": "Step {n} of 3 done",
+      "doneLabel": "Summary ready",
+      "steps": [
+        "Business",
+        "Needs",
+        "Package"
+      ],
+      "q1": "Which one is your business?",
+      "otherBusiness": "Other business",
+      "q2": "What do you need?",
+      "q2hint": "You can pick more than one.",
+      "q3": "Which package is closest?",
+      "recommended": "Suggested from your choices",
+      "next": "Next",
+      "back": "Back",
+      "change": "Change",
+      "summaryTitle": "Summary for Aldy",
+      "summaryBusiness": "Business",
+      "summaryNeeds": "Needs",
+      "summaryPackage": "Package",
+      "problemLabel": "Your main problem (optional)",
+      "problemPlaceholder": "Example: stock never matches and checkout is slow during rush hour",
+      "send": "Send the summary on WhatsApp",
+      "sendNote": "No cost yet. I'll reply with a few questions and an early sketch of the solution.",
+      "restart": "Start over",
+      "needs": [
+        {
+          "id": "website",
+          "label": "Business profile website",
+          "kind": "web"
+        },
+        {
+          "id": "landing",
+          "label": "Promo landing page",
+          "kind": "web"
+        },
+        {
+          "id": "toko-online",
+          "label": "Online store",
+          "kind": "app"
+        },
+        {
+          "id": "kasir",
+          "label": "Point of sale app",
+          "kind": "app"
+        },
+        {
+          "id": "pembukuan",
+          "label": "Bookkeeping and stock",
+          "kind": "app"
+        },
+        {
+          "id": "booking",
+          "label": "Bookings and guest schedule",
+          "kind": "app"
+        },
+        {
+          "id": "karyawan",
+          "label": "Staff schedules",
+          "kind": "app"
+        },
+        {
+          "id": "sekolah",
+          "label": "School or course system",
+          "kind": "app"
+        },
+        {
+          "id": "pelanggan",
+          "label": "Sales leads tracking",
+          "kind": "app"
+        },
+        {
+          "id": "konsultasi",
+          "label": "Not sure yet, want to talk first",
+          "kind": "unknown"
+        }
+      ],
+      "wa": {
+        "greeting": "Hi Aldy, I run a {usaha} business.",
+        "greetingOther": "Hi Aldy, I run a business.",
+        "needs": "I need: {needs}.",
+        "packagePrice": "The package I looked at: {paket}, starting from {harga}.",
+        "packageChat": "The package I looked at: {paket} (price to discuss in chat).",
+        "problem": "My main problem: {masalah}",
+        "businessName": "{usaha}"
+      }
     }
   }
 } as const;

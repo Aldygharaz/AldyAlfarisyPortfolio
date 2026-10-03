@@ -4,6 +4,7 @@ import { X, ArrowRight } from 'lucide-react'
 import { useLocale } from '../context/LocaleContext'
 import { content } from '../locales/content'
 import { useSegment, type SegmentId } from '../context/SegmentContext'
+import { useOrder } from '../context/OrderContext'
 import { track } from '../lib/analytics'
 import { buildWaUrl } from '../lib/whatsapp'
 
@@ -615,6 +616,7 @@ export default function Work() {
 
   const { locale } = useLocale();
   const { segment, setSegment } = useSegment();
+  const { onBusinessChosen } = useOrder();
   const workContent = content[locale].work;
   const segContent = content[locale].segments;
 
@@ -764,7 +766,10 @@ export default function Work() {
 
   const chooseFilter = (id: SegmentId | null) => {
     setSegment(id);
-    if (id) track('segment_select', { segment: id, location: 'work_filter' });
+    if (id) {
+      onBusinessChosen();
+      track('segment_select', { segment: id, location: 'work_filter' });
+    }
   };
 
   const chipClass = (active: boolean) =>

@@ -21,7 +21,10 @@ export type TrackEvent =
   | 'wa_click'
   | 'segment_select'
   | 'demo_open'
-  | 'story_open';
+  | 'story_open'
+  | 'package_select'
+  | 'order_step'
+  | 'order_submit';
 
 export function track(name: TrackEvent, props: EventProps = {}) {
   if (typeof window === 'undefined') return;

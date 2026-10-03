@@ -13,10 +13,13 @@ Bagian ini menggantikan isi lama di dokumen ini yang bertentangan dengannya.
 - Harga: ditampilkan sebagai "mulai dari". Website usaha (profil usaha atau landing page satu halaman) mulai dari Rp 499.000. Paket aplikasi ditampilkan "Hubungi saya untuk harga". Ini mengganti keputusan lama "tanpa angka Rupiah"; konfirmasi Aldy masih ditunggu.
 - Cara bayar: DP dulu, setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dijelaskan lewat chat, tidak ditulis di website.
 - Arah visual: tetap seperti sekarang.
-- Struktur halaman Fase 1: Hero, Pilih jenis usaha, Contoh sistem (grid dengan saringan), Yang bisa saya bantu, Langkah kerja dengan tiga janji, Tentang saya, Pertanyaan umum, Kontak. Marquee, Kenal situasi ini, Cara kerja saya (heksagon), Alat di balik layar, dan Masalah yang sering muncul dikeluarkan dari halaman; file komponennya masih ada di src/sections.
+- Struktur halaman setelah Fase 2: Hero, Pilih jenis usaha, Contoh sistem (grid dengan saringan), Langkah kerja dengan tiga janji, Paket dan harga, Pesan dalam 3 langkah (berakhir di WhatsApp), Tentang saya, Pertanyaan umum, Kontak. Marquee, Kenal situasi ini, Cara kerja saya (heksagon), Alat di balik layar, Masalah yang sering muncul, dan Yang bisa saya bantu dikeluarkan dari halaman; file komponennya masih ada di src/sections.
+- Navigasi atas: Contoh Sistem, Harga, Pertanyaan.
+- Paket: Website Usaha mulai dari Rp 499.000 (contoh: /contoh/kedai-kopi/, usaha fiktif); Aplikasi Usaha dan Sistem Lengkap tampil "Hubungi saya untuk harga". Paket tengah berlabel "Cocok untuk kebanyakan usaha".
+- Pesan WhatsApp dari alur pesan memakai penanda (web-<segmen>-<paket>) untuk pencatatan.
 - Persuasi hanya dengan cara yang jujur. Dilarang hitung mundur palsu, slot karangan, testimoni karangan, dan harga coret palsu.
 - Klaim di website memakai bahasa awam tanpa angka atau klaim absolut. Angka "60%" pada LMS sudah dihapus dari semua dokumen.
-- Rencana lengkap: dokumen "Plan Improvement Portofolio Sokara untuk Pemilik Bisnis" (Claude Docs) dan app/ANTIGRAVITY_HANDOFF.md.
+- Rencana lengkap: dokumen "Plan Improvement Portofolio Sokara untuk Pemilik Bisnis" (Claude Docs) dan app/ANTIGRAVITY_HANDOFF.md (termasuk template balasan otomatis WhatsApp Business).
 
 ---
 

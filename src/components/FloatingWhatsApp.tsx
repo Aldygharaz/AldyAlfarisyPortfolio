@@ -11,14 +11,50 @@ import { track } from '../lib/analytics';
 export default function FloatingWhatsApp() {
   const { locale } = useLocale();
   const { segment } = useSegment();
-  const [visible, setVisible] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
+  const [nearOwnCta, setNearOwnCta] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > window.innerHeight * 0.6);
+    const onScroll = () => setPastHero(window.scrollY > window.innerHeight * 0.6);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Sembunyikan saat section Pesan atau Kontak terlihat: keduanya sudah punya
+  // tombol WhatsApp sendiri, dan tombol melayang bisa menutupi pilihan di sana.
+  useEffect(() => {
+    const visibleIds = new Set<string>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleIds.add(entry.target.id);
+          else visibleIds.delete(entry.target.id);
+        });
+        setNearOwnCta(visibleIds.size > 0);
+      },
+      { threshold: 0.05 }
+    );
+    let attempts = 0;
+    let timer: number | undefined;
+    // Section di bawah lipatan dimuat lazy, jadi tunggu sampai elemennya ada.
+    const attach = () => {
+      const targets = ['pesan', 'contact'].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+      if (targets.length === 2 || attempts > 20) {
+        targets.forEach((t) => observer.observe(t));
+      } else {
+        attempts += 1;
+        timer = window.setTimeout(attach, 500);
+      }
+    };
+    attach();
+    return () => {
+      if (timer) window.clearTimeout(timer);
+      observer.disconnect();
+    };
+  }, []);
+
+  const visible = pastHero && !nearOwnCta;
 
   const label = content[locale].floatingWa.label;
 
@@ -28,6 +64,8 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       className={`floating-wa ${visible ? 'is-visible' : ''}`}
+      aria-hidden={!visible}
+      tabIndex={visible ? 0 : -1}
       aria-label={label}
       onClick={() => track('wa_click', { location: 'floating', segment: segment ?? 'none' })}
     >

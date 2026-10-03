@@ -2,6 +2,7 @@ import { Store, Coffee, Sparkles, Truck, GraduationCap, ShoppingBag, ArrowRight,
 import type { LucideIcon } from 'lucide-react';
 import { useLocale } from '../context/LocaleContext';
 import { useSegment, type SegmentId } from '../context/SegmentContext';
+import { useOrder } from '../context/OrderContext';
 import { content } from '../locales/content';
 import { buildWaUrl, scrollToSection } from '../lib/whatsapp';
 import { track } from '../lib/analytics';
@@ -29,12 +30,15 @@ const PROJECTS: Record<string, { title: string; key: 'pos' | 'kavana' | 'account
 export default function Segments() {
   const { locale } = useLocale();
   const { segment, setSegment } = useSegment();
+  const { onBusinessChosen, setOtherBusiness } = useOrder();
   const t = content[locale].segments;
   const projectTexts = content[locale].work.projects;
   const active = t.items.find((i) => i.id === segment) ?? null;
 
   const choose = (id: SegmentId) => {
     setSegment(id);
+    setOtherBusiness(false);
+    onBusinessChosen();
     track('segment_select', { segment: id });
   };
 

@@ -6,6 +6,7 @@ import IntroHero from './sections/IntroHero';
 import Segments from './sections/Segments';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import { SegmentProvider } from './context/SegmentContext';
+import { OrderProvider } from './context/OrderContext';
 import SideNav from './components/SideNav';
 import { useMouseGlow } from './hooks/useMouseGlow';
 import { useLenisScroll } from './hooks/useLenisScroll';
@@ -15,7 +16,8 @@ import { useMagneticHover } from './hooks/useMagneticHover';
 
 // Lazy loaded components for below-the-fold content
 const Work = lazy(() => import('./sections/Work'));
-const Quadrant = lazy(() => import('./sections/Quadrant'));
+const Packages = lazy(() => import('./sections/Packages'));
+const OrderFlow = lazy(() => import('./sections/OrderFlow'));
 const Process = lazy(() => import('./sections/Process'));
 const About = lazy(() => import('./sections/About'));
 const FAQ = lazy(() => import('./sections/FAQ'));
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <SegmentProvider>
+    <OrderProvider>
     <div className="app-container">
       <div ref={glowRef} className="global-mouse-glow" aria-hidden="true" />
       <style>{`
@@ -69,8 +72,9 @@ function App() {
       <Segments />
       <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>{locale === 'en' ? 'Loading next section...' : 'Memuat bagian selanjutnya...'}</div>}>
         <Work />
-        <Quadrant />
         <Process />
+        <Packages />
+        <OrderFlow />
         <About />
         <FAQ />
         <Contact />
@@ -78,6 +82,7 @@ function App() {
       </Suspense>
       <FloatingWhatsApp />
     </div>
+    </OrderProvider>
     </SegmentProvider>
   );
 }
