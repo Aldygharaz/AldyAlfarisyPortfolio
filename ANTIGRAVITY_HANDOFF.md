@@ -149,3 +149,39 @@ If you haven't filled in the form on the website, feel free to share:
 
 There is no cost at this stage.
 ```
+
+---
+
+## 7. Catatan Pembaruan untuk Agent Claude (Sesi Antigravity - 4 Oktober 2026)
+
+Bagian ini mencatat pekerjaan lanjutan, perbaikan teknis, dan audit yang telah diselesaikan oleh Antigravity pada branch `revamp/fase-0-1` (commit `35ea727` dan lanjutannya).
+
+### 7.1 Hasil Audit dan Perbaikan Kode
+1. **Zero Lint Warnings (`eslint .`)**:
+   - `eslint.config.js`: Menambahkan pengecualian aturan `react-refresh/only-export-components` khusus untuk folder `src/components/ui/**/*.{ts,tsx}` dan `src/context/**/*.{ts,tsx}` karena komponen UI shadcn dan konteks aplikasi secara sah mengekspor varian CVA dan custom hooks pendamping.
+   - `src/components/ui/carousel.tsx`: Menambahkan penanganan disable warning untuk pemanggilan sinkron awal `onSelect(api)`.
+   - `src/context/OrderContext.tsx` & `src/context/SegmentContext.tsx`: Membersihkan komentar disable inline yang sudah tidak terpakai.
+   - **Status**: `eslint .` kini menghasilkan **0 error dan 0 warning**.
+2. **Penyempurnaan Aksesibilitas (WCAG 2.1 AA Focus States)**:
+   - `src/App.css`: Menambahkan styling `.btn:focus-visible` dengan outline biru semantik dan offset 3px.
+   - `src/sections/Navigation.tsx`: Menambahkan penanganan `:focus-visible` pada `.nav-link`, `.nav-login`, dan `.nav-cta` agar navigasi keyboard terlihat jelas.
+3. **Pembersihan Copywriting Sesuai Aturan Ketat**:
+   - `src/locales/content.ts`: Mengganti frasa "karyawan terbaik Anda resign" menjadi "karyawan andalan Anda resign" pada data situasi HRMS (`content.id.work.projects.hrms.situation`) agar kata "terbaik" tereliminasi 100% dari seluruh copy website.
+   - Diverifikasi melalui deep-diff otomatis: key dan panjang array `content.id` dan `content.en` identik 100%.
+4. **Relatif Path Contoh Kedai Kopi**:
+   - `public/contoh/kedai-kopi/index.html`: Mengubah tautan kembali pada pita atas dari `/#paket` menjadi `../../#paket` agar aman saat situs dimuat pada root domain maupun subfolder.
+
+### 7.2 Tindak Lanjut Tugas 4.1: Mode "Coba 2 Menit"
+- Telah dibuat cetak biru arsitektur dan spesifikasi operasional di `docs/COBA_2_MENIT_SPEC.md`.
+- Berisi skenario panduan 3 sampai 4 langkah untuk 7 demo (`pos`, `kavana`, `accounting`, `hrms`, `crm`, `spa`, `lms`), pemetaan penanda WhatsApp (`web-demo-<nama>`), dan kode komponen siap pakai `DemoTourWidget.tsx` (React/TypeScript) yang dapat langsung di-copas ke repo masing-masing demo.
+- Ketika ketujuh demo sudah disematkan panduan tersebut, teks tombol pada kartu portofolio di `src/locales/content.ts` tinggal dialihkan dari `"Coba langsung"` menjadi `"Coba 2 menit"`.
+
+### 7.3 Otomasi Pengujian E2E (Puppeteer Headless)
+Telah disediakan dua skrip audit di folder `scratch/`:
+1. `scratch/e2e_revamp_verification.cjs`: Memvalidasi keberadaan 9 section aktif, ketiadaan 6 section usang, toggle bahasa ID/EN, saringan segmen usaha di grid, pembukaan dan penutupan modal cerita (Escape key), kehadiran harga Rp 499.000, viewport HP (390 px) bebas horizontal overflow, serta status HTTP 200 contoh kedai kopi.
+2. `scratch/test_orderflow_deep.cjs`: Memvalidasi alur interaktif formulir pemesanan 3 langkah dari langkah 1 (pilih jenis usaha), langkah 2 (pilih kebutuhan & kalkulasi dinamis rekomendasi paket), langkah 3 (pilih paket), langkah 4 (ringkasan, textarea masalah, pembentukan link WhatsApp dengan tracking tag `web-<segmen>-<paket>`), tombol Ubah, dan tombol Ulangi dari awal.
+
+### 7.4 Status Branch dan Git
+- Seluruh perubahan di-commit di lokal pada branch `revamp/fase-0-1`.
+- Sesuai aturan wajib nomor 1, **tidak ada `git push` ke remote**.
+
