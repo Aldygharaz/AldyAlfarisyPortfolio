@@ -617,6 +617,8 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
 export default function Work() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [inViewId, setInViewId] = useState<string | null>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
   const chipsRef = useRef<HTMLDivElement>(null);
   const [showAllMobile, setShowAllMobile] = useState(false);
 
@@ -765,6 +767,55 @@ export default function Work() {
   const lgSpan = ['lg:col-span-3', 'lg:col-span-2', 'lg:col-span-1'][n % 3];
   const smSpan = n % 2 === 0 ? 'sm:col-span-2' : 'sm:col-span-1';
 
+  // Di layar sentuh tidak ada kursor untuk "hover", jadi video kartu diputar
+  // otomatis saat kartunya terlihat jelas di layar (satu kartu sekaligus).
+  // Dilewati kalau pengunjung memilih gerak dikurangi atau mode hemat data.
+  useEffect(() => {
+    const noHover = window.matchMedia('(hover: none)').matches;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    if (!noHover || reduceMotion || saveData || !('IntersectionObserver' in window)) return;
+
+    const grid = gridRef.current;
+    if (!grid) return;
+    const ratios = new Map<string, number>();
+    let timer = 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const id = (entry.target as HTMLElement).dataset.projectId;
+          if (id) ratios.set(id, entry.isIntersecting ? entry.intersectionRatio : 0);
+        }
+        // Dari kartu yang terlihat jelas, putar yang paling dekat ke tengah layar.
+        let best: string | null = null;
+        let bestDistance = Infinity;
+        const middle = window.innerHeight / 2;
+        grid.querySelectorAll<HTMLElement>('[data-project-id]').forEach((el) => {
+          const id = el.dataset.projectId;
+          if (!id || (ratios.get(id) ?? 0) < 0.6) return;
+          const box = el.getBoundingClientRect();
+          const distance = Math.abs(box.top + box.height / 2 - middle);
+          if (distance < bestDistance) {
+            best = id;
+            bestDistance = distance;
+          }
+        });
+        // Berhenti langsung, tapi mulai memutar setelah jeda singkat supaya
+        // gulir cepat tidak memulai video yang langsung terlewat.
+        window.clearTimeout(timer);
+        if (best === null) setInViewId(null);
+        else timer = window.setTimeout(() => setInViewId(best), 250);
+      },
+      { threshold: [0, 0.3, 0.6, 0.8, 1] }
+    );
+    grid.querySelectorAll('[data-project-id]').forEach((el) => observer.observe(el));
+    return () => {
+      window.clearTimeout(timer);
+      observer.disconnect();
+      setInViewId(null);
+    };
+  }, [segment, showAllMobile, locale]);
+
   const openStory = (project: Project) => {
     setSelectedProject(project);
     track('story_open', { project: project.id });
@@ -861,7 +912,7 @@ export default function Work() {
           </p>
 
           {/* Grid kartu */}
-          <div className="grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">
+          <div ref={gridRef} className="grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">
             {visibleProjects.map((project, idx) => (
               <article
                 key={project.id}
@@ -874,10 +925,11 @@ export default function Work() {
                 <button
                   type="button"
                   className="relative w-full aspect-[16/10] overflow-hidden text-left"
+                  data-project-id={project.id}
                   onClick={() => openStory(project)}
                   aria-label={`${workContent.btnReadStory}: ${project.title}`}
                 >
-                  {project.mockup(hoveredId === project.id)}
+                  {project.mockup(hoveredId === project.id || inViewId === project.id)}
                 </button>
 
                 <div className="flex-1 p-6 flex flex-col">
@@ -927,7 +979,7 @@ export default function Work() {
             )}
 
             <div
-              className={`${smSpan} ${lgSpan} rounded-[1.5rem] p-7 sm:p-8 flex flex-col justify-center gap-3 border border-blue-200 bg-gradient-to-br from-blue-50 to-white`}
+              className={`${smSpan} ${lgSpan} sm:self-center rounded-[1.5rem] p-7 sm:p-8 flex flex-col justify-center gap-3 border border-blue-200 bg-gradient-to-br from-blue-50 to-white`}
             >
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900 leading-snug">{workContent.ctaCard.title}</h3>
               <p className="text-gray-700 text-[17px] sm:text-[15px] leading-relaxed max-w-md">{workContent.ctaCard.desc}</p>

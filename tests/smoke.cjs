@@ -15,6 +15,8 @@ const check = (name, ok, detail = '') => {
 async function open(browser, { w, h, mobile }) {
   const page = await browser.newPage();
   await page.setViewport({ width: w, height: h, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile });
+  // Bahasa tersimpan di localStorage; reset supaya tiap skenario mulai dari Indonesia.
+  await page.evaluateOnNewDocument(() => localStorage.setItem('sokara_lang', 'id'));
   const problems = [];
   page.on('pageerror', (e) => problems.push('pageerror: ' + e));
   page.on('console', (m) => m.type() === 'error' && problems.push('console: ' + m.text()));
@@ -50,10 +52,13 @@ async function structure(page, tag) {
       dash: /[–—]/.test(text),
       emoji: /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(text),
       deadLinks: [...document.querySelectorAll('a[target="_blank"]')].filter((a) => a.getAttribute('href') === '#').length,
+      lang: document.documentElement.lang,
       fonts: document.fonts.check('16px "Jost Variable"') && document.fonts.check('16px "Inter Variable"'),
       waHrefs: [...document.querySelectorAll('a[href*="api.whatsapp.com"]')].map((a) => a.href),
     };
   }, SECTIONS);
+  const wantLang = tag.endsWith('EN') ? 'en' : 'id';
+  check(`${tag}: bahasa halaman benar-benar ${wantLang}`, info.lang === wantLang, info.lang);
   check(`${tag}: semua section ada`, info.missing.length === 0, info.missing.join(','));
   check(`${tag}: satu main, satu h1, satu footer, ada skip link`, info.mains === 1 && info.h1s === 1 && info.footers === 1 && info.skip);
   check(`${tag}: tidak ada scroll horizontal`, !info.overflow);
@@ -108,12 +113,19 @@ async function content(page, tag) {
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
     await new Promise((res) => setTimeout(res, 500));
     const closed = !document.querySelector('[data-lenis-prevent="true"]');
-    return { price: /Rp\s?499\.000/.test(paket), cards, deprecated, projects, opened, closed };
+    const about = document.getElementById('about')?.innerText || '';
+    const firstClient = [...document.querySelectorAll('#paket .pkg-first a')].map((a) => decodeURIComponent(a.href));
+    const social = [...document.querySelectorAll('footer .footer-social a')].map((a) => a.getAttribute('href'));
+    const soon = !!document.querySelector('footer .footer-social-soon');
+    return { price: /Rp\s?499\.000/.test(paket), cards, deprecated, projects, opened, closed, gpa: /IPK|GPA/.test(about), firstClient, social, soon };
   });
   check(`${tag}: 3 kartu paket dan harga Rp 499.000 hanya di section Paket`, r.cards === 3 && r.price);
   check(`${tag}: section lama (marquee, quadrant, skills, dst.) tidak ada`, r.deprecated.length === 0, r.deprecated.join(','));
   check(`${tag}: 7 contoh sistem tampil di grid`, r.projects >= 7, `${r.projects} kartu`);
   check(`${tag}: modal cerita terbuka dan tertutup dengan Escape`, r.opened && r.closed);
+  check(`${tag}: IPK tidak tampil di bagian Tentang`, !r.gpa);
+  check(`${tag}: program klien pertama punya tautan WhatsApp bertanda`, r.firstClient.length === 1 && /\(web-(klien-pertama|first-client)\)/.test(r.firstClient[0]));
+  check(`${tag}: footer hanya memuat tautan sosial yang nyata dan keterangan "menyusul"`, r.social.length >= 1 && r.social.every((h) => /^https:\/\//.test(h || '')) && r.soon, r.social.length + ' tautan');
 }
 
 async function tapTargets(page, tag, minH) {
@@ -131,11 +143,45 @@ async function tapTargets(page, tag, minH) {
   check(`${tag}: target sentuh utama minimal ${minH}px tinggi`, small.length === 0, small.slice(0, 5).join('; '));
 }
 
+// Di layar sentuh tidak ada hover, jadi video kartu harus diputar saat kartu terlihat
+// (satu sekaligus), kecuali pengunjung memilih gerak dikurangi.
+async function videoAutoplay(browser) {
+  for (const reduced of [false, true]) {
+    const page = await browser.newPage();
+    await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
+    if (reduced) await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await page.evaluateOnNewDocument(() => localStorage.setItem('sokara_lang', 'id'));
+    await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
+    await page.evaluate(() => document.getElementById('work').scrollIntoView());
+    await sleep(800);
+    const ids = await page.evaluate(() => [...document.querySelectorAll('[data-project-id]')].map((b) => b.dataset.projectId));
+    const seen = [];
+    for (const i of [0, 1, 2]) {
+      await page.evaluate((idx) => {
+        const el = document.querySelectorAll('[data-project-id]')[idx];
+        const r = el.getBoundingClientRect();
+        window.scrollTo(0, window.scrollY + r.top - (innerHeight - r.height) / 2);
+      }, i);
+      await sleep(1500);
+      seen.push(await page.evaluate(() => [...document.querySelectorAll('[data-project-id]')]
+        .filter((b) => { const v = b.querySelector('video'); return v && !v.paused; })
+        .map((b) => b.dataset.projectId)));
+    }
+    await page.close();
+    if (reduced) {
+      check('hp: gerak dikurangi, video kartu tidak diputar otomatis', seen.every((x) => x.length === 0), JSON.stringify(seen));
+    } else {
+      const ok = seen.every((x, i) => x.length === 1 && x[0] === ids[i]);
+      check('hp: video kartu diputar otomatis saat terlihat, satu sekaligus', ok, JSON.stringify(seen));
+    }
+  }
+}
+
 (async () => {
   const browser = await puppeteer.launch({
     executablePath: process.env.CHROME_PATH || undefined,
     headless: 'new',
-    args: ['--no-sandbox', '--disable-gpu'],
+    args: ['--no-sandbox', '--disable-gpu', '--autoplay-policy=no-user-gesture-required'],
   });
 
   for (const [tag, vp] of [['desktop', { w: 1440, h: 900, mobile: false }], ['hp', { w: 390, h: 844, mobile: true }]]) {
@@ -161,6 +207,8 @@ async function tapTargets(page, tag, minH) {
     check(`${tag} EN: tanpa error konsol atau permintaan gagal`, problems.length === 0, problems.slice(0, 3).join(' | '));
     await page.close();
   }
+
+  await videoAutoplay(browser);
 
   // Meta untuk pratinjau tautan
   const page = await browser.newPage();

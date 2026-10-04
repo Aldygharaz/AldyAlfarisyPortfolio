@@ -1,9 +1,9 @@
-import { Check, Wallet, ArrowUpRight, Calculator } from 'lucide-react';
+import { Check, Wallet, ArrowUpRight, Calculator, Handshake } from 'lucide-react';
 import { useLocale } from '../context/LocaleContext';
 import { useOrder, type PackageId } from '../context/OrderContext';
 import { useSegment } from '../context/SegmentContext';
 import { content } from '../locales/content';
-import { scrollToSection } from '../lib/whatsapp';
+import { scrollToSection, WA_PHONE } from '../lib/whatsapp';
 import { track } from '../lib/analytics';
 
 const SAMPLE_WEBSITE_URL = '/contoh/kedai-kopi/';
@@ -113,6 +113,22 @@ export default function Packages() {
         }
         .pkg-note-title { font-weight: 600; font-size: 17px; margin: 0 0 8px; color: var(--text); }
         .pkg-note-text { font-size: 16px; line-height: 1.55; margin: 0; color: var(--text-muted); }
+        .pkg-first {
+          margin-top: 20px;
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 24px;
+          border-radius: 18px;
+          border: 1px solid color-mix(in srgb, var(--accent-blue) 28%, transparent);
+          background: var(--accent-wash);
+        }
+        .pkg-first-body { display: flex; gap: 16px; align-items: flex-start; }
+        .pkg-first .btn { width: 100%; justify-content: center; }
+        @media (min-width: 900px) {
+          .pkg-first { flex-direction: row; align-items: center; justify-content: space-between; gap: 40px; }
+          .pkg-first .btn { width: auto; flex-shrink: 0; }
+        }
         .pkg-drivers { list-style: disc; padding-left: 20px; margin: 0 0 12px; display: grid; gap: 4px; font-size: 16px; line-height: 1.5; color: var(--text); }
       `}</style>
 
@@ -194,6 +210,27 @@ export default function Packages() {
             <p className="pkg-note-text">{t.payText}</p>
           </div>
         </div>
+      </div>
+
+      <div className="pkg-first reveal">
+        <div className="pkg-first-body">
+          <span className="pkg-note-icon" aria-hidden="true" style={{ background: 'var(--surface)' }}>
+            <Handshake className="w-5 h-5" />
+          </span>
+          <div>
+            <p className="pkg-note-title">{t.firstClient.title}</p>
+            <p className="pkg-note-text">{t.firstClient.text}</p>
+          </div>
+        </div>
+        <a
+          href={`https://api.whatsapp.com/send?phone=${WA_PHONE}&text=${encodeURIComponent(t.firstClient.waText)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn btn-primary"
+          onClick={() => track('wa_click', { location: 'first_client' })}
+        >
+          {t.firstClient.button}
+        </a>
       </div>
     </section>
   );

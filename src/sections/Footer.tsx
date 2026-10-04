@@ -51,6 +51,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
+        <p className="footer-social-soon">{footer.socialSoon}</p>
         <p className="footer-identity">{footer.identity}</p>
         <p className="footer-copy">{footer.copyright}</p>
       </div>

@@ -64,7 +64,7 @@ export const content = {
           ],
           "situation": "Jam makan siang, antrean mengular. Terus internet putus. Kasir cuma bisa mandangin layar, pelanggan mulai gelisah, dan Anda berdiri di belakang sambil berharap sinyalnya balik.",
           "made": "Kasir yang jalan penuh di perangkatnya sendiri. Ada internet atau nggak, transaksi jalan terus. Barcode di-scan langsung tercatat, nggak perlu klik kolom pencarian dulu. Kalau stok kurang, ada tombol satu klik buat benerin.",
-          "aftermath": "Jam ramai nggak lagi bikin deg-degan. Kasir baru juga cepat paham, karena sistemnya nuntun, bukan nyalahin.",
+          "aftermath": "Jam ramai jadi lebih tenang. Kasir baru juga lebih cepat paham, karena sistemnya nuntun, bukan nyalahin.",
           "suitable": "Toko, minimarket, kafe, warung makan.",
           "liveNote": "",
           "techDetails": "Offline-First PWA; React 19, Zustand, IndexedDB, TailwindCSS; global barcode scanner listener; Poka-Yoke Auto-Fix Restock."
@@ -94,7 +94,7 @@ export const content = {
           ],
           "situation": "Tutup buku. Angka kasir, gudang, dan catatan akuntan nggak ada yang sama. Semalaman nyari selisihnya, dan Anda mulai khawatir sama jawabannya.",
           "made": "Tiap penjualan dan pembelian langsung masuk pembukuan. Kalau ada catatan yang nggak seimbang, langsung ditolak dan ditunjukkan salahnya di mana, sebelum sempat jadi masalah. Catatan yang sudah tersimpan nggak bisa diubah diam-diam.",
-          "aftermath": "Untung bersih bulan ini kelihatan tanpa nunggu tanggal 10. Anda nggak perlu menebak-nebak lagi.",
+          "aftermath": "Untung bersih bulan ini bisa dilihat tanpa nunggu tanggal 10, jadi Anda lebih jarang menebak-nebak.",
           "suitable": "Distributor, toko grosir, retail yang punya gudang.",
           "liveNote": "",
           "techDetails": "React 19, Zustand 5, Decimal.js (standar PSAK), SHA-256 chain pada buku besar; double-entry di browser; validasi keseimbangan debit dan kredit; virtualisasi DOM."
@@ -109,7 +109,7 @@ export const content = {
           ],
           "situation": "Nyusun shift itu kayak main puzzle, sering ada yang kecewa. Terus suatu hari karyawan andalan Anda resign, gara-gara tiga minggu berturut-turut kebagian shift malam. Anda baru tahu setelah dia pamit.",
           "made": "Sistem yang nyusun jadwal dan kasih peringatan sebelum ada karyawan yang kelelahan, sekalian ada usulan tukar shift sekali klik. Jadwal tersimpan di perangkat, jadi nggak hilang kalau internet putus di tengah nyusun.",
-          "aftermath": "Karyawan merasa diperhatikan. Anda juga nggak lagi jadi tempat semua keluhan soal jadwal.",
+          "aftermath": "Karyawan lebih merasa diperhatikan, dan keluhan soal jadwal tidak semuanya jatuh ke Anda.",
           "suitable": "Restoran, klinik, pabrik, toko dengan banyak shift.",
           "liveNote": "",
           "techDetails": "React, TypeScript, TailwindCSS, Zustand; atomic selectors; persistensi memori lokal; Poka-Yoke Smart Suggestion untuk memindahkan shift dari staf berisiko tinggi."
@@ -124,7 +124,7 @@ export const content = {
           ],
           "situation": "Tim sales males update data, karena harus ngetik nominal besar satu-satu. Lama-lama datanya basi, dan Anda nggak tahu calon pelanggan mana yang sebenarnya hampir deal.",
           "made": "Papan kartu yang tinggal digeser dari tahap ke tahap. Nominal otomatis rapi, plus tombol cepat (+10 Juta, +50 Juta). Kalau ada deal yang lama nggak gerak, ada tombol satu klik buat memperpanjang masa negosiasinya.",
-          "aftermath": "Tim sales mau pakai karena nggak ribet, dan Anda lihat kondisi penjualan yang sebenarnya.",
+          "aftermath": "Tim sales lebih mau memakainya karena nggak ribet, dan Anda lihat kondisi penjualan yang lebih nyata.",
           "suitable": "Tim sales, agensi, bisnis B2B.",
           "liveNote": "",
           "techDetails": "Next.js, dnd-kit, framer-motion, SWR; kanban drag-and-drop; optimistic updates SWR dan Zustand; Deal Inspector slide-over dengan 3D tilt; Poka-Yoke modal deal usang."
@@ -139,7 +139,7 @@ export const content = {
           ],
           "situation": "Tamu datang dengan harapan bisa tenang, tapi terapisnya bentrok atau ruangannya masih dipakai. Anda minta maaf lagi. Dan tamu itu belum tentu balik.",
           "made": "Booking yang ngecek terapis, ruangan atau alat, dan antrean sekaligus. Kalau ada yang batal, tamu berikutnya di daftar tunggu otomatis dapat slot. Tampilan untuk tamunya dibuat tenang dan mewah, pas dengan suasana spa.",
-          "aftermath": "Tamu datang, semuanya siap. Nggak ada lagi minta maaf yang bikin malu.",
+          "aftermath": "Tamu datang dan semuanya sudah siap, jadi Anda lebih jarang minta maaf soal jadwal.",
           "suitable": "Spa, salon, klinik kecantikan, tempat pijat.",
           "liveNote": "",
           "techDetails": "WebGL, Zustand, Framer Motion; double-sided state engine; evaluasi 3 variabel (terapis, ruangan atau mesin, antrean); promosi waitlist otomatis."
@@ -149,12 +149,12 @@ export const content = {
           "role": "Cocok untuk sekolah dan lembaga kursus",
           "metrics": [
             "Jawaban ujian tersimpan saat koneksi putus",
-            "Dirancang untuk mempercepat koreksi",
+            "Koreksi lebih cepat lewat pintasan keyboard",
             "Orang tua lihat nilai dan tagihan sendiri"
           ],
           "situation": "Ujian lagi jalan, internet sekolah putus, jawaban siswa hilang. Anak nangis, guru bingung, orang tua marah.",
-          "made": "Ujian online yang menyimpan jawaban di perangkat siswa kalau koneksi putus. Guru koreksi lewat tampilan terbagi yang dirancang untuk mempercepat koreksi, lengkap dengan pintasan keyboard. Orang tua bisa lihat nilai, rapor, dan tagihan SPP sendiri. Ada empat jenis akses: admin, guru, siswa, orang tua.",
-          "aftermath": "Guru punya lebih banyak waktu buat mengajar. Orang tua juga nggak perlu nebak-nebak.",
+          "made": "Ujian online yang menyimpan jawaban di perangkat siswa kalau koneksi putus. Guru mengoreksi lewat tampilan terbagi, lengkap dengan pintasan keyboard. Orang tua bisa lihat nilai, rapor, dan tagihan SPP sendiri. Ada empat jenis akses: admin, guru, siswa, orang tua.",
+          "aftermath": "Guru punya lebih banyak waktu buat mengajar, dan orang tua bisa melihat sendiri tanpa menebak-nebak.",
           "suitable": "Sekolah, lembaga kursus, bimbel.",
           "liveNote": "",
           "techDetails": "Hono, tRPC v11, React 19, Drizzle ORM, SQLite, PWA; RBAC 4 level; SpeedGrader split-view dengan pintasan J/K/Ctrl+Enter; CBT Player anti-cheat dengan deteksi blur window; Workbox precaching."
@@ -254,8 +254,7 @@ export const content = {
         },
         {
           "label": "PENDIDIKAN",
-          "content": "Sarjana Ekonomi, Universitas Diponegoro (2022)",
-          "sub": "IPK 3,31/4,00"
+          "content": "Sarjana Ekonomi, Universitas Diponegoro (2022)"
         },
         {
           "label": "LOKASI",
@@ -277,7 +276,7 @@ export const content = {
           "items": [
             {
               "q": "Berapa biayanya? Takut mahal.",
-              "a": "Website usaha mulai dari Rp 499.000. Untuk aplikasi, harganya tergantung kebutuhan, jadi saya kasih gambaran setelah dengar cerita Anda. Bisa mulai dari versi kecil dulu, nggak perlu langsung komit besar."
+              "a": "Website usaha mulai dari Rp 499.000. Untuk aplikasi, harganya tergantung kebutuhan, jadi saya kasih gambaran setelah dengar cerita Anda. Bisa mulai dari versi kecil dulu, nggak perlu langsung komit besar. Domain dan hosting dihitung terpisah, dan harganya saya sebut di depan."
             },
             {
               "q": "Bayarnya gimana? Harus lunas di depan?",
@@ -323,10 +322,10 @@ export const content = {
             },
             {
               "q": "Kenapa nggak pakai aplikasi yang sudah ada saja?",
-              "a": "Aplikasi jadi bikin Anda yang menyesuaikan diri dengan aplikasinya. Sistem buatan sendiri kebalikannya: sistemnya yang mengikuti cara kerja Anda. Kalau aplikasi yang sudah ada memang cocok, saya bilang apa adanya."
+              "a": "Aplikasi siap pakai membuat Anda yang menyesuaikan diri dengan aplikasinya. Sistem yang dibuat khusus kebalikannya: sistemnya yang mengikuti cara kerja Anda. Kalau aplikasi yang sudah ada memang cocok, saya bilang apa adanya."
             },
             {
-              "q": "Data usaha saya aman? Nanti punya siapa?",
+              "q": "Data usaha saya nanti punya siapa?",
               "a": "Data usaha tetap milik Anda. Kode, akun hosting, dan domain diserahkan setelah pelunasan, dan ini ditulis di kesepakatan sebelum mulai kerja."
             },
             {
@@ -367,7 +366,8 @@ export const content = {
       ],
       "identity": "Aldy Alfarisy, pembuat aplikasi dan website untuk usaha. Bandung, Indonesia.",
       "copyright": "© 2026 Aldy Alfarisy. Sokara.",
-      "navLabel": "Tautan cepat"
+      "navLabel": "Tautan cepat",
+      "socialSoon": "Akun sosial lain menyusul."
     },
     "sidenav": [
       {
@@ -524,7 +524,6 @@ export const content = {
           "price": "Rp 499.000",
           "desc": "Profil usaha atau landing page satu halaman, supaya pembeli percaya dan gampang menghubungi Anda.",
           "features": [
-            "Satu halaman profil usaha atau promosi",
             "Rapi di layar HP, ada tombol WhatsApp dan lokasi usaha",
             "Satu putaran revisi besar sebelum diserahkan",
             "Biasanya selesai dalam beberapa hari kerja",
@@ -541,7 +540,8 @@ export const content = {
             "Satu sistem inti sesuai cara kerja Anda",
             "Lihat rancangannya dulu sebelum dibangun",
             "Versi awal yang bisa dicoba biasanya 1 sampai 2 minggu",
-            "Tim Anda dilatih, lalu saya dampingi 30 hari setelah berjalan"
+            "Tim Anda dilatih, lalu saya dampingi 30 hari setelah berjalan",
+            "Harga final tertulis sebelum DP"
           ]
         },
         {
@@ -553,7 +553,8 @@ export const content = {
             "Beberapa modul yang saling terhubung",
             "Bisa untuk lebih dari satu cabang",
             "Nyambung ke pembayaran dan aplikasi lain",
-            "Dikerjakan bertahap, hasilnya terlihat di tengah jalan"
+            "Dikerjakan bertahap, hasilnya terlihat di tengah jalan",
+            "Harga final tertulis sebelum DP"
           ]
         }
       ],
@@ -563,7 +564,13 @@ export const content = {
         "Berapa orang yang memakainya",
         "Sambungan ke pembayaran atau aplikasi lain"
       ],
-      "driversNote": "Saya hitung bersama Anda di chat. Harga finalnya tertulis sebelum DP."
+      "driversNote": "Saya hitung bersama Anda di chat. Harga finalnya tertulis sebelum DP.",
+      "firstClient": {
+        "title": "Program klien pertama",
+        "text": "Saya sedang membuka kesempatan untuk klien pertama. Anda mendapat potongan harga khusus, dan sebagai gantinya saya minta testimoni jujur serta izin menampilkan hasilnya di sini. Testimoni hanya tampil kalau Anda setuju. Besaran potongan dan syaratnya saya jelaskan di chat.",
+        "button": "Tanya program ini",
+        "waText": "Halo Aldy, saya tertarik dengan program klien pertama untuk usaha saya. (web-klien-pertama)"
+      }
     },
     "orderFlow": {
       "eyebrow": "Pesan dalam 3 Langkah",
@@ -721,7 +728,7 @@ export const content = {
           ],
           "situation": "Lunch rush. A long line. Then the internet drops and the cashier can only stare at the screen. Customers get restless, staff start to panic, and all you can do is stand at the back hoping the signal returns.",
           "made": "A cash register that runs entirely on its own device. Internet on or off, transactions keep going. Scanning a barcode records it right away, with no need to click a search box. If stock runs short, the system offers a one-click button to fix it.",
-          "aftermath": "Busy hours stop being scary. A new cashier can learn quickly because the system guides them instead of blaming them.",
+          "aftermath": "Busy hours get calmer. A new cashier can learn faster because the system guides them instead of blaming them.",
           "suitable": "Retail shops, minimarkets, cafes, small eateries.",
           "liveNote": "",
           "techDetails": "Offline-First PWA; React 19, Zustand, IndexedDB, TailwindCSS; global barcode scanner listener; Poka-Yoke Auto-Fix Restock."
@@ -751,7 +758,7 @@ export const content = {
           ],
           "situation": "Closing the books. The numbers from the register, the warehouse, and the accountant's records don't match. You spend the night hunting for the gap, and you start to worry about what you'll find.",
           "made": "Every sale and purchase goes into the books automatically. If an entry doesn't balance, the system rejects it on the spot and shows where the mistake is, before it becomes a problem. Saved records can't be changed quietly.",
-          "aftermath": "You know this month's net profit without waiting until the 10th. No more guessing.",
+          "aftermath": "You can see this month's net profit without waiting until the 10th, so there is less guessing.",
           "suitable": "Distributors, wholesale shops, retail businesses with a warehouse.",
           "liveNote": "",
           "techDetails": "React 19, Zustand 5, Decimal.js (PSAK standard), SHA-256 chain on the ledger; double-entry in the browser; strict debit and credit balance validation; DOM virtualization."
@@ -766,7 +773,7 @@ export const content = {
           ],
           "situation": "Building a shift schedule is like a puzzle where someone often ends up unhappy. Then one day your best employee resigns because they got night shifts three weeks in a row, and you only find out once they are leaving.",
           "made": "A system that builds the schedule and warns you before anyone burns out, with a one-click shift swap suggestion. Schedules are saved on the device, so nothing is lost if the internet drops mid-planning.",
-          "aftermath": "Staff feel looked after, and you're no longer the place every schedule complaint lands.",
+          "aftermath": "Staff feel more looked after, and not every schedule complaint lands on you.",
           "suitable": "Restaurants, clinics, factories, shops with many shifts.",
           "liveNote": "",
           "techDetails": "React, TypeScript, TailwindCSS, Zustand; atomic selectors; local memory persistence; Poka-Yoke Smart Suggestion for moving shifts away from high-risk staff."
@@ -781,7 +788,7 @@ export const content = {
           ],
           "situation": "Sales teams put off updating records because they have to type big amounts one by one. Before long the data is stale, and you can't tell which prospects are really close to closing.",
           "made": "A board of cards you drag from stage to stage. Amounts format themselves, with quick buttons (+10 million, +50 million). If a deal has gone quiet for too long, the system offers a one-click button to extend the negotiation window.",
-          "aftermath": "The sales team actually uses it because it is easy, and you see the real state of sales.",
+          "aftermath": "The sales team is more willing to use it because it is easy, and you see a more real picture of sales.",
           "suitable": "Sales teams, agencies, B2B businesses.",
           "liveNote": "",
           "techDetails": "Next.js, dnd-kit, framer-motion, SWR; kanban drag-and-drop; optimistic updates with SWR and Zustand; slide-over Deal Inspector with 3D tilt; Poka-Yoke modal for stale deals."
@@ -796,7 +803,7 @@ export const content = {
           ],
           "situation": "A guest arrives hoping for calm, but the therapist has a clash or the room is still in use. You apologize again, and that guest may not come back.",
           "made": "A booking system that checks therapist, room or equipment, and the queue all at once. If someone cancels, the next guest on the waitlist automatically gets the slot. The guest-facing side is designed to feel calm and luxurious, matching the spa atmosphere.",
-          "aftermath": "The guest arrives, everything is ready, and there are no embarrassing apologies.",
+          "aftermath": "The guest arrives and everything is ready, so there are fewer apologies about scheduling.",
           "suitable": "Spas, salons, beauty clinics, massage places.",
           "liveNote": "",
           "techDetails": "WebGL, Zustand, Framer Motion; double-sided state engine; evaluation of 3 variables (therapist, room or machine, queue); automatic waitlist promotion."
@@ -806,12 +813,12 @@ export const content = {
           "role": "Good for schools and course providers",
           "metrics": [
             "Exam answers saved when the connection drops",
-            "Designed to speed up grading",
+            "Faster grading with keyboard shortcuts",
             "Parents see grades and bills themselves"
           ],
           "situation": "An exam is underway, the school's internet drops, and the students' answers are lost. A child cries, the teacher is stuck, and the parents are angry.",
-          "made": "An online exam that saves answers on the student device when the connection drops. Teachers grade in a split-screen view designed to speed up grading, with keyboard shortcuts. Parents can see grades, report cards, and school fee bills on their own. There are four kinds of access: admin, teacher, student, and parent.",
-          "aftermath": "Teachers get more time to teach, and parents don't have to wonder.",
+          "made": "An online exam that saves answers on the student device when the connection drops. Teachers grade in a split-screen view, with keyboard shortcuts. Parents can see grades, report cards, and school fee bills on their own. There are four kinds of access: admin, teacher, student, and parent.",
+          "aftermath": "Teachers get more time to teach, and parents can check for themselves instead of wondering.",
           "suitable": "Schools, course providers, tutoring centers.",
           "liveNote": "",
           "techDetails": "Hono, tRPC v11, React 19, Drizzle ORM, SQLite, PWA; 4-level RBAC; SpeedGrader split-view with J/K/Ctrl+Enter shortcuts; anti-cheat CBT Player with window blur detection; Workbox precaching."
@@ -911,8 +918,7 @@ export const content = {
         },
         {
           "label": "EDUCATION",
-          "content": "Bachelor of Economics, Diponegoro University (2022)",
-          "sub": "GPA 3.31/4.00"
+          "content": "Bachelor of Economics, Diponegoro University (2022)"
         },
         {
           "label": "LOCATION",
@@ -934,7 +940,7 @@ export const content = {
           "items": [
             {
               "q": "How much does it cost? I'm afraid it's expensive.",
-              "a": "Business websites start from Rp 499.000. For apps, the price depends on what you need, so I'll give you a clear picture after hearing your story. You can start with a small version, no big commitment up front."
+              "a": "Business websites start from Rp 499.000. For apps, the price depends on what you need, so I'll give you a clear picture after hearing your story. You can start with a small version, no big commitment up front. Domain and hosting are priced separately, and I tell you that price up front."
             },
             {
               "q": "How do I pay? Do I pay everything up front?",
@@ -983,7 +989,7 @@ export const content = {
               "a": "Off-the-shelf apps make you adjust how your business works to fit the app. A system built for you goes the other way: the app adapts to how you work. If an off-the-shelf app already suits you, I'll tell you so."
             },
             {
-              "q": "Is my business data safe? Who owns it?",
+              "q": "Who owns my business data?",
               "a": "Your business data stays yours. Code, hosting accounts, and domain are handed over after final payment, and this is written into the agreement before any work begins."
             },
             {
@@ -1024,7 +1030,8 @@ export const content = {
       ],
       "identity": "Aldy Alfarisy, apps and websites for businesses. Bandung, Indonesia.",
       "copyright": "© 2026 Aldy Alfarisy. Sokara.",
-      "navLabel": "Quick links"
+      "navLabel": "Quick links",
+      "socialSoon": "More social accounts coming soon."
     },
     "sidenav": [
       {
@@ -1181,7 +1188,6 @@ export const content = {
           "price": "Rp 499.000",
           "desc": "A one-page business profile or landing page, so buyers trust you and can reach you easily.",
           "features": [
-            "One profile or promo page",
             "Looks clean on phones, with a WhatsApp button and business location",
             "One round of major revisions before handover",
             "Usually done within a few working days",
@@ -1198,7 +1204,8 @@ export const content = {
             "One core system built around how you work",
             "See the design before anything is built",
             "A first version to try usually takes 1 to 2 weeks",
-            "Your team is trained, then I support you for 30 days after launch"
+            "Your team is trained, then I support you for 30 days after launch",
+            "The final price is written down before the deposit"
           ]
         },
         {
@@ -1210,7 +1217,8 @@ export const content = {
             "Several connected modules",
             "Works across more than one branch",
             "Connects to payments and other apps",
-            "Built in stages, with progress you can see along the way"
+            "Built in stages, with progress you can see along the way",
+            "The final price is written down before the deposit"
           ]
         }
       ],
@@ -1220,7 +1228,13 @@ export const content = {
         "How many people use it",
         "Connections to payments or other apps"
       ],
-      "driversNote": "We work it out together in chat. The final price is written down before the deposit."
+      "driversNote": "We work it out together in chat. The final price is written down before the deposit.",
+      "firstClient": {
+        "title": "First client program",
+        "text": "I'm opening this program for my first clients. You get a special discount, and in return I ask for an honest testimonial and permission to show the result here. A testimonial is only shown if you agree. I explain the discount and the terms in chat.",
+        "button": "Ask about this program",
+        "waText": "Hi Aldy, I'm interested in the first client program for my business. (web-first-client)"
+      }
     },
     "orderFlow": {
       "eyebrow": "Order in 3 Steps",

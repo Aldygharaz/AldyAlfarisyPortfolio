@@ -785,6 +785,13 @@ footer {
   border-color: var(--accent-blue);
 }
 
+.footer-social-soon {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: center;
+  margin: -4px 0 0;
+}
+
 .footer-identity {
   font-size: 15px;
   color: var(--text-muted);

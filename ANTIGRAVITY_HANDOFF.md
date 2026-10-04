@@ -235,4 +235,35 @@ Angka dan kebijakan di bawah diisi Claude dengan usulan bawaan supaya halaman ti
 - Aturan berhenti di tengah jalan: bagian yang belum dikerjakan dikembalikan, yang sudah dikerjakan dihitung apa adanya.
 - Contoh sistem adalah contoh buatan sendiri, bukan hasil kerja untuk klien.
 
-Belum dikerjakan karena butuh bahan dari Aldy: cerita usaha F&B (tahun, jenis usaha, angka kalau ada) dan program klien pertama (opsional).
+Semua poin di atas sudah dikonfirmasi Aldy pada 4 Oktober 2026 (lihat bagian 9.1). Cerita usaha F&B cukup gambaran besar, tidak perlu fakta tambahan.
+
+## 9. Pembaruan Putaran 3 (Claude, 4 Oktober 2026, siang)
+
+Dikerjakan lokal di branch `revamp/fase-0-1`. Tidak ada push dan tidak ada deploy.
+
+### 9.1 Keputusan Aldy (4 Oktober 2026)
+
+- Angka dan kebijakan di bagian 8.4: disetujui apa adanya.
+- Cerita usaha F&B: cukup gambaran besar. Teks Tentang tidak diubah.
+- Keamanan data tidak perlu dijelaskan ke pengunjung. Pertanyaan FAQ diganti menjadi "Data usaha saya nanti punya siapa?" dan jawabannya tetap soal kepemilikan.
+- IPK dihapus dari Data Diri (ID dan EN).
+- Program klien pertama dibuka. Besaran potongan sengaja tidak ditulis, dibahas di chat. Tampil sebagai strip di bawah kotak "Cara bayar" dengan tautan WhatsApp bertanda `(web-klien-pertama)` atau `(web-first-client)`. Testimoni hanya ditampilkan kalau klien setuju. Jangan menambah hitung mundur, jumlah slot, atau testimoni karangan.
+- Akun sosial lain (TikTok, Instagram, Threads, X) ada tetapi URL belum siap. Footer menampilkan "Akun sosial lain menyusul." Jangan menambah ikon sebelum ada URL asli.
+- Deploy tetap menunggu izin eksplisit dari Aldy. Aldy menyerahkan urutan kerja ke Claude.
+
+### 9.2 Yang berubah
+
+| Area | Perubahan | File |
+| --- | --- | --- |
+| Video | Di layar sentuh (`hover: none`) video kartu Contoh Sistem diputar otomatis saat kartu terlihat jelas (60 persen), satu kartu sekaligus, yang paling dekat ke tengah layar, dengan jeda 250 ms. Tidak diputar kalau pengunjung memilih gerak dikurangi atau mode hemat data. Di desktop tetap saat hover. Video tetap `preload="none"`, jadi file baru diunduh saat mulai diputar | `src/sections/Work.tsx` |
+| Tulisan | IPK dihapus. Kalimat "Setelah sistemnya jalan" di kartu demo tidak lagi menjanjikan hasil pasti. Pengulangan di kartu LMS dibuang. FAQ biaya menyebut domain dan hosting dihitung terpisah. Kalimat FAQ "aplikasi siap pakai" diperjelas. Strip program klien pertama. Keterangan sosial menyusul | `src/locales/content.ts`, `src/sections/Packages.tsx`, `src/sections/Footer.tsx`, `src/App.css` |
+| Layout | Daftar fitur kartu Website dirapikan (satu butir yang mengulang deskripsi dibuang), kartu Aplikasi dan Sistem Lengkap mendapat butir "Harga final tertulis sebelum DP" sehingga ruang kosong di kartu berkurang. Kartu "Usaha Anda nggak ada di daftar?" tidak lagi ditarik setinggi kartu di sebelahnya | `src/locales/content.ts`, `src/sections/Work.tsx` |
+| Tes | Bahasa di-reset per skenario (sebelumnya tes "hp ID" sebenarnya berjalan dalam bahasa Inggris karena bahasa tersimpan di `localStorage`). Pemeriksaan baru: bahasa halaman benar, IPK tidak tampil, tautan program klien pertama bertanda, tautan sosial footer nyata, video diputar otomatis satu sekaligus di profil HP, dan tidak diputar saat gerak dikurangi | `tests/smoke.cjs` |
+
+Hasil verifikasi: `tsc -b` dan `eslint .` bersih, 68 pemeriksaan smoke dan 14 pemeriksaan alur pesan lulus, axe 0 pelanggaran, CLS 0, muatan awal desktop 154 KB. Gulir dengan dan tanpa video otomatis diukur di simulasi HP 4x lebih lambat: rata-rata sekitar 20 ms vs 18 ms per frame. Belum diuji di perangkat sungguhan.
+
+### 9.3 Catatan untuk Antigravity
+
+1. Karena video sekarang diputar otomatis di HP, ketajaman dan ukuran video lebih berpengaruh dari sebelumnya. Saat rekam ulang (bagian 8.3 nomor 1), jaga mp4 di bawah sekitar 600 KB per video.
+2. Demo Accounting masih di `sokaraaccountingdemo.netlify.app`, sedangkan enam demo lain di subdomain `aldyalfarisy.my.id`. Pindahkan ke subdomain yang sama atau konfirmasi ke Aldy bahwa dibiarkan. Alamatnya ada di `src/sections/Work.tsx`.
+3. Enam mp4 dan `og-image.jpg` di laptop membawa label asal-file (C2PA, sekitar 6 KB per file) dari proses kirim file. Tidak berbahaya. Kalau Antigravity mengekspor ulang video, labelnya hilang dengan sendirinya.
