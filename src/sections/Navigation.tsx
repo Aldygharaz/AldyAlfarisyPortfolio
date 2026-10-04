@@ -97,8 +97,10 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           transition: color 0.2s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover,
+        .nav-link:focus-visible {
           color: var(--text);
+          outline: none;
         }
 
         .nav-right {
@@ -116,8 +118,10 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           text-decoration: none;
           transition: color 0.2s ease;
         }
-        .nav-login:hover {
+        .nav-login:hover,
+        .nav-login:focus-visible {
           color: var(--text);
+          outline: none;
         }
 
         .nav-cta {
@@ -132,8 +136,11 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           transition: transform 0.2s, background 0.2s;
         }
 
-        .nav-cta:hover {
+        .nav-cta:hover,
+        .nav-cta:focus-visible {
           background: var(--text-muted);
+          outline: 2px solid var(--accent-blue);
+          outline-offset: 2px;
         }
 
         @media (max-width: 1024px) {

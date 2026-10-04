@@ -21,7 +21,6 @@ export function SegmentProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
 export function useSegment() {
   const context = useContext(SegmentContext);
   if (!context) {

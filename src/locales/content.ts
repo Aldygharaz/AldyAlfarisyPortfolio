@@ -121,7 +121,7 @@ export const content = {
             "Ada peringatan sebelum karyawan kelelahan",
             "Jadwal tidak hilang saat internet putus"
           ],
-          "situation": "Nyusun shift itu kayak main puzzle, selalu ada yang kecewa. Terus suatu hari karyawan terbaik Anda resign, gara-gara tiga minggu berturut-turut kebagian shift malam. Anda baru sadar setelah semuanya terlambat.",
+          "situation": "Nyusun shift itu kayak main puzzle, selalu ada yang kecewa. Terus suatu hari karyawan andalan Anda resign, gara-gara tiga minggu berturut-turut kebagian shift malam. Anda baru sadar setelah semuanya terlambat.",
           "made": "Sistem yang nyusun jadwal dan kasih peringatan sebelum ada karyawan yang kelelahan, sekalian ada usulan tukar shift sekali klik. Jadwal tersimpan di perangkat, jadi nggak hilang kalau internet putus di tengah nyusun.",
           "aftermath": "Karyawan merasa diperhatikan. Anda juga nggak lagi jadi tempat semua keluhan soal jadwal.",
           "suitable": "Restoran, klinik, pabrik, toko dengan banyak shift.",
