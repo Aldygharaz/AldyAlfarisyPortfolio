@@ -36,7 +36,7 @@ export default function Process() {
         y: d.top - wrapRect.top + d.height / 2,
       }));
 
-      const sway = 26;
+      const sway = 14;
       let d = `M ${points[0].x} ${points[0].y}`;
       for (let i = 0; i < points.length - 1; i++) {
         const p0 = points[i];
@@ -101,38 +101,40 @@ export default function Process() {
         <h2>{t.title}</h2>
         <p className="section-sub">{t.subtitle}</p>
       </div>
-      <div className="process-wrap" ref={wrapRef} id="processWrap">
-        <svg className="process-line-svg" ref={svgRef} preserveAspectRatio="none">
-          <path className="process-line-path" ref={pathBaseRef} d="" />
-          <path className="process-line-glow" ref={pathGlowRef} d="" />
-        </svg>
-        <div className="process-line" id="processLine">
-          {t.steps.map((step, i) => (
-            <div className="process-step" data-step={i} key={i}>
-              <span className="step-dot" />
-              <span className="step-num">{step.num}</span>
-              <h3>{step.title}</h3>
-              <p>{step.desc}</p>
-            </div>
-          ))}
+      <div className="process-layout">
+        <div className="process-wrap" ref={wrapRef} id="processWrap">
+          <svg className="process-line-svg" ref={svgRef} preserveAspectRatio="none" aria-hidden="true">
+            <path className="process-line-path" ref={pathBaseRef} d="" />
+            <path className="process-line-glow" ref={pathGlowRef} d="" />
+          </svg>
+          <ol className="process-line" id="processLine">
+            {t.steps.map((step, i) => (
+              <li className="process-step" data-step={i} key={i}>
+                <span className="step-dot" aria-hidden="true" />
+                <span className="step-num">{step.num}</span>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </li>
+            ))}
+          </ol>
         </div>
-      </div>
 
-      <div className="process-promises reveal">
-        <h3 className="process-promises-title">{t.promisesTitle}</h3>
-        <div className="process-promises-grid">
-          {t.promises.map((p) => (
-            <div className="process-promise" key={p.title}>
-              <span className="process-promise-check" aria-hidden="true">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
-              </span>
-              <div>
-                <p className="process-promise-name">{p.title}</p>
-                <p className="process-promise-desc">{p.desc}</p>
+        <aside className="process-promises reveal">
+          <h3 className="process-promises-title">{t.promisesTitle}</h3>
+          <div className="process-promises-grid">
+            {t.promises.map((p) => (
+              <div className="process-promise" key={p.title}>
+                <span className="process-promise-check" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                </span>
+                <div>
+                  <p className="process-promise-name">{p.title}</p>
+                  <p className="process-promise-desc">{p.desc}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </aside>
       </div>
     </section>
   );

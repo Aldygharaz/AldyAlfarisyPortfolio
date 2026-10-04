@@ -42,7 +42,7 @@ export default function SideNav() {
   };
 
   return (
-    <nav className="side-nav">
+    <nav className="side-nav" aria-label={locale === 'en' ? 'Page sections' : 'Bagian halaman'}>
       <div className="side-nav-inner">
         {sections.map((section, index) => {
           const isActive = activeId === section.id;

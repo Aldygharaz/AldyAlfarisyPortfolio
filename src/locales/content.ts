@@ -18,51 +18,37 @@ export const content = {
         }
       ],
       "contact": "Kontak",
-      "cta": "Ceritakan Usaha Anda",
+      "cta": "Tanya di WhatsApp",
       "waUrl": "https://api.whatsapp.com/send?phone=6281410538887&text=Halo%20Aldy%2C%20saya%20pemilik%20usaha.%20Saya%20mau%20tanya%20soal%20aplikasi%20atau%20website%20untuk%20usaha%20saya.%20(web-umum)"
     },
     "hero": {
-      "eyebrow": "PEMBUAT APLIKASI DAN WEBSITE UNTUK USAHA",
+      "eyebrow": "APLIKASI DAN WEBSITE UNTUK USAHA",
       "headline1": "Usaha Anda punya cara sendiri.",
       "headline2": "Aplikasinya yang ikut.",
-      "offer": "Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda. Website usaha mulai dari Rp 499.000.",
-      "ctaPrimary": "Ceritakan Usaha Anda",
+      "offer": "Saya bikin aplikasi dan website yang mengikuti cara kerja usaha Anda. Harga final jelas sebelum Anda bayar apa pun.",
+      "ctaPrimary": "Tanya di WhatsApp",
       "ctaSecondary": "Lihat contoh untuk usaha saya",
       "reassurance": "Gratis ngobrol dulu, tanpa kewajiban. Kalau saya nggak bisa bantu, saya bilang.",
       "trust": [
         "Pernah punya usaha F&B sendiri",
         "Sarjana Ekonomi Universitas Diponegoro",
-        "7 contoh sistem bisa dicoba"
-      ]
-    },
-    "marquee": {
-      "tier1": [
-        "Kasir tetap jalan walau internet mati",
-        "Laporan keuangan tanpa hitung manual",
-        "Jadwal karyawan yang lebih adil",
-        "Toko online lengkap dengan pembayaran"
-      ]
-    },
-    "familiar": {
-      "title": "Kenal situasi ini?",
-      "items": [
-        "Kas tutup toko selisih lagi, dan nggak ketahuan bocornya di mana.",
-        "Internet mati pas jam ramai. Antrean panjang, kasir bengong.",
-        "Tiap akhir bulan bingung: ini untung atau cuma muter?"
+        "7 contoh sistem yang bisa Anda coba sendiri"
       ],
-      "closing": "Bukan karena Anda kurang rajin. Alatnya yang nggak cocok."
+      "priceLink": "Lihat paket dan harga",
+      "byline": "Aldy Alfarisy, pembuat Sokara",
+      "portraitAlt": "Aldy Alfarisy, pembuat aplikasi dan website untuk usaha"
     },
     "work": {
       "eyebrow": "Contoh Sistem",
       "title": "Sistem yang sudah saya buat",
-      "subtitle": "Semuanya contoh sistem yang bisa langsung dicoba. Belum semuanya dipakai bisnis sungguhan.",
+      "subtitle": "Ini contoh sistem, bukan hasil kerja untuk klien. Semuanya bisa Anda coba sendiri dan nilai langsung.",
       "cardLabel": "Contoh sistem, bisa dicoba langsung",
       "btnReadStory": "Baca ceritanya",
       "btnTryLive": "Coba langsung",
       "modal": {
         "headingSituation": "Situasi yang sering terjadi",
         "headingMade": "Yang saya buat",
-        "headingAftermath": "Hidup setelahnya",
+        "headingAftermath": "Setelah sistemnya jalan",
         "headingSuitable": "Cocok untuk",
         "headingTryLive": "Coba langsung",
         "headingTech": "Untuk yang penasaran"
@@ -89,7 +75,7 @@ export const content = {
           "metrics": [
             "Dari daftar sampai kirim",
             "Kode promo dihitung akurat",
-            "Tanpa biaya server bulanan"
+            "Bayar dan kirim disimulasikan"
           ],
           "situation": "Banyak toko online contoh cuma berhenti di etalase. Barang bisa dipilih, tapi bayar dan kirimnya nggak lengkap. Jadi susah membayangkan rasanya jalanin toko online yang sungguhan.",
           "made": "Toko online yang bisa dicoba dari awal sampai akhir: daftar akun, pakai kode promo, bayar (simulasi), baca email konfirmasi, sampai pesanan dikirim lengkap dengan nomor resi. Pemilik toko juga bisa lihat grafik penjualan mingguan.",
@@ -106,9 +92,9 @@ export const content = {
             "Catatan tidak bisa diubah diam-diam",
             "Tetap lancar dengan ribuan baris"
           ],
-          "situation": "Tutup buku. Angka kasir, gudang, dan catatan akuntan nggak ada yang sama. Semalaman nyari selisihnya, dan sebagian dari diri Anda takut sama jawabannya.",
+          "situation": "Tutup buku. Angka kasir, gudang, dan catatan akuntan nggak ada yang sama. Semalaman nyari selisihnya, dan Anda mulai khawatir sama jawabannya.",
           "made": "Tiap penjualan dan pembelian langsung masuk pembukuan. Kalau ada catatan yang nggak seimbang, langsung ditolak dan ditunjukkan salahnya di mana, sebelum sempat jadi masalah. Catatan yang sudah tersimpan nggak bisa diubah diam-diam.",
-          "aftermath": "Untung bersih bulan ini kelihatan tanpa nunggu tanggal 10. Dan nggak perlu curiga sama siapa pun.",
+          "aftermath": "Untung bersih bulan ini kelihatan tanpa nunggu tanggal 10. Anda nggak perlu menebak-nebak lagi.",
           "suitable": "Distributor, toko grosir, retail yang punya gudang.",
           "liveNote": "",
           "techDetails": "React 19, Zustand 5, Decimal.js (standar PSAK), SHA-256 chain pada buku besar; double-entry di browser; validasi keseimbangan debit dan kredit; virtualisasi DOM."
@@ -121,7 +107,7 @@ export const content = {
             "Ada peringatan sebelum karyawan kelelahan",
             "Jadwal tidak hilang saat internet putus"
           ],
-          "situation": "Nyusun shift itu kayak main puzzle, selalu ada yang kecewa. Terus suatu hari karyawan andalan Anda resign, gara-gara tiga minggu berturut-turut kebagian shift malam. Anda baru sadar setelah semuanya terlambat.",
+          "situation": "Nyusun shift itu kayak main puzzle, sering ada yang kecewa. Terus suatu hari karyawan andalan Anda resign, gara-gara tiga minggu berturut-turut kebagian shift malam. Anda baru tahu setelah dia pamit.",
           "made": "Sistem yang nyusun jadwal dan kasih peringatan sebelum ada karyawan yang kelelahan, sekalian ada usulan tukar shift sekali klik. Jadwal tersimpan di perangkat, jadi nggak hilang kalau internet putus di tengah nyusun.",
           "aftermath": "Karyawan merasa diperhatikan. Anda juga nggak lagi jadi tempat semua keluhan soal jadwal.",
           "suitable": "Restoran, klinik, pabrik, toko dengan banyak shift.",
@@ -144,7 +130,7 @@ export const content = {
           "techDetails": "Next.js, dnd-kit, framer-motion, SWR; kanban drag-and-drop; optimistic updates SWR dan Zustand; Deal Inspector slide-over dengan 3D tilt; Poka-Yoke modal deal usang."
         },
         "sanctuary": {
-          "summary": "Booking yang nggak bentrok terapis dan ruangan",
+          "summary": "Booking yang mencegah bentrok terapis dan ruangan",
           "role": "Cocok untuk spa, salon, klinik",
           "metrics": [
             "Cek terapis, ruangan, antrean sekaligus",
@@ -164,7 +150,7 @@ export const content = {
           "metrics": [
             "Jawaban ujian tersimpan saat koneksi putus",
             "Dirancang untuk mempercepat koreksi",
-            "Bisa dipakai tanpa internet"
+            "Orang tua lihat nilai dan tagihan sendiri"
           ],
           "situation": "Ujian lagi jalan, internet sekolah putus, jawaban siswa hilang. Anak nangis, guru bingung, orang tua marah.",
           "made": "Ujian online yang menyimpan jawaban di perangkat siswa kalau koneksi putus. Guru koreksi lewat tampilan terbagi yang dirancang untuk mempercepat koreksi, lengkap dengan pintasan keyboard. Orang tua bisa lihat nilai, rapor, dan tagihan SPP sendiri. Ada empat jenis akses: admin, guru, siswa, orang tua.",
@@ -179,89 +165,16 @@ export const content = {
       "ctaCard": {
         "title": "Usaha Anda nggak ada di daftar?",
         "desc": "Contoh di atas cuma sebagian. Ceritakan cara kerja usaha Anda, nanti saya kasih gambaran sistemnya.",
-        "button": "Ceritakan di WhatsApp"
+        "button": "Tanya di WhatsApp"
       },
-      "showAll": "Lihat semua contoh ({n})"
-    },
-    "quadrant": {
-      "eyebrow": "Yang Bisa Saya Bantu",
-      "title": "Apa yang bisa saya buatkan?",
-      "subtitle": "Empat jenis pekerjaan yang paling sering diminta pemilik bisnis.",
-      "cells": [
-        {
-          "tag": "UNTUK KASIR & TOKO",
-          "title": "Aplikasi buat bisnis Anda",
-          "desc": "Kasir, portal internal, toko online, atau aplikasi khusus yang dipakai tim Anda tiap hari."
-        },
-        {
-          "tag": "UNTUK KERJAAN BERULANG",
-          "title": "Otomatisasi kerjaan berulang",
-          "desc": "Rekap, laporan, input data. Kerjaan yang tiap hari diulang-ulang, dibikin jalan sendiri."
-        },
-        {
-          "tag": "UNTUK BISNIS YANG BERKEMBANG",
-          "title": "Sistem yang ikut tumbuh",
-          "desc": "Dirancang supaya nggak perlu dibongkar ulang waktu bisnis Anda membesar."
-        },
-        {
-          "tag": "UNTUK CITRA BRAND",
-          "title": "Website yang bikin orang tertarik",
-          "desc": "Halaman untuk brand Anda, dengan tampilan dan animasi yang diingat orang."
-        }
-      ]
-    },
-    "skills": {
-      "eyebrow": "Cara Kerja Saya",
-      "title": "Cara kerja saya",
-      "subtitle": "Sepuluh hal yang saya pegang waktu bikin sistem untuk Anda.",
-      "hint": "Arahkan kursor atau sentuh tiap sel",
-      "items": [
-        {
-          "name": "Dibantu AI",
-          "description": "Saya pakai AI supaya lebih cepat. Keputusan penting tetap dari saya."
-        },
-        {
-          "name": "Aplikasi yang cepat dibuka",
-          "description": "Jalan di browser HP atau komputer."
-        },
-        {
-          "name": "Software kasir yang mandiri",
-          "description": "Dipasang di komputer toko, jalan tanpa internet."
-        },
-        {
-          "name": "Data yang rapi",
-          "description": "Catatan tertata, bisa disambungkan ke aplikasi lain."
-        },
-        {
-          "name": "Tampilan yang gampang dimengerti",
-          "description": "Karyawan baru langsung bisa pakai."
-        },
-        {
-          "name": "Tulisan di layar yang jelas",
-          "description": "Bahasa sehari-hari, bukan istilah teknis."
-        },
-        {
-          "name": "Salah input langsung ketahuan",
-          "description": "Sistem menahan, lalu menawarkan cara benerinnya."
-        },
-        {
-          "name": "Nyambung ke pembayaran dan aplikasi lain",
-          "description": "Data mengalir sendiri, nggak perlu input dua kali."
-        },
-        {
-          "name": "Sistem online dan terurus",
-          "description": "Pemasangan dan pengaturan saya yang urus."
-        },
-        {
-          "name": "Tetap jalan tanpa internet",
-          "description": "Datanya nyambung lagi begitu internet balik."
-        }
-      ]
+      "showAll": "Lihat semua contoh ({n})",
+      "filterShowing": "Menampilkan contoh untuk",
+      "filterChange": "Ganti"
     },
     "process": {
       "eyebrow": "Langkah Kerja",
       "title": "Dari cerita Anda sampai sistem jalan",
-      "subtitle": "Empat langkah. Anda selalu tahu lagi sampai mana.",
+      "subtitle": "Empat langkah. Di tiap langkah Anda tahu lagi sampai mana.",
       "steps": [
         {
           "num": "01",
@@ -271,7 +184,7 @@ export const content = {
         {
           "num": "02",
           "title": "Lihat rancangannya",
-          "desc": "Sebelum dibangun, Anda lihat dulu gambaran tampilan dan alurnya. Kalau nggak cocok, bilang saja. Belum ada biaya besar yang keluar."
+          "desc": "Sebelum dibangun, Anda lihat dulu gambaran tampilan dan alurnya. Kalau cocok, kita sepakati harga final, baru DP. Kalau nggak cocok, bilang saja."
         },
         {
           "num": "03",
@@ -281,59 +194,22 @@ export const content = {
         {
           "num": "04",
           "title": "Dipasang dan diajarkan",
-          "desc": "Sistem dipasang, tim Anda dilatih. Saya mendampingi setelah sistem berjalan."
+          "desc": "Sistem dipasang dan tim Anda dilatih. Setelah berjalan, saya mendampingi 30 hari tanpa biaya tambahan."
         }
       ],
       "promisesTitle": "Tiga hal yang saya pegang",
       "promises": [
         {
-          "title": "Lihat rancangannya dulu",
-          "desc": "Sebelum dibangun, Anda lihat tampilan dan alurnya. Belum cocok, bilang saja."
+          "title": "Belum bayar sebelum setuju",
+          "desc": "DP baru diminta setelah rancangan, ruang lingkup, dan harga final Anda setujui."
         },
         {
           "title": "Bahasa sehari-hari",
           "desc": "Tulisan di layar pakai bahasa tim Anda, bukan istilah teknis."
         },
         {
-          "title": "Harga jelas sebelum mulai",
-          "desc": "Harga final ditulis dan disepakati dulu, baru Anda bayar DP."
-        }
-      ]
-    },
-    "orbit": {
-      "eyebrow": "Alat",
-      "title": "Alat di balik layar",
-      "subtitle": "Nggak perlu dihafal. Ini cuma biar Anda tahu pilihannya sudah dipikirkan.",
-      "cards": [
-        {
-          "title": "Layar yang responsif",
-          "tagline": "React dan Next.js",
-          "desc": "Layar langsung bereaksi waktu diketuk atau diklik, tanpa jeda yang mengganggu."
-        },
-        {
-          "title": "Kode yang lebih jarang error",
-          "tagline": "TypeScript",
-          "desc": "Membantu menangkap salah tulis sebelum sampai ke tangan Anda."
-        },
-        {
-          "title": "Aplikasi komputer yang mandiri",
-          "tagline": "Electron",
-          "desc": "Dipasang di komputer toko, dan nggak bergantung pada koneksi internet."
-        },
-        {
-          "title": "Tanpa biaya server bulanan",
-          "tagline": "Google Apps Script",
-          "desc": "Pakai Google Workspace, jadi untuk sistem tertentu nggak ada tagihan server tambahan."
-        },
-        {
-          "title": "Asisten AI untuk kerjaan berulang",
-          "tagline": "AI Agent",
-          "desc": "Tugas yang tiap hari Anda ulang, dikerjakan otomatis."
-        },
-        {
-          "title": "Data aman di perangkat",
-          "tagline": "Zustand dan IndexedDB",
-          "desc": "Transaksi tetap tercatat waktu internet mati, lalu tersambung lagi begitu sinyal balik."
+          "title": "Boleh berhenti di tengah jalan",
+          "desc": "Bagian yang belum dikerjakan dikembalikan, yang sudah dikerjakan dihitung apa adanya. Aturannya tertulis di kesepakatan."
         }
       ]
     },
@@ -343,9 +219,9 @@ export const content = {
       "titlePart2": "di posisi",
       "titlePart3": "Anda.",
       "p1": "Tahun 2019, saya buka usaha F&B sendiri. Dari nol.",
-      "p2": "Saya tahu rasanya ngitung kas tutup yang nggak pernah pas. Nyusun jadwal karyawan sambil takut ada yang keluar. Pulang malam tanpa tahu hari itu untung atau nggak.",
-      "p3": "Waktu itu nggak ada alat yang benar-benar cocok untuk bisnis sekecil punya saya.",
-      "p4": "Setelahnya saya belajar ekonomi, lalu jadi analis data. Dari situ kelihatan polanya sama di banyak bisnis: masalahnya jarang di orangnya, hampir selalu di alat yang dipakai. Sekarang saya yang bikin alatnya.",
+      "p2": "Saya tahu rasanya ngitung kas tutup yang sering nggak pas. Nyusun jadwal karyawan sambil takut ada yang keluar. Pulang malam tanpa tahu hari itu untung atau nggak.",
+      "p3": "Waktu itu saya nggak nemu alat yang pas untuk bisnis sekecil punya saya.",
+      "p4": "Setelahnya saya belajar ekonomi, lalu jadi analis data. Dari situ kelihatan polanya sama di banyak bisnis: masalahnya sering bukan di orangnya, tapi di alat yang dipakai. Sekarang saya yang bikin alatnya.",
       "timelineHeading": "PERJALANAN",
       "timeline": [
         {
@@ -389,87 +265,86 @@ export const content = {
           "label": "YANG SAYA KERJAKAN",
           "content": "Sistem kasir, pembukuan, booking, jadwal karyawan, sistem sekolah, toko online, dan website usaha"
         }
-      ]
-    },
-    "testimonials": {
-      "eyebrow": "Masalah yang Sering Muncul",
-      "title": "Tiga masalah yang paling sering saya temui",
-      "subtitle": "Bukan testimoni. Ini gambaran yang umum dialami pemilik bisnis, dan cara sistem buatan saya menjawabnya.",
-      "cards": [
-        {
-          "category": "Jadwal & Shift",
-          "title": "Karyawan kelelahan, baru ketahuan setelah dia resign.",
-          "desc": "Sistem kasih peringatan lebih awal, dan menawarkan tukar shift sekali klik."
-        },
-        {
-          "category": "Kasir & Toko",
-          "title": "Internet mati pas ramai, antrean numpuk.",
-          "desc": "Kasir jalan penuh di perangkatnya sendiri, jadi transaksi nggak berhenti."
-        },
-        {
-          "category": "Kas & Pembukuan",
-          "title": "Kas dan catatan nggak sama, selisihnya entah di mana.",
-          "desc": "Tiap transaksi otomatis masuk pembukuan, dan yang nggak seimbang langsung ditolak."
-        }
-      ]
+      ],
+      "portraitAlt": "Aldy Alfarisy, pembuat aplikasi dan website untuk usaha"
     },
     "faq": {
       "eyebrow": "Pertanyaan Umum",
       "title": "Pertanyaan yang sering muncul",
-      "items": [
+      "groups": [
         {
-          "q": "Berapa biayanya? Takut mahal.",
-          "a": "Website usaha mulai dari Rp 499.000. Untuk aplikasi, harganya tergantung kebutuhan, jadi saya kasih gambaran setelah dengar cerita Anda. Bisa mulai dari versi kecil dulu, nggak perlu langsung komit besar."
+          "title": "Harga dan pembayaran",
+          "items": [
+            {
+              "q": "Berapa biayanya? Takut mahal.",
+              "a": "Website usaha mulai dari Rp 499.000. Untuk aplikasi, harganya tergantung kebutuhan, jadi saya kasih gambaran setelah dengar cerita Anda. Bisa mulai dari versi kecil dulu, nggak perlu langsung komit besar."
+            },
+            {
+              "q": "Bayarnya gimana? Harus lunas di depan?",
+              "a": "Nggak. Mulainya dengan DP, dan DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan jadwal pelunasan saya jelaskan di chat."
+            },
+            {
+              "q": "Kalau sudah DP lalu merasa tidak cocok?",
+              "a": "Bilang saja. Bagian yang belum dikerjakan dikembalikan, dan bagian yang sudah dikerjakan dihitung apa adanya. Aturannya ditulis di kesepakatan sebelum Anda bayar DP."
+            }
+          ]
         },
         {
-          "q": "Bayarnya gimana? Harus lunas di depan?",
-          "a": "Nggak. Mulainya dengan DP, dan DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan jadwal pelunasan saya jelaskan di chat."
+          "title": "Proses dan dukungan",
+          "items": [
+            {
+              "q": "Berapa lama jadinya?",
+              "a": "Versi awal yang bisa dicoba biasanya selesai 1 sampai 2 minggu. Sistem yang lebih besar dikerjakan bertahap, jadi hasilnya sudah bisa dilihat di tengah jalan."
+            },
+            {
+              "q": "Kalau sistemnya bermasalah dan saya nggak bisa apa-apa?",
+              "a": "Setelah sistem berjalan, saya mendampingi 30 hari tanpa biaya tambahan. Kirim pesan ke saya, biasanya saya balas dalam satu hari kerja. Setelah itu, perawatan dibahas terpisah dan harganya jelas di depan. Sistem juga diserahkan dengan catatan tertulis cara pakai dan cara kerjanya."
+            },
+            {
+              "q": "Karyawan nanti bingung, atau malah nolak?",
+              "a": "Sistemnya dibuat gampang dipelajari, dan saya bantu melatih tim Anda. Sistem yang bagus terasa membantu, bukan mengawasi."
+            },
+            {
+              "q": "Saya gaptek. Nanti dianggap bodoh?",
+              "a": "Nggak. Yang perlu paham bisnisnya itu Anda, dan itu bagian paling susah. Urusan teknis saya yang pegang. Pertanyaan apa pun boleh."
+            }
+          ]
         },
         {
-          "q": "Sudah pernah coba aplikasi, hasilnya bikin kecewa. Ini bakal beda?",
-          "a": "Kebanyakan aplikasi dibuat untuk semua orang, jadi nggak pas buat siapa pun. Di sini saya mulai dari cerita cara kerja Anda, terus Anda lihat rancangannya dulu. Lanjut atau nggak, terserah Anda."
-        },
-        {
-          "q": "Saya gaptek. Nanti dianggap bodoh?",
-          "a": "Nggak. Yang perlu paham bisnisnya itu Anda, dan itu bagian paling susah. Urusan teknis saya yang pegang. Pertanyaan apa pun boleh."
-        },
-        {
-          "q": "Berapa lama jadinya?",
-          "a": "Versi awal yang bisa dicoba biasanya selesai 1 sampai 2 minggu. Sistem yang lebih besar dikerjakan bertahap, jadi hasilnya sudah bisa dilihat di tengah jalan."
-        },
-        {
-          "q": "Kenapa nggak pakai aplikasi yang sudah ada aja?",
-          "a": "Aplikasi jadi bikin Anda yang menyesuaikan diri dengan aplikasinya. Sistem buatan sendiri kebalikannya: sistemnya yang mengikuti cara kerja Anda. Kalau aplikasi yang sudah ada memang cocok, saya bilang apa adanya."
-        },
-        {
-          "q": "Kalau sistemnya bermasalah dan saya nggak bisa apa-apa?",
-          "a": "Sistemnya dibuat dengan dokumentasi, dan saya mendampingi setelah sistem berjalan."
-        },
-        {
-          "q": "Karyawan nanti bingung, atau malah nolak?",
-          "a": "Sistemnya dibuat gampang dipelajari, dan saya bantu melatih tim Anda. Sistem yang bagus terasa membantu, bukan mengawasi."
-        },
-        {
-          "q": "Kerja sendirian dan pakai AI, gimana caranya percaya hasilnya bisa diandalkan?",
-          "a": "Saya pakai AI supaya nulis kodenya lebih cepat, jadi kerjanya lebih singkat dan lebih murah. Rancangan sistem, aturan bisnis, dan keputusan penting saya yang pegang. Contoh sistemnya juga bisa Anda coba dulu sebelum memutuskan apa pun."
-        },
-        {
-          "q": "Data usaha saya aman? Nanti punya siapa?",
-          "a": "Data usaha tetap milik Anda. Soal kode, akun hosting, dan domain, saya jelaskan di awal dan ditulis di kesepakatan sebelum mulai kerja."
-        },
-        {
-          "q": "Kalau nanti mau pindah ke vendor lain, bisa?",
-          "a": "Bisa dibicarakan dari awal. Sistemnya dibuat dengan dokumentasi, jadi orang lain bisa memahaminya."
+          "title": "Soal kepercayaan",
+          "items": [
+            {
+              "q": "Sudah pernah coba aplikasi, hasilnya bikin kecewa. Ini bakal beda?",
+              "a": "Banyak aplikasi dibuat untuk semua orang, jadi sering nggak pas buat usaha tertentu. Di sini saya mulai dari cerita cara kerja Anda, terus Anda lihat rancangannya dulu. Lanjut atau nggak, terserah Anda."
+            },
+            {
+              "q": "Kerja sendirian dan pakai AI, gimana caranya percaya hasilnya bisa diandalkan?",
+              "a": "Saya pakai AI supaya nulis kodenya lebih cepat, jadi kerjanya lebih singkat dan lebih murah. Rancangan sistem, aturan bisnis, dan keputusan penting saya yang pegang. Contoh sistemnya juga bisa Anda coba dulu sebelum memutuskan apa pun."
+            },
+            {
+              "q": "Kenapa nggak pakai aplikasi yang sudah ada saja?",
+              "a": "Aplikasi jadi bikin Anda yang menyesuaikan diri dengan aplikasinya. Sistem buatan sendiri kebalikannya: sistemnya yang mengikuti cara kerja Anda. Kalau aplikasi yang sudah ada memang cocok, saya bilang apa adanya."
+            },
+            {
+              "q": "Data usaha saya aman? Nanti punya siapa?",
+              "a": "Data usaha tetap milik Anda. Kode, akun hosting, dan domain diserahkan setelah pelunasan, dan ini ditulis di kesepakatan sebelum mulai kerja."
+            },
+            {
+              "q": "Kalau nanti mau pindah ke vendor lain, bisa?",
+              "a": "Bisa. Karena kode dan akun diserahkan setelah pelunasan, dan sistemnya punya catatan tertulis, orang lain bisa melanjutkannya. Hal ini saya bicarakan sejak awal."
+            }
+          ]
         }
       ]
     },
     "contact": {
       "eyebrow": "Kontak",
       "headline": "Apa satu hal yang paling bikin capek di bisnis Anda?",
-      "supporting": "Kirim pesan singkat aja. Nggak perlu siapin apa-apa, nggak perlu ngerti istilah teknis. Saya balas dengan beberapa pertanyaan dan gambaran awal solusinya. Kalau saya nggak bisa bantu, saya bilang terus terang.",
-      "btnWa": "Ceritakan Masalah Anda di WhatsApp",
+      "supporting": "Kirim pesan singkat saja. Nggak perlu siapin apa-apa, nggak perlu ngerti istilah teknis. Saya balas dengan beberapa pertanyaan dan gambaran awal solusinya. Kalau saya nggak bisa bantu, saya bilang terus terang.",
+      "btnWa": "Tanya di WhatsApp",
       "waUrl": "https://api.whatsapp.com/send?phone=6281410538887&text=Halo%20Aldy%2C%20saya%20pemilik%20usaha.%20Saya%20mau%20tanya%20soal%20aplikasi%20atau%20website%20untuk%20usaha%20saya.%20(web-kontak)",
-      "socialLabel": "Lebih nyaman lewat kanal lain? Pilih yang paling enak."
+      "emailLabel": "Lebih nyaman lewat email?",
+      "email": "aldyalfarisy24@gmail.com"
     },
     "footer": {
       "links": [
@@ -491,7 +366,8 @@ export const content = {
         }
       ],
       "identity": "Aldy Alfarisy, pembuat aplikasi dan website untuk usaha. Bandung, Indonesia.",
-      "copyright": "© 2026 Aldy Alfarisy. Sokara."
+      "copyright": "© 2026 Aldy Alfarisy. Sokara.",
+      "navLabel": "Tautan cepat"
     },
     "sidenav": [
       {
@@ -538,7 +414,7 @@ export const content = {
       "situationsLabel": "Situasi yang sering terjadi",
       "demosLabel": "Contoh yang cocok",
       "note": "Ini gambaran umum, bukan cerita klien.",
-      "cta": "Ceritakan usaha Anda di WhatsApp",
+      "cta": "Tanya di WhatsApp",
       "seeDemos": "Lihat contohnya",
       "waTemplate": "Halo Aldy, saya punya usaha {usaha}. Saya mau tanya soal aplikasi atau website untuk usaha saya.",
       "items": [
@@ -552,7 +428,7 @@ export const content = {
           ],
           "situations": [
             "Internet mati pas toko ramai, kasir ikut berhenti.",
-            "Stok di catatan dan di rak nggak pernah sama.",
+            "Stok di catatan dan di rak sering beda.",
             "Tutup toko, kas selisih lagi, entah bocor di mana."
           ]
         },
@@ -593,7 +469,7 @@ export const content = {
             "sokara-crm"
           ],
           "situations": [
-            "Angka kasir, gudang, dan pembukuan nggak pernah sama.",
+            "Angka kasir, gudang, dan pembukuan jarang cocok.",
             "Tutup buku makan waktu berhari-hari.",
             "Untung bersih baru ketahuan tanggal 10."
           ]
@@ -627,20 +503,20 @@ export const content = {
       ]
     },
     "floatingWa": {
-      "label": "Chat di WhatsApp"
+      "label": "Tanya di WhatsApp"
     },
     "packages": {
       "eyebrow": "Paket dan Harga",
       "title": "Mulai dari yang paling Anda butuhkan",
-      "subtitle": "Harga final selalu disepakati dulu di chat, setelah saya dengar cara kerja usaha Anda.",
+      "subtitle": "Harga final disepakati dulu di chat, setelah saya dengar cara kerja usaha Anda.",
       "from": "Mulai dari",
       "contactPrice": "Hubungi saya untuk harga",
       "contactPriceShort": "harga dibahas di chat",
       "choose": "Pilih paket ini",
       "example": "Lihat contoh website",
-      "middleTag": "Cocok untuk kebanyakan usaha",
+      "middleTag": "Untuk satu masalah utama",
       "payTitle": "Cara bayar",
-      "payText": "DP dulu. DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan pelunasannya saya jelaskan di chat.",
+      "payText": "DP dulu. DP baru diminta setelah gambaran solusi, ruang lingkup, dan harga final disepakati. Besaran DP dan pelunasannya saya jelaskan di chat. Kalau di tengah jalan Anda memutuskan berhenti, bagian yang belum dikerjakan dikembalikan dan yang sudah dikerjakan dihitung apa adanya. Aturannya ditulis di kesepakatan.",
       "items": [
         {
           "id": "website",
@@ -649,8 +525,10 @@ export const content = {
           "desc": "Profil usaha atau landing page satu halaman, supaya pembeli percaya dan gampang menghubungi Anda.",
           "features": [
             "Satu halaman profil usaha atau promosi",
-            "Rapi di layar HP",
-            "Tombol WhatsApp dan lokasi usaha",
+            "Rapi di layar HP, ada tombol WhatsApp dan lokasi usaha",
+            "Satu putaran revisi besar sebelum diserahkan",
+            "Biasanya selesai dalam beberapa hari kerja",
+            "Domain dan hosting dibahas terpisah, harganya jelas di depan",
             "Bisa dikembangkan jadi toko online nanti"
           ]
         },
@@ -663,7 +541,7 @@ export const content = {
             "Satu sistem inti sesuai cara kerja Anda",
             "Lihat rancangannya dulu sebelum dibangun",
             "Versi awal yang bisa dicoba biasanya 1 sampai 2 minggu",
-            "Tim Anda dilatih sampai bisa pakai"
+            "Tim Anda dilatih, lalu saya dampingi 30 hari setelah berjalan"
           ]
         },
         {
@@ -678,7 +556,14 @@ export const content = {
             "Dikerjakan bertahap, hasilnya terlihat di tengah jalan"
           ]
         }
-      ]
+      ],
+      "driversTitle": "Yang menentukan harga aplikasi",
+      "drivers": [
+        "Jumlah fitur yang Anda perlukan",
+        "Berapa orang yang memakainya",
+        "Sambungan ke pembayaran atau aplikasi lain"
+      ],
+      "driversNote": "Saya hitung bersama Anda di chat. Harga finalnya tertulis sebelum DP."
     },
     "orderFlow": {
       "eyebrow": "Pesan dalam 3 Langkah",
@@ -790,51 +675,37 @@ export const content = {
         }
       ],
       "contact": "Contact",
-      "cta": "Tell Me About Your Business",
+      "cta": "Ask on WhatsApp",
       "waUrl": "https://api.whatsapp.com/send?phone=6281410538887&text=Hi%20Aldy%2C%20I%20run%20a%20business.%20I'd%20like%20to%20ask%20about%20an%20app%20or%20website%20for%20it.%20(web-general)"
     },
     "hero": {
       "eyebrow": "APPS AND WEBSITES FOR BUSINESSES",
       "headline1": "Your business has its own way.",
       "headline2": "The app should follow it.",
-      "offer": "I build custom apps and websites around how your business works. Business websites start from Rp 499.000.",
-      "ctaPrimary": "Tell Me About Your Business",
+      "offer": "I build apps and websites that follow how your business already works. The final price is clear before you pay anything.",
+      "ctaPrimary": "Ask on WhatsApp",
       "ctaSecondary": "See samples for my business",
       "reassurance": "Free to talk first, no strings attached. If I can't help, I'll say so.",
       "trust": [
         "Ran my own F&B business",
         "Economics degree, Universitas Diponegoro",
-        "7 sample systems you can try"
-      ]
-    },
-    "marquee": {
-      "tier1": [
-        "Cash register keeps working when the internet is down",
-        "Financial reports without manual counting",
-        "Staff schedules that are fairer",
-        "Online store with payments included"
-      ]
-    },
-    "familiar": {
-      "title": "Sound familiar?",
-      "items": [
-        "Closing cash is off again, and you can't tell where it leaked.",
-        "The internet drops at the busiest hour. Long line, idle cashier.",
-        "Every month end you wonder: profit, or just money moving around?"
+        "7 sample systems you can try yourself"
       ],
-      "closing": "It's not that you're not working hard enough. The tools don't fit."
+      "priceLink": "See packages and pricing",
+      "byline": "Aldy Alfarisy, builder of Sokara",
+      "portraitAlt": "Aldy Alfarisy, builder of apps and websites for businesses"
     },
     "work": {
       "eyebrow": "Sample Systems",
       "title": "Systems I've built",
-      "subtitle": "All of these are sample systems you can try right now. Not all are used by real businesses yet.",
+      "subtitle": "These are sample systems, not work done for clients. You can try each one yourself and judge directly.",
       "cardLabel": "Sample system, try it live",
       "btnReadStory": "Read the story",
       "btnTryLive": "Try it live",
       "modal": {
         "headingSituation": "A situation that often happens",
         "headingMade": "What I built",
-        "headingAftermath": "Life afterward",
+        "headingAftermath": "Once it is running",
         "headingSuitable": "Good for",
         "headingTryLive": "Try it live",
         "headingTech": "For the curious"
@@ -861,7 +732,7 @@ export const content = {
           "metrics": [
             "From sign-up to shipping",
             "Promo codes calculated accurately",
-            "No monthly server cost"
+            "Payment and shipping are simulated"
           ],
           "situation": "Many sample online stores stop at the storefront. Customers can pick items, but the payment and shipping flow is incomplete, so you can't picture what running the store would really feel like.",
           "made": "An online store you can try from start to finish: create an account, claim a promo code, pay (simulated), read the confirmation email, and see the order ship with a tracking number. The owner can also read a weekly sales chart.",
@@ -878,9 +749,9 @@ export const content = {
             "Records can't be changed quietly",
             "Stays smooth with thousands of rows"
           ],
-          "situation": "Closing the books. The numbers from the register, the warehouse, and the accountant's records don't match. You spend the night hunting for the gap, and part of you is afraid of what you'll find.",
+          "situation": "Closing the books. The numbers from the register, the warehouse, and the accountant's records don't match. You spend the night hunting for the gap, and you start to worry about what you'll find.",
           "made": "Every sale and purchase goes into the books automatically. If an entry doesn't balance, the system rejects it on the spot and shows where the mistake is, before it becomes a problem. Saved records can't be changed quietly.",
-          "aftermath": "You know this month's net profit without waiting until the 10th, and without having to suspect anyone.",
+          "aftermath": "You know this month's net profit without waiting until the 10th. No more guessing.",
           "suitable": "Distributors, wholesale shops, retail businesses with a warehouse.",
           "liveNote": "",
           "techDetails": "React 19, Zustand 5, Decimal.js (PSAK standard), SHA-256 chain on the ledger; double-entry in the browser; strict debit and credit balance validation; DOM virtualization."
@@ -893,7 +764,7 @@ export const content = {
             "Warning before staff burn out",
             "Schedules aren't lost when the internet drops"
           ],
-          "situation": "Building a shift schedule is like a puzzle where someone always ends up unhappy. Then one day your best employee resigns because they got night shifts three weeks in a row, and you only realize it when it is too late.",
+          "situation": "Building a shift schedule is like a puzzle where someone often ends up unhappy. Then one day your best employee resigns because they got night shifts three weeks in a row, and you only find out once they are leaving.",
           "made": "A system that builds the schedule and warns you before anyone burns out, with a one-click shift swap suggestion. Schedules are saved on the device, so nothing is lost if the internet drops mid-planning.",
           "aftermath": "Staff feel looked after, and you're no longer the place every schedule complaint lands.",
           "suitable": "Restaurants, clinics, factories, shops with many shifts.",
@@ -916,7 +787,7 @@ export const content = {
           "techDetails": "Next.js, dnd-kit, framer-motion, SWR; kanban drag-and-drop; optimistic updates with SWR and Zustand; slide-over Deal Inspector with 3D tilt; Poka-Yoke modal for stale deals."
         },
         "sanctuary": {
-          "summary": "Bookings that never clash therapist and room",
+          "summary": "Bookings that prevent therapist and room clashes",
           "role": "Good for spas, salons, clinics",
           "metrics": [
             "Checks therapist, room, and queue at once",
@@ -936,7 +807,7 @@ export const content = {
           "metrics": [
             "Exam answers saved when the connection drops",
             "Designed to speed up grading",
-            "Works without internet"
+            "Parents see grades and bills themselves"
           ],
           "situation": "An exam is underway, the school's internet drops, and the students' answers are lost. A child cries, the teacher is stuck, and the parents are angry.",
           "made": "An online exam that saves answers on the student device when the connection drops. Teachers grade in a split-screen view designed to speed up grading, with keyboard shortcuts. Parents can see grades, report cards, and school fee bills on their own. There are four kinds of access: admin, teacher, student, and parent.",
@@ -951,89 +822,16 @@ export const content = {
       "ctaCard": {
         "title": "Don't see your kind of business?",
         "desc": "These samples are only a few. Tell me how your business runs and I'll sketch the system for you.",
-        "button": "Tell me on WhatsApp"
+        "button": "Ask on WhatsApp"
       },
-      "showAll": "See all samples ({n})"
-    },
-    "quadrant": {
-      "eyebrow": "What I Can Help With",
-      "title": "What can I help you build?",
-      "subtitle": "The four kinds of work business owners ask for most.",
-      "cells": [
-        {
-          "tag": "FOR CHECKOUT & SHOPS",
-          "title": "Apps for your business",
-          "desc": "Cash registers, internal portals, online stores, or custom apps your team uses every day."
-        },
-        {
-          "tag": "FOR REPETITIVE WORK",
-          "title": "Automation for repetitive work",
-          "desc": "Work you repeat every day, like recaps, reports, and data entry, set to run on its own."
-        },
-        {
-          "tag": "FOR GROWING BUSINESSES",
-          "title": "A system that grows with your business",
-          "desc": "Designed so it doesn't need to be torn down and rebuilt when your business gets bigger."
-        },
-        {
-          "tag": "FOR BRAND IMAGE",
-          "title": "A website that draws people in",
-          "desc": "Pages for your brand with a look and animation people remember."
-        }
-      ]
-    },
-    "skills": {
-      "eyebrow": "How I Work",
-      "title": "How I work",
-      "subtitle": "Ten things I hold to when I build a system for you.",
-      "hint": "Hover or tap each cell",
-      "items": [
-        {
-          "name": "Working with AI help",
-          "description": "I use AI to move faster. Important decisions stay with me."
-        },
-        {
-          "name": "Apps that open fast",
-          "description": "Runs in the browser on a phone or computer."
-        },
-        {
-          "name": "Standalone cash register software",
-          "description": "Installed on the shop computer, works without internet."
-        },
-        {
-          "name": "Data kept in order",
-          "description": "Records stay organized and can connect to other apps."
-        },
-        {
-          "name": "Screens that are easy to understand",
-          "description": "A new employee can use it right away."
-        },
-        {
-          "name": "Clear writing on screen",
-          "description": "Everyday language, not technical terms."
-        },
-        {
-          "name": "Mistakes caught right away",
-          "description": "The system holds it, then offers a fix."
-        },
-        {
-          "name": "Connected to payments and other apps",
-          "description": "Data flows on its own, so you never enter it twice."
-        },
-        {
-          "name": "A system that stays online and looked after",
-          "description": "I handle the setup and configuration."
-        },
-        {
-          "name": "Works without internet",
-          "description": "Data syncs again once the internet is back."
-        }
-      ]
+      "showAll": "See all samples ({n})",
+      "filterShowing": "Showing samples for",
+      "filterChange": "Change"
     },
     "process": {
       "eyebrow": "The Process",
       "title": "From your story to a working system",
-      "subtitle": "Four steps. You always know where you are.",
+      "subtitle": "Four steps. At each one, you know where you are.",
       "steps": [
         {
           "num": "01",
@@ -1043,7 +841,7 @@ export const content = {
         {
           "num": "02",
           "title": "See the design first",
-          "desc": "Before the system is built, you see a picture of the screens and the flow. You can say \"this doesn't fit\" before any big cost is spent."
+          "desc": "Before the system is built, you see a picture of the screens and the flow. If it fits, we agree the final price, and only then comes the deposit. If it does not fit, just say so."
         },
         {
           "num": "03",
@@ -1053,59 +851,22 @@ export const content = {
         {
           "num": "04",
           "title": "Installed and taught",
-          "desc": "The system is installed and your team is trained. I support you after the system is running."
+          "desc": "The system is installed and your team is trained. Once it is running, I support you for 30 days at no extra cost."
         }
       ],
       "promisesTitle": "Three things I stick to",
       "promises": [
         {
-          "title": "See the design first",
-          "desc": "Before anything is built, you see the screens and the flow. If it does not fit, just say so."
+          "title": "No payment before you agree",
+          "desc": "The deposit is only requested after you approve the design, the scope, and the final price."
         },
         {
           "title": "Everyday language",
           "desc": "Screens use the words your team already uses, not tech jargon."
         },
         {
-          "title": "A clear price before any work",
-          "desc": "The final price is written down and agreed before you pay the deposit."
-        }
-      ]
-    },
-    "orbit": {
-      "eyebrow": "Tools",
-      "title": "The tools I use behind the scenes",
-      "subtitle": "You don't need to memorize these. This is just so you know the choices were thought through.",
-      "cards": [
-        {
-          "title": "A responsive interface",
-          "tagline": "React and Next.js",
-          "desc": "The screen reacts quickly when tapped or clicked, without annoying lag."
-        },
-        {
-          "title": "Code that's less likely to break",
-          "tagline": "TypeScript",
-          "desc": "A tool that helps catch writing mistakes before they reach you."
-        },
-        {
-          "title": "A standalone computer app",
-          "tagline": "Electron",
-          "desc": "Software installed on the shop computer that doesn't depend on an internet connection."
-        },
-        {
-          "title": "No monthly server cost",
-          "tagline": "Google Apps Script",
-          "desc": "Uses Google Workspace, so certain systems add no monthly server bill."
-        },
-        {
-          "title": "AI assistant for repetitive work",
-          "tagline": "AI Agent",
-          "desc": "Tasks you repeat every day get done automatically."
-        },
-        {
-          "title": "Data stored safely on the device",
-          "tagline": "Zustand and IndexedDB",
-          "desc": "Transactions are still recorded when the internet is down, then sync when the signal returns."
+          "title": "You can stop midway",
+          "desc": "Work not yet done is refunded, and finished work is counted as it is. The rules are written in the agreement."
         }
       ]
     },
@@ -1115,9 +876,9 @@ export const content = {
       "titlePart2": "where you",
       "titlePart3": "are.",
       "p1": "In 2019, I opened my own food and beverage business, from scratch.",
-      "p2": "I know what it's like to count closing cash that never adds up. To build staff schedules while worrying someone will quit. To go home late without knowing whether the day made money.",
-      "p3": "Back then, nobody had built a tool that really fit a business as small as mine.",
-      "p4": "After that I studied economics and worked as a data analyst. From there I saw the same pattern in many businesses: the problem is rarely the people, it is almost always the tools they use. Now I build those tools.",
+      "p2": "I know what it's like to count closing cash that so often doesn't add up. To build staff schedules while worrying someone will quit. To go home late without knowing whether the day made money.",
+      "p3": "Back then, I couldn't find a tool that fit a business as small as mine.",
+      "p4": "After that I studied economics and worked as a data analyst. From there I saw the same pattern in many businesses: the problem is often not the people, but the tools they use. Now I build those tools.",
       "timelineHeading": "CAREER TIMELINE",
       "timeline": [
         {
@@ -1138,7 +899,7 @@ export const content = {
         }
       ],
       "roleRow": "APPS AND WEBSITES FOR BUSINESSES",
-      "vitalsHeader": "Vitals",
+      "vitalsHeader": "Quick facts",
       "vitals": [
         {
           "label": "ROLE",
@@ -1161,77 +922,75 @@ export const content = {
           "label": "WHAT I TAKE ON",
           "content": "Point of sale, bookkeeping, bookings, staff scheduling, school systems, online stores, and business websites"
         }
-      ]
-    },
-    "testimonials": {
-      "eyebrow": "Business Problems",
-      "title": "The three problems I see most often",
-      "subtitle": "These are not testimonials. They describe situations business owners commonly face, and how the systems I build respond.",
-      "cards": [
-        {
-          "category": "Staff Schedules",
-          "title": "An employee burns out, and you only notice after they resign.",
-          "desc": "The system warns you early and offers a one-click shift swap."
-        },
-        {
-          "category": "Cashier & Shops",
-          "title": "The internet drops during the rush and the line backs up.",
-          "desc": "The register runs fully on its own device, so transactions don't stop."
-        },
-        {
-          "category": "Cash & Bookkeeping",
-          "title": "Cash and records don't match, and you don't know where the gap is.",
-          "desc": "Every transaction goes into the books automatically, and anything unbalanced is rejected right away."
-        }
-      ]
+      ],
+      "portraitAlt": "Aldy Alfarisy, builder of apps and websites for businesses"
     },
     "faq": {
       "eyebrow": "FAQ",
       "title": "Questions people often ask",
-      "items": [
+      "groups": [
         {
-          "q": "How much does it cost? I'm afraid it's expensive.",
-          "a": "Business websites start from Rp 499.000. For apps, the price depends on what you need, so I'll give you a clear picture after hearing your story. You can start with a small version, no big commitment up front."
+          "title": "Price and payment",
+          "items": [
+            {
+              "q": "How much does it cost? I'm afraid it's expensive.",
+              "a": "Business websites start from Rp 499.000. For apps, the price depends on what you need, so I'll give you a clear picture after hearing your story. You can start with a small version, no big commitment up front."
+            },
+            {
+              "q": "How do I pay? Do I pay everything up front?",
+              "a": "No. It starts with a deposit, and I only ask for it after the solution sketch, the scope, and the final price are agreed. I explain the deposit amount and the payment schedule in chat."
+            },
+            {
+              "q": "What if I paid the deposit and it doesn't feel right?",
+              "a": "Just say so. The part not yet done is refunded, and the part already done is counted as it is. The rules are written into the agreement before you pay the deposit."
+            }
+          ]
         },
         {
-          "q": "How do I pay? Do I pay everything up front?",
-          "a": "No. It starts with a deposit, and I only ask for it after the solution sketch, the scope, and the final price are agreed. I explain the deposit amount and the payment schedule in chat."
+          "title": "Process and support",
+          "items": [
+            {
+              "q": "How long will it take?",
+              "a": "A first version you can try is usually done in 1 to 2 weeks. For larger systems, the work is split into stages so you can see results along the way."
+            },
+            {
+              "q": "What if the system has a problem and I can't do anything?",
+              "a": "Once the system is running, I support you for 30 days at no extra cost. Send me a message, and I usually reply within one working day. After that, maintenance is discussed separately with a clear price up front. The system is also handed over with written notes on how to use it and how it works."
+            },
+            {
+              "q": "What if my staff get confused, or refuse to use it?",
+              "a": "The system is designed to be easy to learn, and I help train your team. A good system feels like help, not like surveillance."
+            },
+            {
+              "q": "I don't understand technology. Will you think I'm stupid?",
+              "a": "No. You don't need to understand technology. You only need to understand your business, and that's the hardest part. The rest is my job. No question is too small."
+            }
+          ]
         },
         {
-          "q": "I tried an app before and it was disappointing. Why would this be different?",
-          "a": "It's fair to be doubtful. Most apps are built for everyone, so they fit no one well. Here, I start from the story of how you work, and you see the design first. You only continue if it feels right."
-        },
-        {
-          "q": "I don't understand technology. Will you think I'm stupid?",
-          "a": "No. You don't need to understand technology. You only need to understand your business, and that's the hardest part. The rest is my job. No question is too small."
-        },
-        {
-          "q": "How long will it take?",
-          "a": "A first version you can try is usually done in 1 to 2 weeks. For larger systems, the work is split into stages so you can see results along the way."
-        },
-        {
-          "q": "Why not just use an app that already exists?",
-          "a": "Off-the-shelf apps make you adjust how your business works to fit the app. A system built for you goes the other way: the app adapts to how you work. If an off-the-shelf app already suits you, I'll tell you so."
-        },
-        {
-          "q": "What if the system has a problem and I can't do anything?",
-          "a": "A reasonable fear. The system is built with documentation, and I support you after the system is running."
-        },
-        {
-          "q": "What if my staff get confused, or refuse to use it?",
-          "a": "The system is designed to be easy to learn, and I help train your team. A good system feels like help, not like surveillance."
-        },
-        {
-          "q": "You work alone and use AI. How do I know the result is reliable?",
-          "a": "A good question, and you have every right to ask it. I use AI to write code faster, which makes the work quicker and more affordable. The system design, business rules, and important decisions are mine. You can also try the sample systems that already exist before deciding anything."
-        },
-        {
-          "q": "Is my business data safe? Who owns it?",
-          "a": "Your business data stays yours. Code, hosting accounts, and domain are explained at the start and written into the agreement before any work begins."
-        },
-        {
-          "q": "Can I move to another vendor later?",
-          "a": "This can be discussed from the start. Each system comes with documentation, so someone else can understand it."
+          "title": "Trust",
+          "items": [
+            {
+              "q": "I tried an app before and it was disappointing. Why would this be different?",
+              "a": "It's fair to be doubtful. Many apps are built for everyone, so they often fit one particular business poorly. Here, I start from the story of how you work, and you see the design first. You only continue if it feels right."
+            },
+            {
+              "q": "You work alone and use AI. How do I know the result is reliable?",
+              "a": "A good question, and you have every right to ask it. I use AI to write code faster, which makes the work quicker and more affordable. The system design, business rules, and important decisions are mine. You can also try the sample systems that already exist before deciding anything."
+            },
+            {
+              "q": "Why not just use an app that already exists?",
+              "a": "Off-the-shelf apps make you adjust how your business works to fit the app. A system built for you goes the other way: the app adapts to how you work. If an off-the-shelf app already suits you, I'll tell you so."
+            },
+            {
+              "q": "Is my business data safe? Who owns it?",
+              "a": "Your business data stays yours. Code, hosting accounts, and domain are handed over after final payment, and this is written into the agreement before any work begins."
+            },
+            {
+              "q": "Can I move to another vendor later?",
+              "a": "Yes. Because the code and accounts are handed over after final payment, and the system comes with written notes, someone else can pick it up. I discuss this from the start."
+            }
+          ]
         }
       ]
     },
@@ -1239,9 +998,10 @@ export const content = {
       "eyebrow": "Contact",
       "headline": "Tell me the one thing that wears you out most in your business.",
       "supporting": "Just send a short message. You don't need to prepare anything or understand technical terms. I'll reply with questions and a first picture of a possible solution. If I can't help, I'll tell you straight.",
-      "btnWa": "Tell Me Your Problem on WhatsApp",
+      "btnWa": "Ask on WhatsApp",
       "waUrl": "https://api.whatsapp.com/send?phone=6281410538887&text=Hi%20Aldy%2C%20I%20run%20a%20business.%20I'd%20like%20to%20ask%20about%20an%20app%20or%20website%20for%20it.%20(web-contact)",
-      "socialLabel": "Prefer another channel? Pick whichever is most comfortable."
+      "emailLabel": "Prefer email?",
+      "email": "aldyalfarisy24@gmail.com"
     },
     "footer": {
       "links": [
@@ -1263,7 +1023,8 @@ export const content = {
         }
       ],
       "identity": "Aldy Alfarisy, apps and websites for businesses. Bandung, Indonesia.",
-      "copyright": "© 2026 Aldy Alfarisy. Sokara."
+      "copyright": "© 2026 Aldy Alfarisy. Sokara.",
+      "navLabel": "Quick links"
     },
     "sidenav": [
       {
@@ -1310,7 +1071,7 @@ export const content = {
       "situationsLabel": "What often happens",
       "demosLabel": "Samples that fit",
       "note": "These are common situations, not client stories.",
-      "cta": "Tell me about your business on WhatsApp",
+      "cta": "Ask on WhatsApp",
       "seeDemos": "See the samples",
       "waTemplate": "Hi Aldy, I run a {usaha} business. I'd like to ask about an app or website for it.",
       "items": [
@@ -1324,7 +1085,7 @@ export const content = {
           ],
           "situations": [
             "The internet drops during a rush and the register stops too.",
-            "Stock on paper never matches stock on the shelf.",
+            "Stock on paper often differs from stock on the shelf.",
             "Closing time, the cash is off again and nobody knows why."
           ]
         },
@@ -1365,7 +1126,7 @@ export const content = {
             "sokara-crm"
           ],
           "situations": [
-            "Register, warehouse, and books never show the same numbers.",
+            "Register, warehouse, and books rarely show the same numbers.",
             "Closing the books takes days.",
             "You only know your real profit around the 10th of next month."
           ]
@@ -1399,20 +1160,20 @@ export const content = {
       ]
     },
     "floatingWa": {
-      "label": "Chat on WhatsApp"
+      "label": "Ask on WhatsApp"
     },
     "packages": {
       "eyebrow": "Packages and Pricing",
       "title": "Start with what you need most",
-      "subtitle": "The final price is always agreed in chat first, after I've heard how your business runs.",
+      "subtitle": "The final price is agreed in chat first, after I've heard how your business runs.",
       "from": "Starts from",
       "contactPrice": "Contact me for pricing",
       "contactPriceShort": "price discussed in chat",
       "choose": "Choose this package",
       "example": "See a sample website",
-      "middleTag": "Fits most businesses",
+      "middleTag": "For one main problem",
       "payTitle": "How payment works",
-      "payText": "Deposit first. I only ask for the deposit after the solution sketch, the scope, and the final price are agreed. I'll explain the deposit amount and the remaining payment in chat.",
+      "payText": "Deposit first. I only ask for the deposit after the solution sketch, the scope, and the final price are agreed. I explain the deposit amount and the remaining payment in chat. If you decide to stop partway, the part not yet done is refunded and the part already done is counted as it is. The rules are written into the agreement.",
       "items": [
         {
           "id": "website",
@@ -1421,8 +1182,10 @@ export const content = {
           "desc": "A one-page business profile or landing page, so buyers trust you and can reach you easily.",
           "features": [
             "One profile or promo page",
-            "Looks clean on phones",
-            "WhatsApp button and business location",
+            "Looks clean on phones, with a WhatsApp button and business location",
+            "One round of major revisions before handover",
+            "Usually done within a few working days",
+            "Domain and hosting are discussed separately, with a clear price up front",
             "Can grow into an online store later"
           ]
         },
@@ -1435,7 +1198,7 @@ export const content = {
             "One core system built around how you work",
             "See the design before anything is built",
             "A first version to try usually takes 1 to 2 weeks",
-            "Your team gets trained until they can use it"
+            "Your team is trained, then I support you for 30 days after launch"
           ]
         },
         {
@@ -1450,7 +1213,14 @@ export const content = {
             "Built in stages, with progress you can see along the way"
           ]
         }
-      ]
+      ],
+      "driversTitle": "What sets the price of an app",
+      "drivers": [
+        "How many features you need",
+        "How many people use it",
+        "Connections to payments or other apps"
+      ],
+      "driversNote": "We work it out together in chat. The final price is written down before the deposit."
     },
     "orderFlow": {
       "eyebrow": "Order in 3 Steps",
@@ -1478,7 +1248,7 @@ export const content = {
       "summaryNeeds": "Needs",
       "summaryPackage": "Package",
       "problemLabel": "Your main problem (optional)",
-      "problemPlaceholder": "Example: stock never matches and checkout is slow during rush hour",
+      "problemPlaceholder": "Example: stock often does not match and checkout is slow during rush hour",
       "send": "Send the summary on WhatsApp",
       "sendNote": "No cost yet. I'll reply with a few questions and an early sketch of the solution.",
       "restart": "Start over",

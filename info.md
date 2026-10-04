@@ -4,6 +4,20 @@ Dokumen ini adalah Single Source of Truth (SSOT) dan System Knowledge Base kompr
 
 ---
 
+## Pembaruan Tahap 1 sampai 3 (4 Oktober 2026, malam)
+
+Bagian ini menggantikan isi lama di bawahnya yang bertentangan.
+
+- Hero tidak lagi memuat angka harga. Harga "mulai dari Rp 499.000" hanya ada di kartu Website Usaha, di FAQ, dan di chat. Hero memuat kalimat kepastian harga ("Harga final jelas sebelum Anda bayar apa pun.") dan tautan "Lihat paket dan harga".
+- Label tombol WhatsApp di seluruh halaman: "Tanya di WhatsApp".
+- Label paket tengah sekarang "Untuk satu masalah utama".
+- Struktur halaman: Hero (dua kolom, foto di kanan), Pilih jenis usaha, Contoh sistem, Langkah kerja (dengan tiga janji), Paket dan harga (plus kotak "Yang menentukan harga aplikasi" dan cara bayar), Pesan dalam 3 langkah, Tentang saya, Pertanyaan umum (tiga kelompok), Kontak (penutup gelap), Footer. File section lama (Marquee, Familiar, Quadrant, Skills, Orbit, Testimonials) sudah dihapus dari repo.
+- Kebijakan yang tertulis di website dan perlu dikonfirmasi Aldy: dukungan 30 hari tanpa biaya tambahan, balasan WhatsApp biasanya dalam satu hari kerja, website usaha biasanya selesai dalam beberapa hari kerja dengan satu putaran revisi besar, kode dan akun diserahkan setelah pelunasan, aturan berhenti di tengah jalan (bagian belum dikerjakan dikembalikan, yang sudah dikerjakan dihitung apa adanya), contoh sistem adalah contoh buatan sendiri bukan hasil kerja klien.
+- Tautan sosial TikTok, Threads, Instagram, dan X dihapus dari halaman sampai ada akun dan URL yang nyata. YouTube dan LinkedIn ada di footer, email ada di Kontak.
+- Analytics: Vercel Web Analytics. Event kustom hanya tercatat di paket Pro; penanda `(web-...)` di pesan WhatsApp tetap menjadi ukuran sumber chat yang independen.
+
+---
+
 ## Pembaruan Keputusan (4 Oktober 2026)
 
 Bagian ini menggantikan isi lama di dokumen ini yang bertentangan dengannya.

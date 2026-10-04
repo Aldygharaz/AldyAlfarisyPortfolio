@@ -2,13 +2,13 @@ import { useLocale } from '../context/LocaleContext';
 import { content } from '../locales/content';
 
 const HoverText = ({ text }: { text: string }) => (
-  <>
+  <span aria-hidden="true">
     {text.split('').map((char, i) => (
       <span key={i} className="hover-char">
         {char === ' ' ? '\u00A0' : char}
       </span>
     ))}
-  </>
+  </span>
 );
 
 export default function About() {
@@ -16,7 +16,7 @@ export default function About() {
   const about = content[locale].about;
 
   return (
-    <section className="section" id="about">
+    <section className="section section-band" id="about">
       <div className="about-grid-new">
         <div className="about-text-col reveal">
           <div className="about-intro">
@@ -26,7 +26,7 @@ export default function About() {
             >
               {about.eyebrow}
             </span>
-            <h2 className="interactive-title">
+            <h2 className="interactive-title" aria-label={`${about.titlePart1}${about.titlePart2} ${about.titlePart3}`}>
               <span className="line">
                 <HoverText text={about.titlePart1} />
                 <em>
@@ -38,11 +38,8 @@ export default function About() {
               </span>
             </h2>
             <p>{about.p1}</p>
-            <br />
             <p>{about.p2}</p>
-            <br />
             <p>{about.p3}</p>
-            <br />
             <p>{about.p4}</p>
           </div>
 
@@ -66,35 +63,33 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about-visual-col reveal" style={{ transitionDelay: '0.1s' }}>
+        <figure className="about-photo reveal" style={{ transitionDelay: '0.1s' }}>
           <img
             src="/portrait.webp"
-            alt={`Aldy Alfarisy - ${about.roleRow}`}
+            alt={about.portraitAlt}
             className="about-portrait"
+            width="681"
+            height="1024"
             loading="lazy"
             decoding="async"
           />
+        </figure>
 
-          <div className="vitals-section">
-            <div className="vitals-header">
-              <h3>{about.vitalsHeader}</h3>
-              <span>SOKARA</span>
-            </div>
-
-            {about.vitals.map((vital: { label: string; content: string; sub?: string }, idx) => (
-              <div key={idx} className="vital-row">
-                <div className="vital-label">{vital.label}</div>
-                <div className="vital-content">
-                  <h4>{vital.content}</h4>
-                  {vital.sub && (
-                    <p style={{ fontSize: '13px', marginTop: '4px', opacity: 0.8 }}>
-                      {vital.sub}
-                    </p>
-                  )}
-                </div>
-              </div>
-            ))}
+        <div className="vitals-section reveal" style={{ transitionDelay: '0.15s' }}>
+          <div className="vitals-header">
+            <h3>{about.vitalsHeader}</h3>
+            <span>SOKARA</span>
           </div>
+
+          {about.vitals.map((vital: { label: string; content: string; sub?: string }, idx) => (
+            <div key={idx} className="vital-row">
+              <div className="vital-label">{vital.label}</div>
+              <div className="vital-content">
+                <h4>{vital.content}</h4>
+                {vital.sub && <p className="vital-sub">{vital.sub}</p>}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

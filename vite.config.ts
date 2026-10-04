@@ -1,24 +1,17 @@
-import path from "path"
-import react from "@vitejs/plugin-react"
-import { defineConfig } from "vite"
-import { inspectAttr } from 'kimi-plugin-inspect-react'
-import viteCompression from 'vite-plugin-compression'
+import path from 'path'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: './',
-  plugins: [
-    inspectAttr(), 
-    react(),
-    viteCompression({ algorithm: 'gzip' }),
-    viteCompression({ algorithm: 'brotliCompress' })
-  ],
+  base: '/',
+  plugins: [react()],
   server: {
     port: 3000,
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
@@ -30,14 +23,12 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('lucide-react')) return 'vendor-icons';
-            if (id.includes('framer-motion') || id.includes('three') || id.includes('@splinetool')) return 'vendor-3d-motion';
-            if (id.includes('@radix-ui')) return 'vendor-radix';
-            if (id.includes('react') || id.includes('scheduler')) return 'vendor-react';
-            return 'vendor';
+            if (id.includes('lucide-react')) return 'vendor-icons'
+            if (id.includes('react') || id.includes('scheduler')) return 'vendor-react'
+            return 'vendor'
           }
-        }
-      }
-    }
-  }
-});
+        },
+      },
+    },
+  },
+})

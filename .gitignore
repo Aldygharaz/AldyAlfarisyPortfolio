@@ -23,5 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# Media raw sources
+# Media raw sources (kecuali video cadangan di public/videos)
 *.mp4
+!public/videos/*.mp4

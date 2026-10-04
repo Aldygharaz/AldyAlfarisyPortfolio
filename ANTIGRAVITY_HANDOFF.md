@@ -5,6 +5,8 @@ Branch kerja: `revamp/fase-0-1` (lokal, belum di-push). Berisi Fase 0, Fase 1, d
 
 Baca dokumen ini sampai habis sebelum mengubah kode di repo ini.
 
+> **Pembaruan 4 Oktober 2026 (malam):** Tahap 1 sampai 3 rencana "portofolio flawless" sudah dikerjakan Claude di branch ini (tulisan, layout, teknis). Bagian 8 di bawah yang berlaku. Kalau ada isi bagian 3, 4.4, dan 5 yang bertentangan dengan bagian 8, ikuti bagian 8.
+
 ---
 
 ## 1. Aturan wajib
@@ -60,7 +62,7 @@ Urutan halaman sekarang: Hero, Pilih jenis usaha, Contoh sistem, Langkah kerja, 
 
 ### Pelacakan event
 
-`track(nama, properti)` di `src/lib/analytics.ts` mengirim ke `window.plausible` atau `window.va` (Vercel Analytics) kalau salah satunya terpasang. Saat ini belum ada yang terpasang, jadi fungsi ini diam di produksi dan hanya mencatat ke konsol saat dev.
+`track(nama, properti)` di `src/lib/analytics.ts` sekarang memakai Vercel Web Analytics (`@vercel/analytics`). Skrip hanya dipasang di build produksi dan tidak di localhost. Saat dev, event hanya dicatat ke konsol. Tampilan halaman tercatat otomatis setelah Web Analytics diaktifkan di dashboard Vercel. Event kustom (`track`) hanya tercatat di paket Vercel Pro atau Enterprise; di Hobby panggilannya aman tetapi tidak tercatat. Batas Vercel Pro: maksimal 2 properti per event, jadi jangan menambah properti ketiga.
 
 | Event | Properti | Dipicu dari |
 | --- | --- | --- |
@@ -70,7 +72,9 @@ Urutan halaman sekarang: Hero, Pilih jenis usaha, Contoh sistem, Langkah kerja, 
 | `story_open` | `project` | Tombol "Baca ceritanya" |
 | `package_select` | `package`, `location` (packages, order_flow) | Pilih paket |
 | `order_step` | `step` | Perpindahan langkah di alur pesan |
-| `order_submit` | `segment`, `package`, `needs_count`, `has_problem` | Tombol "Kirim ringkasan ke WhatsApp" (isi masalah tidak pernah dikirim ke analytics) |
+| `order_submit` | `segment`, `package` | Tombol "Kirim ringkasan ke WhatsApp" (isi masalah tidak pernah dikirim ke analytics) |
+| `email_click` | `location` (contact) | Tautan email di section Kontak |
+| `hero_price_link` | tanpa properti | Tautan "Lihat paket dan harga" di hero |
 
 Jangan menghapus penanda `(web-<segmen>)` dan `(web-<segmen>-<paket>)` di akhir pesan WhatsApp. Aldy memakainya untuk menghitung chat yang datang dari website.
 
@@ -100,7 +104,7 @@ Setelah semua demo siap, kabari agar tombol "Coba langsung" di portofolio bisa d
 
 ### 4.2 Video demo bersuara (bersama Aldy)
 
-Durasi 30 sampai 60 detik per project, suara Aldy, fokus pada satu masalah dan satu momen solusi. Poster video sudah ada di `public/videos/*-poster.webp`. Simpan video sebagai WebM. File `.mp4` diabaikan git.
+Durasi 30 sampai 60 detik per project, suara Aldy, fokus pada satu masalah dan satu momen solusi. Poster video sudah ada di `public/videos/*-poster.webp`. Simpan video sebagai WebM dan MP4 (H.264) dengan nama yang sama. Sejak Tahap 3, MP4 di `public/videos/` ikut git (cadangan untuk Safari lama).
 
 ### 4.3 Fase 2 sudah selesai
 
@@ -109,15 +113,15 @@ Paket dan harga serta alur pesan sudah dikerjakan Claude (lihat bagian 3). Janga
 ### 4.4 Lain-lain
 
 - Bantu Aldy memasang balasan otomatis WhatsApp Business (teks di bagian 6).
-- Pasang penyedia analytics setelah Aldy memilih (Vercel Analytics atau Plausible). Tidak perlu mengubah pemanggilan `track()`.
-- Setelah Aldy meninjau, file section yang tidak dipakai (`Marquee.tsx`, `Familiar.tsx`, `Skills.tsx`, `Orbit.tsx`, `Testimonials.tsx`, `Testimonials.css`, `Quadrant.tsx`) dan folder `scratch/` boleh dihapus.
+- Analytics: Aldy memilih Vercel. Paket sudah terpasang di kode (bagian 8). Tinggal mengaktifkan Web Analytics di dashboard Vercel setelah deploy.
+- File section yang tidak dipakai dan folder `scratch/` sudah dihapus pada Tahap 3 (bagian 8).
 
 ## 5. Hal teknis yang perlu diingat
 
-- Headline dipaksa 2 baris di layar 1024 px ke atas lewat `.intro-line { white-space: nowrap; }`. Kalau headline diganti, jaga tiap baris maksimal sekitar 30 karakter.
+- Hero sekarang dua kolom (tulisan dan foto) di layar 1024 px ke atas. Headline memakai `text-wrap: balance` dan tidak lagi dipaksa `nowrap`.
 - `Work.tsx` sekarang memakai grid. Kartu memutar video hanya saat di-hover (desktop); di HP hanya poster, demi kecepatan.
-- Sumber video KAVANA: `Sokara-Kavana.webm` lalu `Video-Kavana.webm` sebagai cadangan.
-- Section yang dikeluarkan masih punya teksnya di `content.ts`. Biarkan sampai Aldy memutuskan file-filenya dihapus.
+- Sumber video KAVANA: `Sokara-Kavana.webm`, lalu `Sokara-Kavana.mp4`. Salinan ganda `Video-Kavana.*` sudah dihapus.
+- Blok teks section yang dikeluarkan (marquee, familiar, quadrant, skills, orbit, testimonials) sudah dihapus dari `content.ts`.
 - Situs live (www.aldyalfarisy.my.id) masih versi lama sebelum revamp.
 
 ## 6. Template balasan otomatis WhatsApp Business (untuk dipasang Aldy)
@@ -185,3 +189,50 @@ Telah disediakan dua skrip audit di folder `scratch/`:
 - Seluruh perubahan di-commit di lokal pada branch `revamp/fase-0-1`.
 - Sesuai aturan wajib nomor 1, **tidak ada `git push` ke remote**.
 
+---
+
+## 8. Pembaruan Tahap 1 sampai 3 (Claude, 4 Oktober 2026 malam)
+
+Dikerjakan lokal di branch `revamp/fase-0-1`. Tidak ada push dan tidak ada deploy.
+
+### 8.1 Setelah menarik branch ini, jalankan dulu
+
+```
+cmd /c npm install
+cmd /c npm run build
+cmd /c npm run preview
+cmd /c npm run test:e2e
+```
+
+Banyak dependensi tidak terpakai sudah dihapus dari `package.json` (paket Radix, recharts, react-router, dan lain-lain), jadi `node_modules` lama perlu diperbarui. `npm run test:e2e` butuh `npm run preview` berjalan di terminal lain (alamat bawaan `http://127.0.0.1:4173`, bisa diganti lewat `BASE_URL`).
+
+### 8.2 Yang berubah
+
+| Tahap | Perubahan | File |
+| --- | --- | --- |
+| 1 Tulisan | Semua copy ID dan EN ditulis ulang untuk pemilik bisnis: hero tanpa angka harga (harga hanya di kartu paket dan FAQ), tombol WhatsApp memakai kata "Tanya di WhatsApp", paket Website lebih jelas, kotak "Yang menentukan harga aplikasi", aturan berhenti di tengah jalan, FAQ dikelompokkan jadi tiga (Harga dan pembayaran, Proses dan dukungan, Soal kepercayaan) dan ditambah pertanyaan refund, dukungan 30 hari, kepemilikan data, pindah vendor | `src/locales/content.ts`, `src/sections/FAQ.tsx`, `index.html`, `src/context/LocaleContext.tsx` |
+| 2 Layout | Hero dua kolom dengan foto, tautan "Lihat paket dan harga", judul bukan huruf besar semua. Langkah Kerja dua kolom dengan kartu "Tiga hal yang saya pegang" di samping. Paket: dua kotak di bawah kartu. Tentang saya: foto di atas pada HP, ukuran teks kecil dinaikkan. FAQ tanpa batas tinggi tetap. Kontak: penutup gelap, hanya tombol WhatsApp dan email. Footer: ikon YouTube dan LinkedIn pindah ke sini. Contoh Sistem: kalimat "Menampilkan contoh untuk: X. Ganti" saat disaring. Latar selang-seling (Paket, Tentang) | `src/sections/*.tsx`, `src/App.css` |
+| 3 Teknis | Font di-host sendiri (`@fontsource-variable`, tanpa Google Fonts). Landmark `main`, tautan lompat, label navigasi, fokus keyboard terlihat, target sentuh 44 px di HP. Gambar pratinjau tautan 1200x630 (`public/og-image.jpg`, dibuat lewat `scripts/make-og-image.cjs`). Canonical, JSON-LD ProfessionalService tanpa harga, sitemap diperbarui, theme-color mengikuti warna merek. `vercel.json` (cache panjang untuk aset ber-hash, header keamanan). Vercel Analytics terpasang. MP4 cadangan untuk semua video. CSS mati dibersihkan (123 KB menjadi 44 KB), 53 komponen UI dan dependensi tidak terpakai, `scratch/`, plugin kimi, kompresi ganda, dan router dihapus | `index.html`, `vercel.json`, `vite.config.ts`, `package.json`, `src/**` |
+| Tes | `tests/smoke.cjs` (struktur, bahasa, FAQ, filter, modal, paket, tap target, meta) dan `tests/orderflow.cjs` (alur pesan sampai tautan WhatsApp). Keduanya melanjutkan skrip Antigravity di `scratch/` yang sudah dihapus | `tests/` |
+
+Hasil verifikasi saat commit: `tsc -b` dan `eslint .` bersih, 56 pemeriksaan smoke dan 14 pemeriksaan alur pesan lulus, axe 0 pelanggaran (desktop dan HP), CLS 0, muatan awal sekitar 294 KB.
+
+### 8.3 Tugas baru untuk Antigravity (repo demo, di luar folder ini)
+
+1. **Poster dan video lebih tajam.** Sumber video sekarang 640x360 sehingga poster di kartu Contoh Sistem terlihat lembut. Rekam ulang atau ekspor demo di 1280x720 atau lebih, lalu buat `*-poster.webp` 1280x720 (target di bawah 80 KB), `*.webm` (VP9) dan `*.mp4` (H.264, `-crf 27 -movflags +faststart`) dengan nama yang sama di `public/videos/`.
+2. **Demo POS memakai Rupiah.** Thumbnail dan data demo POS masih menampilkan dolar. Ganti ke Rupiah bertitik dan nama produk Indonesia.
+3. **Mode "Coba 2 menit"** untuk 7 demo, sesuai `docs/COBA_2_MENIT_SPEC.md` (bagian 4.1).
+4. Setelah Aldy deploy: aktifkan Web Analytics di dashboard Vercel, bagikan tautan ke WhatsApp untuk memeriksa pratinjau gambar, kirim `sitemap.xml` ke Google Search Console.
+
+### 8.4 Keputusan yang perlu dikonfirmasi Aldy
+
+Angka dan kebijakan di bawah diisi Claude dengan usulan bawaan supaya halaman tidak kosong. Semuanya tertulis di `content.ts`. Jangan diubah tanpa Aldy, dan kabari Aldy supaya memastikan atau menggantinya:
+
+- Dukungan 30 hari tanpa biaya tambahan setelah sistem berjalan.
+- Balasan WhatsApp "biasanya dalam satu hari kerja".
+- Website usaha "biasanya selesai dalam beberapa hari kerja" dan satu putaran revisi besar.
+- Kode dan akun diserahkan setelah pelunasan.
+- Aturan berhenti di tengah jalan: bagian yang belum dikerjakan dikembalikan, yang sudah dikerjakan dihitung apa adanya.
+- Contoh sistem adalah contoh buatan sendiri, bukan hasil kerja untuk klien.
+
+Belum dikerjakan karena butuh bahan dari Aldy: cerita usaha F&B (tahun, jenis usaha, angka kalau ada) dan program klien pertama (opsional).

@@ -1,4 +1,4 @@
-import { Check, Wallet, ArrowUpRight } from 'lucide-react';
+import { Check, Wallet, ArrowUpRight, Calculator } from 'lucide-react';
 import { useLocale } from '../context/LocaleContext';
 import { useOrder, type PackageId } from '../context/OrderContext';
 import { useSegment } from '../context/SegmentContext';
@@ -21,7 +21,7 @@ export default function Packages() {
   };
 
   return (
-    <section className="section pkg-section" id="paket">
+    <section className="section section-band pkg-section" id="paket">
       <style>{`
         .pkg-grid {
           display: grid;
@@ -84,17 +84,24 @@ export default function Packages() {
           text-decoration: underline;
           text-underline-offset: 4px;
         }
-        .pkg-pay {
+        .pkg-info {
           margin-top: 24px;
+          display: grid;
+          gap: 20px;
+        }
+        @media (min-width: 900px) {
+          .pkg-info { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        .pkg-note {
           display: flex;
           gap: 16px;
           align-items: flex-start;
-          padding: 20px 24px;
+          padding: 24px;
           border-radius: 18px;
           border: 1px dashed var(--border-color);
           background: var(--surface);
         }
-        .pkg-pay-icon {
+        .pkg-note-icon {
           flex-shrink: 0;
           width: 44px;
           height: 44px;
@@ -104,8 +111,9 @@ export default function Packages() {
           background: var(--accent-wash);
           color: var(--accent-blue);
         }
-        .pkg-pay-title { font-weight: 600; font-size: 17px; margin: 0 0 4px; color: var(--text); }
-        .pkg-pay-text { font-size: 16px; line-height: 1.55; margin: 0; color: var(--text-muted); }
+        .pkg-note-title { font-weight: 600; font-size: 17px; margin: 0 0 8px; color: var(--text); }
+        .pkg-note-text { font-size: 16px; line-height: 1.55; margin: 0; color: var(--text-muted); }
+        .pkg-drivers { list-style: disc; padding-left: 20px; margin: 0 0 12px; display: grid; gap: 4px; font-size: 16px; line-height: 1.5; color: var(--text); }
       `}</style>
 
       <div className="section-head reveal">
@@ -162,13 +170,29 @@ export default function Packages() {
         })}
       </div>
 
-      <div className="pkg-pay reveal">
-        <span className="pkg-pay-icon" aria-hidden="true">
-          <Wallet className="w-5 h-5" />
-        </span>
-        <div>
-          <p className="pkg-pay-title">{t.payTitle}</p>
-          <p className="pkg-pay-text">{t.payText}</p>
+      <div className="pkg-info reveal">
+        <div className="pkg-note">
+          <span className="pkg-note-icon" aria-hidden="true">
+            <Calculator className="w-5 h-5" />
+          </span>
+          <div>
+            <p className="pkg-note-title">{t.driversTitle}</p>
+            <ul className="pkg-drivers">
+              {t.drivers.map((d) => (
+                <li key={d}>{d}</li>
+              ))}
+            </ul>
+            <p className="pkg-note-text">{t.driversNote}</p>
+          </div>
+        </div>
+        <div className="pkg-note">
+          <span className="pkg-note-icon" aria-hidden="true">
+            <Wallet className="w-5 h-5" />
+          </span>
+          <div>
+            <p className="pkg-note-title">{t.payTitle}</p>
+            <p className="pkg-note-text">{t.payText}</p>
+          </div>
         </div>
       </div>
     </section>

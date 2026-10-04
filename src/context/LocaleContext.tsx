@@ -39,29 +39,29 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     document.documentElement.lang = locale;
     if (locale === 'en') {
-      document.title = 'Aldy Alfarisy | Custom Apps and Websites for Businesses';
+      document.title = 'Aldy Alfarisy | Apps and Websites for Businesses';
       const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
+      if (desc) desc.setAttribute('content', 'I build apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Talk first, with a clear price before you pay.');
       const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Custom Apps and Websites for Businesses');
+      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Apps and Websites for Businesses');
       const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
+      if (ogDesc) ogDesc.setAttribute('content', 'I build apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Talk first, with a clear price before you pay.');
       const twTitle = document.querySelector('meta[property="twitter:title"]');
-      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Custom Apps and Websites for Businesses');
+      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Apps and Websites for Businesses');
       const twDesc = document.querySelector('meta[property="twitter:description"]');
-      if (twDesc) twDesc.setAttribute('content', 'I build custom apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Business websites start from Rp 499.000.');
+      if (twDesc) twDesc.setAttribute('content', 'I build apps and websites around how your business works: point of sale, bookkeeping, bookings, staff scheduling, and online stores. Talk first, with a clear price before you pay.');
     } else {
-      document.title = 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha';
+      document.title = 'Aldy Alfarisy | Aplikasi dan Website untuk Usaha';
       const desc = document.querySelector('meta[name="description"]');
-      if (desc) desc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
+      if (desc) desc.setAttribute('content', 'Saya bikin aplikasi dan website yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Ngobrol dulu, harga jelas sebelum bayar.');
       const ogTitle = document.querySelector('meta[property="og:title"]');
-      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha');
+      if (ogTitle) ogTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website untuk Usaha');
       const ogDesc = document.querySelector('meta[property="og:description"]');
-      if (ogDesc) ogDesc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
+      if (ogDesc) ogDesc.setAttribute('content', 'Saya bikin aplikasi dan website yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Ngobrol dulu, harga jelas sebelum bayar.');
       const twTitle = document.querySelector('meta[property="twitter:title"]');
-      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website Custom untuk Usaha');
+      if (twTitle) twTitle.setAttribute('content', 'Aldy Alfarisy | Aplikasi dan Website untuk Usaha');
       const twDesc = document.querySelector('meta[property="twitter:description"]');
-      if (twDesc) twDesc.setAttribute('content', 'Saya bikin aplikasi dan website custom yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Website usaha mulai dari Rp 499.000.');
+      if (twDesc) twDesc.setAttribute('content', 'Saya bikin aplikasi dan website yang mengikuti cara kerja usaha Anda: kasir, pembukuan, booking, jadwal karyawan, sampai toko online. Ngobrol dulu, harga jelas sebelum bayar.');
     }
   }, [locale]);
 

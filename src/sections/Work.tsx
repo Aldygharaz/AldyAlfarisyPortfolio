@@ -38,6 +38,7 @@ const PosMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-pos-preview.webm" type="video/webm" />
+        <source src="/videos/Sokara-pos-preview.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -76,7 +77,6 @@ const FashionMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-Kavana.webm" type="video/webm" />
-        <source src="/videos/Video-Kavana.webm" type="video/webm" />
         <source src="/videos/Sokara-Kavana.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
@@ -116,6 +116,7 @@ const AccountingMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-Accounting.webm" type="video/webm" />
+        <source src="/videos/Sokara-Accounting.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -154,6 +155,7 @@ const HrmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-HRMS.webm" type="video/webm" />
+        <source src="/videos/Sokara-HRMS.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -192,6 +194,7 @@ const CrmMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-CRM.webm" type="video/webm" />
+        <source src="/videos/Sokara-CRM.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -230,6 +233,7 @@ const SanctuaryMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-SPA.webm" type="video/webm" />
+        <source src="/videos/Sokara-SPA.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -268,6 +272,7 @@ const LmsMockup = ({ isFront = true }: { isFront?: boolean }) => {
         className="w-full h-full object-cover pointer-events-none"
       >
         <source src="/videos/Sokara-LMS.webm" type="video/webm" />
+        <source src="/videos/Sokara-LMS.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
       <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-[9px] font-mono px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1.5 shadow-sm pointer-events-none">
@@ -612,6 +617,7 @@ function GodTierModal({ project, onClose }: { project: Project; onClose: () => v
 export default function Work() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const chipsRef = useRef<HTMLDivElement>(null);
   const [showAllMobile, setShowAllMobile] = useState(false);
 
   const { locale } = useLocale();
@@ -820,7 +826,7 @@ export default function Work() {
           {/* Saringan jenis usaha */}
           <div className="mb-8 sm:mb-10">
             <p className="text-sm text-gray-500 mb-3">{workContent.filterLabel}</p>
-            <div className="work-chips flex gap-2 overflow-x-auto sm:flex-wrap -mx-5 px-5 sm:mx-0 sm:px-0 pb-1">
+            <div ref={chipsRef} className="work-chips flex gap-2 overflow-x-auto sm:flex-wrap -mx-5 px-5 sm:mx-0 sm:px-0 pb-1">
               <button type="button" className={chipClass(!activeSegment)} onClick={() => chooseFilter(null)} aria-pressed={!activeSegment}>
                 {workContent.filterAll}
               </button>
@@ -837,6 +843,22 @@ export default function Work() {
               ))}
             </div>
           </div>
+
+          {/* Penjelasan saat daftar sedang disaring */}
+          <p className="text-[15px] text-gray-700 mb-6 min-h-6" aria-live="polite">
+            {activeSegment && (
+              <>
+                {workContent.filterShowing}: <strong className="font-semibold">{activeSegment.label}</strong>.{' '}
+                <button
+                  type="button"
+                  className="inline-flex items-center min-h-11 px-1 font-semibold text-blue-700 underline underline-offset-4"
+                  onClick={() => chipsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' })}
+                >
+                  {workContent.filterChange}
+                </button>
+              </>
+            )}
+          </p>
 
           {/* Grid kartu */}
           <div className="grid gap-6 sm:gap-7 sm:grid-cols-2 lg:grid-cols-3">

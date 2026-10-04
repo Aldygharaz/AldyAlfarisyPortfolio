@@ -66,10 +66,10 @@
     --intro-muted: #334155;
     --intro-line: rgba(10,23,48,0.14);
 
-    --font-display: 'Jost', sans-serif;
-    --font-serif: 'Playfair Display', serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Jost Variable', 'Jost', system-ui, sans-serif;
+    --font-serif: 'Playfair Display Variable', 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter Variable', 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
   }
 
   .dark {
@@ -126,6 +126,11 @@
     font-weight: 700;
     margin: 0;
     letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  h1, h2 {
+    line-height: 1.15;
   }
 
   h1 em, h2 em, h3 em {

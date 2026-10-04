@@ -51,6 +51,9 @@ function App() {
     <SegmentProvider>
     <OrderProvider>
     <div className="app-container">
+      <a href="#main" className="skip-link">
+        {locale === 'en' ? 'Skip to main content' : 'Lewati ke konten utama'}
+      </a>
       <div ref={glowRef} className="global-mouse-glow" aria-hidden="true" />
       <style>{`
         html.lenis { height: auto; }
@@ -68,16 +71,20 @@ function App() {
       <SideNav />
 
       <Navigation ref={navRef} />
-      <IntroHero />
-      <Segments />
-      <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>{locale === 'en' ? 'Loading next section...' : 'Memuat bagian selanjutnya...'}</div>}>
-        <Work />
-        <Process />
-        <Packages />
-        <OrderFlow />
-        <About />
-        <FAQ />
-        <Contact />
+      <main id="main" tabIndex={-1}>
+        <IntroHero />
+        <Segments />
+        <Suspense fallback={<div style={{ padding: '100px 0', textAlign: 'center', color: 'var(--text-muted)' }}>{locale === 'en' ? 'Loading next section...' : 'Memuat bagian selanjutnya...'}</div>}>
+          <Work />
+          <Process />
+          <Packages />
+          <OrderFlow />
+          <About />
+          <FAQ />
+          <Contact />
+        </Suspense>
+      </main>
+      <Suspense fallback={null}>
         <Footer />
       </Suspense>
       <FloatingWhatsApp />

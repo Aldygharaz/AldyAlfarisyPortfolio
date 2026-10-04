@@ -67,6 +67,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         .logo {
           display: flex;
           align-items: center;
+          min-height: 44px;
           text-decoration: none;
           gap: 8px;
         }
@@ -89,8 +90,16 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           gap: 32px;
         }
 
+        .nav-link,
+        .nav-login {
+          display: inline-flex;
+          align-items: center;
+          min-height: 40px;
+          padding: 0 4px;
+        }
+
         .nav-link {
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           color: var(--text-muted);
           text-decoration: none;
@@ -100,7 +109,13 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         .nav-link:hover,
         .nav-link:focus-visible {
           color: var(--text);
-          outline: none;
+        }
+        .nav-link:focus-visible,
+        .nav-login:focus-visible,
+        .logo:focus-visible {
+          outline: 2px solid var(--accent-blue);
+          outline-offset: 4px;
+          border-radius: 6px;
         }
 
         .nav-right {
@@ -112,7 +127,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         }
 
         .nav-login {
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           color: var(--text-muted);
           text-decoration: none;
@@ -121,7 +136,6 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
         .nav-login:hover,
         .nav-login:focus-visible {
           color: var(--text);
-          outline: none;
         }
 
         .nav-cta {
@@ -166,8 +180,11 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
             gap: 8px;
           }
           .nav-cta {
-            padding: 8px 14px;
-            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            min-height: 44px;
+            padding: 0 14px;
+            font-size: 13px;
           }
         }
       `}</style>
@@ -192,7 +209,7 @@ const Navigation = forwardRef<HTMLElement>((_, ref) => {
           </a>
         </div>
 
-        <nav className="nav-center">
+        <nav className="nav-center" aria-label={locale === 'en' ? 'Main navigation' : 'Navigasi utama'}>
           {nav.links.map(({ id, label }) => (
             <a
               key={id}

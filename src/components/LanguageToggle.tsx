@@ -20,6 +20,8 @@ export default function LanguageToggle() {
           box-shadow: 0 1px 4px rgba(0,0,0,0.03);
         }
         .lang-btn {
+          min-height: 28px;
+          min-width: 36px;
           padding: 4px 9px;
           border-radius: 9999px;
           border: none;
@@ -27,9 +29,16 @@ export default function LanguageToggle() {
           color: var(--text-muted);
           cursor: pointer;
           transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-          font-size: 11px;
+          font-size: 12px;
           font-weight: 600;
           line-height: 1;
+        }
+        @media (pointer: coarse) {
+          .lang-btn { min-height: 44px; }
+        }
+        .lang-btn:focus-visible {
+          outline: 2px solid var(--accent-blue);
+          outline-offset: 2px;
         }
         .lang-btn.active {
           background: var(--text);

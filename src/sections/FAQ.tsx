@@ -3,7 +3,8 @@ import { useLocale } from '../context/LocaleContext';
 import { content } from '../locales/content';
 
 export default function FAQ() {
-  const [openIdx, setOpenIdx] = useState<number>(-1);
+  // Pertanyaan pertama terbuka supaya pengunjung langsung tahu isinya bisa dibaca.
+  const [openKey, setOpenKey] = useState<string>('0-0');
   const { locale } = useLocale();
   const faq = content[locale].faq;
 
@@ -14,19 +15,38 @@ export default function FAQ() {
         <h2>{faq.title}</h2>
       </div>
       <div className="faq-list">
-        {faq.items.map((item, idx) => (
-          <div className="reveal" key={idx} style={{ transitionDelay: `${0.08 * idx}s` }}>
-            <div className={`faq-item ${openIdx === idx ? 'open' : ''}`}>
-              <button
-                className="faq-q"
-                aria-expanded={openIdx === idx}
-                onClick={() => setOpenIdx(openIdx === idx ? -1 : idx)}
-              >
-                <span>{item.q}</span>
-                <span className="faq-icon" />
-              </button>
-              <div className="faq-a">{item.a}</div>
-            </div>
+        {faq.groups.map((group, g) => (
+          <div className="faq-group reveal" key={group.title}>
+            <h3 className="faq-group-title">{group.title}</h3>
+            {group.items.map((item, i) => {
+              const key = `${g}-${i}`;
+              const isOpen = openKey === key;
+              return (
+                <div className={`faq-item ${isOpen ? 'open' : ''}`} key={key}>
+                  <h4 className="faq-heading">
+                    <button
+                      type="button"
+                      className="faq-q"
+                      id={`faq-q-${key}`}
+                      aria-expanded={isOpen}
+                      aria-controls={`faq-a-${key}`}
+                      onClick={() => setOpenKey(isOpen ? '' : key)}
+                    >
+                      <span>{item.q}</span>
+                      <span className="faq-icon" aria-hidden="true" />
+                    </button>
+                  </h4>
+                  <div
+                    className="faq-a"
+                    id={`faq-a-${key}`}
+                    role="region"
+                    aria-labelledby={`faq-q-${key}`}
+                  >
+                    <div className="faq-a-inner">{item.a}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ))}
       </div>

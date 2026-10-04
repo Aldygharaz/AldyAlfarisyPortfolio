@@ -333,8 +333,6 @@ export default function OrderFlow() {
                 track('order_submit', {
                   segment: segment ?? 'lain',
                   package: pkg ?? 'belum',
-                  needs_count: needs.length,
-                  has_problem: problem.trim().length > 0,
                 })
               }
             >
