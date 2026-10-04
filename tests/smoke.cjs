@@ -149,7 +149,7 @@ async function videoAutoplay(browser) {
   for (const reduced of [false, true]) {
     const page = await browser.newPage();
     await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 1, isMobile: true, hasTouch: true });
-    if (reduced) await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'reduce' }]);
+    await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: reduced ? 'reduce' : 'no-preference' }]);
     await page.evaluateOnNewDocument(() => localStorage.setItem('sokara_lang', 'id'));
     await page.goto(BASE + '/', { waitUntil: 'networkidle0' });
     await page.evaluate(() => document.getElementById('work').scrollIntoView());
